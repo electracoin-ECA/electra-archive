@@ -1,0 +1,9 @@
+Building Electra
+
+See doc/readme-qt.rst for instructions on building Electra QT,
+the intended-for-end-users, nice-graphical-interface, reference
+implementation of Electra.
+
+See doc/build-*.txt for instructions on building Electrad,
+the intended-for-services, no-graphical-interface, reference
+implementation of Electra.
