@@ -1051,9 +1051,8 @@ static unsigned int GetNextTargetRequired_(const CBlockIndex* pindexLast, bool f
         return bnTargetLimit.GetCompact(); // genesis block
         
     // fix difficulty for moving chain again
-    if (pindexLast->nHeight+1 == 11815) { 
-        return bnTargetLimit.GetCompact(); 
-    }        
+    if (pindexLast->nHeight == 11816)
+        return bnTargetLimit.GetCompact();     
 
     const CBlockIndex* pindexPrev = GetLastBlockIndex(pindexLast, fProofOfStake);
     if (pindexPrev->pprev == NULL)
