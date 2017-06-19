@@ -972,7 +972,7 @@ int64_t GetProofOfWorkReward(int64_t nFees)
     if (pindexBest->nHeight == 1) { nSubsidy = 1000000019 * COIN; }
     if (pindexBest->nHeight > 1) { nSubsidy = 0.00390625 * COIN; }
     if (pindexBest->nHeight >= 11522) { nSubsidy = 65972222 * COIN; }
-    if (pindexBest->nHeight >= 11811) { nSubsidy = 0 * COIN; }
+    if (pindexBest->nHeight >= 11811) { nSubsidy = 1 * COIN; }
 
     if (fDebug && GetBoolArg("-printcreation"))
         printf("GetProofOfWorkReward() : create=%s nSubsidy=%"PRId64"\n", FormatMoney(nSubsidy).c_str(), nSubsidy);
