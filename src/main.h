@@ -41,6 +41,9 @@ static const int64_t COIN_YEAR_REWARD =  50 * CENT;
 static const int64_t MAX_MINT_PROOF_OF_STAKE = 50 * CENT;
 static const int MODIFIER_INTERVAL_SWITCH = 11811;
 
+//Fork to fix POS Rewards - last block of old protocol
+static const int LAST_OLD_POS_BLOCK = 44000;
+
 inline bool MoneyRange(int64_t nValue) { return (nValue >= 0 && nValue <= MAX_MONEY); }
 // Threshold for nLockTime: below this value it is interpreted as block number, otherwise as UNIX timestamp.
 static const unsigned int LOCKTIME_THRESHOLD = 500000000; // Tue Nov  5 00:53:20 1985 UTC
