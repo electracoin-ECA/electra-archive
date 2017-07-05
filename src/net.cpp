@@ -1019,10 +1019,14 @@ void ThreadMapPort2(void* parg)
 #ifndef UPNPDISCOVER_SUCCESS
     /* miniupnpc 1.5 */
     devlist = upnpDiscover(2000, multicastif, minissdpdpath, 0);
-#else
+#elif MINIUPNPC_API_VERSION < 14
     /* miniupnpc 1.6 */
     int error = 0;
     devlist = upnpDiscover(2000, multicastif, minissdpdpath, 0, 0, &error);
+#else
+    /* miniupnpc 1.9.20150730 */
+    int error = 0;
+    devlist = upnpDiscover(2000, multicastif, minissdpdpath, 0, 0, 2, &error);
 #endif
 
     struct UPNPUrls urls;
@@ -1130,10 +1134,6 @@ void MapPort()
 
 
 
-
-
-
-
 // DNS seeds
 // Each pair gives a source name and a seed name.
 // The first name is used as information source for addrman.
@@ -1141,6 +1141,14 @@ void MapPort()
 static const char *strDNSSeed[][2] = {
         {"35.164.59.217", "35.164.59.217"},
         {"212.24.103.180", "212.24.103.180"},
+        {"139.162.166.112", "139.162.166.112"},
+        {"158.129.230.143", "158.129.230.143"},
+        {"217.77.59.45", "217.77.59.45"},
+        {"5.9.73.100", "5.9.73.100"},
+        {"52.41.97.84", "52.41.97.84"},
+        {"78.164.100.196", "78.164.100.196"},
+        {"88.99.249.223", "88.99.249.223"},
+        {"93.115.61.93", "93.115.61.93"},
 };
 
 void ThreadDNSAddressSeed(void* parg)

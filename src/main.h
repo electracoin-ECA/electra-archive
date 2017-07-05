@@ -27,7 +27,7 @@ class CInv;
 class CRequestTracker;
 class CNode;
 
-static const int LAST_POW_BLOCK = 11810;
+static const int LAST_POW_BLOCK = 13815;
 
 static const unsigned int MAX_BLOCK_SIZE = 1000000;
 static const unsigned int MAX_BLOCK_SIZE_GEN = MAX_BLOCK_SIZE/2;
@@ -40,6 +40,9 @@ static const int64_t MAX_MONEY = 30000000000 * COIN;
 static const int64_t COIN_YEAR_REWARD =  50 * CENT;
 static const int64_t MAX_MINT_PROOF_OF_STAKE = 50 * CENT;
 static const int MODIFIER_INTERVAL_SWITCH = 11811;
+
+//Fork to fix POS Rewards - last block of old protocol
+static const int LAST_OLD_POS_BLOCK = 17100;
 
 inline bool MoneyRange(int64_t nValue) { return (nValue >= 0 && nValue <= MAX_MONEY); }
 // Threshold for nLockTime: below this value it is interpreted as block number, otherwise as UNIX timestamp.
