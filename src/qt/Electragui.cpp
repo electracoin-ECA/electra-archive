@@ -58,6 +58,7 @@
 #include <QStyle>
 
 #include <iostream>
+#include <locale>
 
 extern CWallet* pwalletMain;
 extern int64_t nLastCoinStakeSearchInterval;
@@ -944,19 +945,25 @@ void ElectraGUI::updateStakingIcon()
         }
         else if (nEstimateTime < 60*60)
         {
-            text = tr("%n minute(s)", "", nEstimateTime/60);
+            text = tr("%n minute(s)", "", nEstimateTime / 60);
         }
         else if (nEstimateTime < 24*60*60)
         {
-            text = tr("%n hour(s)", "", nEstimateTime/(60*60));
+            text = tr("%n hour(s)", "", nEstimateTime / (60 * 60));
         }
         else
         {
-            text = tr("%n day(s)", "", nEstimateTime/(60*60*24));
+            unsigned nEstimateTimeInDays = nEstimateTime / (60 * 60 * 24);
+            QString nEstimateTimeFormatted = nEstimateTimeInDays.inbue(std::locale(""));
+
+            text = tr("%n day(s)", "", nEstimateTimeFormatted);
         }
 
+        QString nWeightFormatted = nWeight.inbue(std::locale(""));
+        QString nNetworkWeightFormatted = nNetworkWeight.inbue(std::locale(""));
+
         labelStakingIcon->setPixmap(QIcon(":/icons/staking_on").pixmap(STATUSBAR_ICONSIZE,STATUSBAR_ICONSIZE));
-        labelStakingIcon->setToolTip(tr("Staking.<br>Your weight is %1<br>Network weight is %2<br>Expected time to earn reward is %3").arg(nWeight).arg(nNetworkWeight).arg(text));
+        labelStakingIcon->setToolTip(tr("Staking.<br>Your weight is %1<br>Network weight is %2<br>Expected time to earn reward is %3").arg(nWeightFormatted).arg(nNetworkWeightFormatted).arg(text));
     }
     else
     {
