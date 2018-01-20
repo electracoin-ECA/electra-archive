@@ -110,7 +110,7 @@ static void handleRunawayException(std::exception *e)
     exit(1);
 }
 
-#ifndef ELECTRA_QT_TEST
+#if !defined(ELECTRA_QT_TEST) && defined(QT_GUI)
 int main(int argc, char *argv[])
 {
     // Do this early as we don't want to bother initializing if we are just calling IPC
