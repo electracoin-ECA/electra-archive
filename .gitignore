@@ -41,8 +41,10 @@ src/build.h
 
 #compilation and Qt preprocessor part
 *.qm
-Makefile
+Makefile*
 ppcoin-qt
+.qmake.stash
+Electra-qt
 
 #resources cpp
 qrc_*.cpp
