@@ -1,0 +1,15 @@
+Source: electra-wallet
+Section: editors
+Priority: optional
+Maintainer: unknown <alediaferia@gmail.com>
+Build-Depends: debhelper (>=9), libssl-dev, libdb++-dev, libminiupnpc-dev, qt5-default, qt5-qmake, qtbase5-dev-tools, qttools5-dev-tools, libboost-system-dev, libboost-filesystem-dev, libboost-thread-dev, libboost-program-options-dev, libboost-dev
+Standards-Version: 3.9.6
+Homepage: https://www.electraproject.org
+#Vcs-Git: git://anonscm.debian.org/collab-maint/electra-wallet.git
+#Vcs-Browser: https://anonscm.debian.org/cgit/collab-maint/electra-wallet.git
+
+Package: electra-wallet
+Architecture: any
+Depends: libminiupnpc10, libssl1.0.0, libboost-system-dev, libboost-filesystem-dev, libboost-program-options-dev, libboost-thread-dev, libqt5widgets5, libqt5gui5, libqt5core5a, ${shlibs:Depends}, ${misc:Depends}
+Description: Electra official wallet for Linux
+ Electra official wallet for Linux
