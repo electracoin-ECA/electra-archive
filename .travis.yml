@@ -4,7 +4,8 @@ services:
     - docker
 
 before_install:
-    - docker pull alediaferia/electra
+    - docker pull electracoin/electra
 
 script:
-    - docker run alediaferia/electra /bin/bash -c "su - ecadev; git clone -b $TRAVIS_BRANCH --single-branch https://github.com/Electra-project/Electra.git; cd Electra; qmake; make"
+    - docker run electracoin/electra /bin/bash -c "su - ecadev; git clone -b $TRAVIS_BRANCH --single-branch https://github.com/Electra-project/Electra.git; cd Electra; qmake; make"
+    - docker run electracoin/electra /bin/bash -c "su - ecadev; git clone -b $TRAVIS_BRANCH --single-branch https://github.com/Electra-project/Electra.git; cd Electra; qmake GUI=0; make"
