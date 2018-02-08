@@ -3,7 +3,7 @@ TARGET = Electra-qt
 macx:TARGET = "Electra-qt"
 VERSION = 1.2.0
 INCLUDEPATH += json qt $$PWD
-DEFINES += QT_GUI BOOST_THREAD_USE_LIB BOOST_SPIRIT_THREADSAFE HAVE_CXX_STDHEADERS MINIUPNP_STATICLIB
+DEFINES += BOOST_THREAD_USE_LIB BOOST_SPIRIT_THREADSAFE HAVE_CXX_STDHEADERS MINIUPNP_STATICLIB
 CONFIG += thread
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 lessThan(QT_MAJOR_VERSION, 5): CONFIG += static
@@ -27,6 +27,17 @@ win32 {
     QRENCODE_INCLUDE_PATH=C:/deps/qrencode-3.4.4
     QRENCODE_LIB_PATH=C:/deps/qrencode-3.4.4/.libs
 }
+
+# GUI enabled by default
+# use: qmake "GUI=0" to disable it
+contains(GUI, 0) {
+    message(Building without GUI support)
+    QT -= gui # Only the core module is used.
+} else {
+    message(Building with GUI support)
+    DEFINES += QT_GUI
+}
+
 
 LIBS += -L$$PWD -lcore
 
