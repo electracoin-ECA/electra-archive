@@ -47,7 +47,7 @@ In this paragraph you will find guidelines on how to build and run an `Electra` 
 In order to build an `Electra` docker image you can issue the following command:
 
 ```bash
-docker build -t electracoin/electra:headless .
+docker build -t electracoin/electra:1.2.0-headless .
 ```  
 
 ### Running Electra with docker
@@ -59,16 +59,16 @@ The `Electra` team will periodically release `Electra` docker images on the [Ele
 You can download and run a docker `Electra` image with the following commands:
 
 ```bash
-docker pull electracoin/electra:headless
-docker run -d -v ~/.Electra:/root/.Electra -p 5788:5788 electracoin/electra:headless
+docker pull electracoin/electra:1.2.0-headless
+docker run -d -v ~/.Electra:/root/.Electra -p 5788:5788 -p 5817:5817 electracoin/electra:1.2.0-headless
 ```  
 
 Please note that in order to run the example above you will require an `Electra.conf` in the folder `~/.Electra`. You can copy the `Electra.conf` available in this
-repository and ensure that there is no `daemon=1` line as this will cause docker to exit immediately.
+repository.
 
 If you want to run the latest and greatest `Electra` you will have to build the docker image following instructions as per previous paragraph and then run the image. E.g.
 
 ```bash
-docker build -t electracoin/electra:headless .
-docker run -d -v ~/.Electra:/root/.Electra -p 5788:5788 electracoin/electra:headless
+docker build -t electracoin/electra:1.2.0-headless .
+docker run -d -v ~/.Electra:/root/.Electra -p 5788:5788 -p 5817:5817 electracoin/electra:1.2.0-headless
 ```
