@@ -72,3 +72,4 @@ If you want to run the latest and greatest `Electra` you will have to build the 
 docker build -t electracoin/electra:1.2.0-headless .
 docker run -d -v ~/.Electra:/root/.Electra -p 5788:5788 -p 5817:5817 electracoin/electra:1.2.0-headless
 ```
+

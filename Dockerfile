@@ -4,7 +4,7 @@ COPY --chown=ecadev ./ /home/ecadev/Electra
 
 WORKDIR /home/ecadev/Electra
 
-RUN qmake GUI=0; make
+RUN qmake GUI=0; make -j3
 
 FROM electracoin/electra-runner:0.1
 
