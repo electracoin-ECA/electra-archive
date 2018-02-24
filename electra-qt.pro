@@ -8,7 +8,7 @@ CONFIG += no_include_pwd
 CONFIG += thread
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 lessThan(QT_MAJOR_VERSION, 5): CONFIG += static
-QMAKE_CXXFLAGS = -fpermissive
+QMAKE_CXXFLAGS = -fpermissive -Wno-reserved-user-defined-literal
 
 greaterThan(QT_MAJOR_VERSION, 4) {
 		QT += widgets
