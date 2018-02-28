@@ -16,8 +16,11 @@
             alt="follow on Twitter"></a>
 </p>
 
-### Mission
-Leverage blockchain technology and assist users for fast and secure transactions.
+# What is Electra?
+Electra is a blockchain using the highly-secure and power efficient NIST5 algorithm. Combining temporary Proof-of-Work with high Proof-of-Stake, the Electra coin (ECA) is unique in its distribution. On June 16, 2017, Electra entered "Super Rewards Bonanza" stage for 24 hours (Blocks 11522-11810). During this time, 95% of the proof-of-work coins were mined. At block 11811, Electra swapped to Proof-of-Stake with an annual interest rate of 50% until the Electra supply reaches 30bil. Once 30bil ECA is reached, block rewards will be earned through transaction fees only. This created a gold-rush period, promoting the network (or was hoped to) and rapidly increasing the amount of ECA.
+
+## Our Mission
+Leverage blockchain technology and provide users with fast and secure transactions.
 We believe Blockchain is the future for many purposes such as data storage, payments and operations. Integration of Blockchain for our daily use leads to higher efficiency in applications.
 
 ### Fast, Today
@@ -32,11 +35,16 @@ Applications are the future need for higher efficiency and cost reduction. Elect
 ### Efficiency
 Electra uses the NIST5 hash, which is chosen as the winning algorithm by the US Nation of Science competition. Combination of security and mining efficiency were the key points taken into account.
 
-# What is Electra?
-Electra is a blockchain using the highly-secure and power efficient NIST5 algorithm. Combining temporary Proof-of-Work with high Proof-of-Stake, the Electra coin (ECA) is unique in its distribution. On June 16, 2017, Electra entered "Super Rewards Bonanza" stage for 24 hours (Blocks 11522-11810). During this time, 95% of the proof-of-work coins were mined. At block 11811, Electra swapped to Proof-of-Stake with an annual interest rate of 50% until the Electra supply reaches 30bil. Once 30bil ECA is reached, block rewards will be earned through transaction fees only. This created a gold-rush period, promoting the network (or was hoped to) and rapidly increasing the amount of ECA.
-
-# Why NIST5?
+## Why NIST5?
 Electra chose to use NIST5 as its hashing algorithm because it has been proven to be more secure and power efficient than other leading algorithms. NIST5 is a combination of the finalists and winner of the US National Institute of Standards and Technology Hash Function Competition(specifically BLAKE, Grøstl, JH, Keccak/SHA-3, and Skein. NIST5 was created fairly recently, and immediately saw use by other coins, but failed to see mainstream adoption.
+
+# TestNet
+Electra TestNet offers Electra developers a safe field where build new features or applications, test Electra evolutions and help
+our core Developers to continue their R&D work to keep Electra secure, fast and reliable.
+
+If you want to know more, check out our [TESTNET.md](https://github.com/Electra-project/Electra/blob/master/TESTNET.md) guide.
+
+# Engineering Resources
 
 ## Containerization
 
@@ -72,3 +80,4 @@ If you want to run the latest and greatest `Electra` you will have to build the 
 docker build -t electracoin/electra:1.2.0-headless .
 docker run -d -v ~/.Electra:/root/.Electra -p 5788:5788 -p 5817:5817 electracoin/electra:1.2.0-headless
 ```
+
