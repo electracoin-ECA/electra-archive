@@ -8,5 +8,5 @@ before_install:
     - docker pull electracoin/electra
 
 script:
-    - docker run electracoin/electra /bin/bash -c "su - ecadev; git clone -b $TRAVIS_BRANCH --single-branch https://github.com/Electra-project/Electra.git; cd Electra; qmake; make"
-    - docker run electracoin/electra /bin/bash -c "su - ecadev; git clone -b $TRAVIS_BRANCH --single-branch https://github.com/Electra-project/Electra.git; cd Electra; qmake GUI=0; make"
+    - docker run electracoin/electra /bin/bash -c "su - ecadev; git clone -b $TRAVIS_BRANCH --single-branch https://github.com/grahamee87/Electra.git; cd Electra; qmake; make"
+    - docker run electracoin/electra /bin/bash -c "su - ecadev; git clone -b $TRAVIS_BRANCH --single-branch https://github.com/grahamee87/Electra.git; cd Electra; qmake GUI=0; make"
