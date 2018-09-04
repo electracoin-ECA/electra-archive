@@ -64,54 +64,54 @@ CFLAGS += -Wall -Wextra -Wformat -Wno-ignored-qualifiers -Wformat-security -Wno-
 		$(DEBUGFLAGS) $(DEFS) $(INCLUDEPATHS)
 
 OBJS= \
-		obj/groestl.o \
-		obj/blake.o \
-		obj/skein.o \
-		obj/keccak.o \
-		obj/jh.o \
-		obj/alert.o \
-		obj/version.o \
-		obj/checkpoints.o \
-		obj/netbase.o \
-		obj/addrman.o \
-		obj/crypter.o \
-		obj/key.o \
-		obj/db.o \
-		obj/init.o \
-		obj/irc.o \
-		obj/keystore.o \
-		obj/main.o \
-		obj/miner.o \
-		obj/net.o \
-		obj/protocol.o \
-		obj/Electrarpc.o \
-		obj/rpcdump.o \
-		obj/rpcnet.o \
-		obj/rpcmining.o \
-		obj/rpcwallet.o \
-		obj/rpcblockchain.o \
-		obj/rpcrawtransaction.o \
-		obj/script.o \
-		obj/sync.o \
-		obj/util.o \
-		obj/wallet.o \
-		obj/walletdb.o \
-		obj/noui.o \
-		obj/pbkdf2.o \
-		obj/kernel.o \
-		obj/scrypt.o \
-		obj/scrypt-x86.o \
-		obj/scrypt-x86_64.o \
-		obj/zerocoin/Accumulator.o \
-		obj/zerocoin/AccumulatorProofOfKnowledge.o \
-		obj/zerocoin/Coin.o \
-		obj/zerocoin/CoinSpend.o \
-		obj/zerocoin/Commitment.o \
-		obj/zerocoin/ParamGeneration.o \
-		obj/zerocoin/Params.o \
-		obj/zerocoin/SerialNumberSignatureOfKnowledge.o \
-		obj/zerocoin/SpendMetaData.o \
-		obj/zerocoin/ZeroTest.o
+    obj/groestl.o \
+    obj/blake.o \
+    obj/skein.o \
+    obj/keccak.o \
+    obj/jh.o \
+    obj/alert.o \
+    obj/version.o \
+    obj/checkpoints.o \
+    obj/netbase.o \
+    obj/addrman.o \
+    obj/crypter.o \
+    obj/key.o \
+    obj/db.o \
+    obj/init.o \
+    obj/irc.o \
+    obj/keystore.o \
+    obj/main.o \
+    obj/miner.o \
+    obj/net.o \
+    obj/protocol.o \
+    obj/Electrarpc.o \
+    obj/rpcdump.o \
+    obj/rpcnet.o \
+    obj/rpcmining.o \
+    obj/rpcwallet.o \
+    obj/rpcblockchain.o \
+    obj/rpcrawtransaction.o \
+    obj/script.o \
+    obj/sync.o \
+    obj/util.o \
+    obj/wallet.o \
+    obj/walletdb.o \
+    obj/noui.o \
+    obj/pbkdf2.o \
+    obj/kernel.o \
+    obj/scrypt.o \
+    obj/scrypt-x86.o \
+    obj/scrypt-x86_64.o \
+    obj/zerocoin/Accumulator.o \
+    obj/zerocoin/AccumulatorProofOfKnowledge.o \
+    obj/zerocoin/Coin.o \
+    obj/zerocoin/CoinSpend.o \
+    obj/zerocoin/Commitment.o \
+    obj/zerocoin/ParamGeneration.o \
+    obj/zerocoin/Params.o \
+    obj/zerocoin/SerialNumberSignatureOfKnowledge.o \
+    obj/zerocoin/SpendMetaData.o \
+    obj/zerocoin/ZeroTest.o
 
 ifndef USE_UPNP
 	override USE_UPNP = -
@@ -135,9 +135,9 @@ LIBS += $(CURDIR)/leveldb/libleveldb.a $(CURDIR)/leveldb/libmemenv.a
 DEFS += $(addprefix -I,$(CURDIR)/leveldb/include)
 DEFS += $(addprefix -I,$(CURDIR)/leveldb/helpers)
 OBJS += obj/txdb-leveldb.o
-leveldb:
+leveldb/libleveldb.a:
 	@echo "Building LevelDB ..."; cd leveldb; make libleveldb.a libmemenv.a; cd ..;
-obj/txdb-leveldb.o: leveldb
+obj/txdb-leveldb.o: leveldb/libleveldb.a
 
 # auto-generated dependencies:
 -include obj/*.P
@@ -161,6 +161,13 @@ obj/%.o: %.c
 				-e '/^$$/ d' -e 's/$$/ :/' < $(@:%.o=%.d) >> $(@:%.o=%.P); \
 		rm -f $(@:%.o=%.d)
 
+obj/%.o: %.c
+	$(CC) -c $(CFLAGS) -fpermissive -MMD -MF $(@:%.o=%.d) -o $@ $<
+	@cp $(@:%.o=%.d) $(@:%.o=%.P); \
+	  sed -e 's/#.*//' -e 's/^[^:]*: *//' -e 's/ *\\$$//' \
+	      -e '/^$$/ d' -e 's/$$/ :/' < $(@:%.o=%.d) >> $(@:%.o=%.P); \
+	  rm -f $(@:%.o=%.d)
+	  
 obj/zerocoin/%.o: zerocoin/%.cpp
 	$(CXX) -c $(xCXXFLAGS) -MMD -MF $(@:%.o=%.d) -o $@ $<
 	@cp $(@:%.o=%.d) $(@:%.o=%.P); \
