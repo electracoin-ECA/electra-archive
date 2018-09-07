@@ -29,6 +29,13 @@ QRENCODE_INCLUDE_PATH=C:/deps/qrencode-3.4.4
 QRENCODE_LIB_PATH=C:/deps/qrencode-3.4.4/.libs
 }
 
+isEmpty(MINIUPNPC_INCLUDE_PATH) {
+		macx:MINIUPNPC_INCLUDE_PATH = /usr/local/Cellar/miniupnpc/2.1/include/
+}
+isEmpty(MINIUPNPC_LIB_PATH) {
+		macx:MINIUPNPC_LIB_PATH = /usr/local/Cellar/miniupnpc/2.1/lib
+}
+
 
 # for boost 1.37, add -mt to the boost libraries
 # use: qmake BOOST_LIB_SUFFIX=-mt
@@ -47,9 +54,8 @@ UI_DIR = build
 # use: qmake "RELEASE=1"
 contains(RELEASE, 1) {
 		# Mac: compile for maximum compatibility (10.5, 32-bit)
-		macx:QMAKE_CXXFLAGS += -mmacosx-version-min=10.5 -arch x86_64 -isysroot /Developer/SDKs/MacOSX10.5.sdk
-
-		!windows:!macx {
+		 macx:QMAKE_CXXFLAGS += -mmacosx-version-min=10.13 -arch x86_64 -isysroot /Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk -stdlib=libc++
+          !windows:!macx {
 				# Linux: static link
 				LIBS += -Wl,-Bstatic
 		}
@@ -414,7 +420,7 @@ isEmpty(BOOST_THREAD_LIB_SUFFIX) {
 }
 
 isEmpty(BDB_LIB_PATH) {
-		macx:BDB_LIB_PATH = /opt/local/lib/db48
+		macx:BDB_LIB_PATH = /usr/local/Cellar/berkeley-db@4/4.8.30/lib
 }
 
 isEmpty(BDB_LIB_SUFFIX) {
@@ -422,16 +428,24 @@ isEmpty(BDB_LIB_SUFFIX) {
 }
 
 isEmpty(BDB_INCLUDE_PATH) {
-		macx:BDB_INCLUDE_PATH = /opt/local/include/db48
+		macx:BDB_INCLUDE_PATH = /usr/local/Cellar/berkeley-db@4/4.8.30/include
 }
 
 isEmpty(BOOST_LIB_PATH) {
-		macx:BOOST_LIB_PATH = /opt/local/lib
+		macx:BOOST_LIB_PATH = /usr/local/Cellar/boost@1.55/1.55.0_1/lib
 }
 
 isEmpty(BOOST_INCLUDE_PATH) {
-		macx:BOOST_INCLUDE_PATH = /opt/local/include
+		macx:BOOST_INCLUDE_PATH = /usr/local/Cellar/boost@1.55/1.55.0_1/include
 }
+isEmpty(OPENSSL_INCLUDE_PATH) {
+		macx:OPENSSL_INCLUDE_PATH = /usr/local/Cellar/openssl/1.0.2p/include
+}
+isEmpty(OPENSSL_LIB_PATH) {
+		macx:OPENSSL_LIB_PATH = /usr/local/Cellar/openssl/1.0.2p/lib
+}
+
+
 
 windows:DEFINES += WIN32
 windows:RC_FILE = src/qt/res/Electra-qt.rc
