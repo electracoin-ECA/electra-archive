@@ -8,17 +8,19 @@
 
 CXX=g++
 CC=gcc
-DEPSDIR=/opt/local
+DEPSDIR=/usr/local/Cellar
 
 INCLUDEPATHS= \
  -I"$(CURDIR)" \
  -I"$(CURDIR)"/obj \
- -I"$(DEPSDIR)/include" \
- -I"$(DEPSDIR)/include/db48"
+ -I"$(DEPSDIR)/boost@1.55/1.55.0_1/include" \
+ -I"$(DEPSDIR)/openssl/1.0.2p/include" \
+ -I"$(DEPSDIR)/berkeley-db@4/4.8.30/include"
 
 LIBPATHS= \
- -L"$(DEPSDIR)/lib" \
- -L"$(DEPSDIR)/lib/db48"
+ -L"$(DEPSDIR)/boost@1.55/1.55.0_1/lib" \
+ -L"$(DEPSDIR)/openssl/1.0.2p/lib" \
+ -L"$(DEPSDIR)/berkeley-db@4/4.8.30/lib"
 
 USE_UPNP:=1
 USE_IPV6:=1
@@ -28,13 +30,13 @@ LIBS= -dead_strip
 ifdef STATIC
 # Build STATIC if you are redistributing the Electrad binary
 LIBS += \
- $(DEPSDIR)/lib/db48/libdb_cxx-4.8.a \
- $(DEPSDIR)/lib/libboost_system-mt.a \
- $(DEPSDIR)/lib/libboost_filesystem-mt.a \
- $(DEPSDIR)/lib/libboost_program_options-mt.a \
- $(DEPSDIR)/lib/libboost_thread-mt.a \
- $(DEPSDIR)/lib/libssl.a \
- $(DEPSDIR)/lib/libcrypto.a \
+ $(DEPSDIR)/berkeley-db@4/4.8.30/lib/libdb_cxx-4.8.a \
+ $(DEPSDIR)/boost@1.55/1.55.0_1/lib/libboost_system-mt.a \
+ $(DEPSDIR)/boost@1.55/1.55.0_1/lib/libboost_filesystem-mt.a \
+ $(DEPSDIR)/boost@1.55/1.55.0_1/lib/libboost_program_options-mt.a \
+ $(DEPSDIR)/boost@1.55/1.55.0_1/lib/libboost_thread-mt.a \
+ $(DEPSDIR)/openssl/1.0.2p/lib/libssl.a \
+ $(DEPSDIR)/openssl/1.0.2p/lib/libcrypto.a \
  -lz
 else
 LIBS += \

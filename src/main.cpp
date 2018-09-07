@@ -40,8 +40,8 @@ CBigNum bnProofOfWorkLimit(~uint256(0) >> 20); // "standard" scrypt target limit
 CBigNum bnProofOfStakeLimit(~uint256(0) >> 20);
 CBigNum bnProofOfWorkLimitTestNet(~uint256(0) >> 16);
 
-unsigned int nTargetSpacing = 300;
-unsigned int nStakeMinAge = 24 * 60 * 60 ; // 24 hours
+unsigned int nTargetSpacing = 150;  //was 300 (5minutes) to 150
+unsigned int nStakeMinAge = 10 * 60 ; // 24 hours  //temp change to 10 minutes
 unsigned int nStakeMaxAge = -1;           //unlimited
 unsigned int nModifierInterval = 10 * 60 ; // time to elapse before new modifier is computed
 
@@ -973,9 +973,10 @@ int64_t GetProofOfWorkReward(int64_t nFees)
     int64_t nSubsidy = 0 * COIN;
 
     if (pindexBest->nHeight == 1) { nSubsidy = 1000000019 * COIN; }
-    if (pindexBest->nHeight > 1) { nSubsidy = 0.00390625 * COIN; }
+  /*  if (pindexBest->nHeight > 1) { nSubsidy = 0.00390625 * COIN; }
     if (pindexBest->nHeight >= 11522) { nSubsidy = 65972222 * COIN; }
-    if (pindexBest->nHeight >= 11811) { nSubsidy = 1 * COIN; }
+    if (pindexBest->nHeight >= 11811) { nSubsidy = 1 * COIN; }*/
+    if (pindexBest->nHeight > 1) { nSubsidy = 1000 * COIN; }
 
     if (fDebug && GetBoolArg("-printcreation"))
         printf("GetProofOfWorkReward() : create=%s nSubsidy=%"PRId64"\n", FormatMoney(nSubsidy).c_str(), nSubsidy);
