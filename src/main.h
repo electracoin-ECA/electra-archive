@@ -40,13 +40,13 @@ static const int64_t MIN_RELAY_TX_FEE = MIN_TX_FEE;
 static const int64_t MAX_FEE = 30000000000 * COIN;
 static const int64_t COIN_YEAR_REWARD = 2 * CENT; // unused
 static const int64_t MAX_MINT_PROOF_OF_STAKE_OLD = 50 * CENT;
-static const int MODIFIER_INTERVAL_SWITCH = 11811;
+static const int MODIFIER_INTERVAL_SWITCH = 1; //mainnet 11811 //testnet 1
 
 //Fork to fix POS Rewards - last block of old protocol
 static const int LAST_OLD_POS_BLOCK = 17100;
 
 //Hard fork to reduce interest and block time - first block
-static const int64_t HARD_FORK_BLOCK = 108000;
+static const int64_t HARD_FORK_BLOCK = 130;  //TEST 130 LIVE 10800
 
 inline bool MoneyRange(int64_t nValue) { return (nValue >= 0); }
 // Threshold for nLockTime: below this value it is interpreted as block number, otherwise as UNIX timestamp.
