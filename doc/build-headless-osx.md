@@ -34,6 +34,16 @@ $ sudo port install
 ```
 The process above deactivates the current boost library (1.6.xxx) clone the 1.56 by using git hash and install it.
 
+
+8. OR Install Brew to download wallet dependencies. To install Brew click on this link https://brew.sh/
+9. Open a terminal window and execute the following commands:
+```
+$ sudo brew install boost@1.55 berkeley-db@4 openssl miniupnpc qrencode
+$ sudo brew tap cartr/qt4
+$ sudo brew tap-pin cartr/qt4
+$ sudo brew install qt@4
+```
+
 Prerequisites are now ready.
 
 8. Compile the source code - Go to Electra source code
