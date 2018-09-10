@@ -29,6 +29,11 @@ CoinSpend::CoinSpend(const Params* p, const PrivateCoin& coin,
 		throw std::invalid_argument("Accumulator witness does not verify");
 	}
 
+	// The serial # needs to be within the specified range our else it can be incremented by the modulus and create another valid proof
+	if (!HasValidSerial()) {
+		throw std::invalid_argument("Invalid serial # range");
+        }
+		
 	// 1: Generate two separate commitments to the public coin (C), each under
 	// a different set of public parameters. We do this because the RSA accumulator
 	// has specific requirements for the commitment parameters that are not
@@ -79,4 +84,9 @@ const uint256 CoinSpend::signatureHash(const SpendMetaData &m) const {
 	return h.GetHash();
 }
 
+bool CoinSpend::HasValidSerial() const
+{
+	return coinSerialNumber > 0 && coinSerialNumber < params->coinCommitmentGroup.groupOrder;
+}
+	
 } /* namespace libzerocoin */
