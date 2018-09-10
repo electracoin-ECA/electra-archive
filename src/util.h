@@ -228,14 +228,6 @@ std::string FormatSubVersion(const std::string& name, int nClientVersion, const 
 void AddTimeData(const CNetAddr& ip, int64_t nTime);
 void runCommand(std::string strCommand);
 
-
-
-
-
-
-
-
-
 inline std::string i64tostr(int64_t n)
 {
     return strprintf("%"PRId64, n);

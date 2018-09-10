@@ -2,7 +2,6 @@
 // Unit tests for denial-of-service detection/prevention code
 //
 #include <algorithm>
-#include <inttypes.h>
 
 #include <boost/assign/list_of.hpp> // for 'map_list_of()'
 #include <boost/date_time/posix_time/posix_time_types.hpp>
@@ -67,7 +66,7 @@ BOOST_AUTO_TEST_CASE(DoS_banscore)
 BOOST_AUTO_TEST_CASE(DoS_bantime)
 {
     CNode::ClearBanned();
-    int64_t nStartTime = GetTime();
+    int64 nStartTime = GetTime();
     SetMockTime(nStartTime); // Overrides future calls to GetTime()
 
     CAddress addr(ip(0xa0b0c001));
@@ -83,11 +82,11 @@ BOOST_AUTO_TEST_CASE(DoS_bantime)
     BOOST_CHECK(!CNode::IsBanned(addr));
 }
 
-static bool CheckNBits(unsigned int nbits1, int64_t time1, unsigned int nbits2, int64_t time2)
+static bool CheckNBits(unsigned int nbits1, int64 time1, unsigned int nbits2, int64 time2)\
 {
     if (time1 > time2)
         return CheckNBits(nbits2, time2, nbits1, time1);
-    int64_t deltaTime = time2-time1;
+    int64 deltaTime = time2-time1;
 
     CBigNum required;
     required.SetCompact(ComputeMinWork(nbits1, deltaTime));
@@ -102,7 +101,7 @@ BOOST_AUTO_TEST_CASE(DoS_checknbits)
 
     // Timestamps,nBits from the Electra blockchain.
     // These are the block-chain checkpoint blocks
-    typedef std::map<int64_t, unsigned int> BlockData;
+    typedef std::map<int64, unsigned int> BlockData;
     BlockData chainData =
         map_list_of(1239852051,486604799)(1262749024,486594666)
         (1279305360,469854461)(1280200847,469830746)(1281678674,469809688)
@@ -279,7 +278,7 @@ BOOST_AUTO_TEST_CASE(DoS_checkSig)
     mst1 = boost::posix_time::microsec_clock::local_time();
     for (unsigned int i = 0; i < 5; i++)
         for (unsigned int j = 0; j < tx.vin.size(); j++)
-            BOOST_CHECK(VerifySignature(orphans[j], tx, j, SIGHASH_ALL));
+            BOOST_CHECK(VerifySignature(orphans[j], tx, j, true, SIGHASH_ALL));
     mst2 = boost::posix_time::microsec_clock::local_time();
     msdiff = mst2 - mst1;
     long nManyValidate = msdiff.total_milliseconds();
@@ -290,13 +289,13 @@ BOOST_AUTO_TEST_CASE(DoS_checkSig)
     // Empty a signature, validation should fail:
     CScript save = tx.vin[0].scriptSig;
     tx.vin[0].scriptSig = CScript();
-    BOOST_CHECK(!VerifySignature(orphans[0], tx, 0, SIGHASH_ALL));
+    BOOST_CHECK(!VerifySignature(orphans[0], tx, 0, true, SIGHASH_ALL));
     tx.vin[0].scriptSig = save;
 
     // Swap signatures, validation should fail:
     std::swap(tx.vin[0].scriptSig, tx.vin[1].scriptSig);
-    BOOST_CHECK(!VerifySignature(orphans[0], tx, 0, SIGHASH_ALL));
-    BOOST_CHECK(!VerifySignature(orphans[1], tx, 1, SIGHASH_ALL));
+    BOOST_CHECK(!VerifySignature(orphans[0], tx, 0, true, SIGHASH_ALL));
+    BOOST_CHECK(!VerifySignature(orphans[1], tx, 1, true, SIGHASH_ALL));
     std::swap(tx.vin[0].scriptSig, tx.vin[1].scriptSig);
 
     // Exercise -maxsigcachesize code:
@@ -306,7 +305,7 @@ BOOST_AUTO_TEST_CASE(DoS_checkSig)
     BOOST_CHECK(SignSignature(keystore, orphans[0], tx, 0));
     BOOST_CHECK(tx.vin[0].scriptSig != oldSig);
     for (unsigned int j = 0; j < tx.vin.size(); j++)
-        BOOST_CHECK(VerifySignature(orphans[j], tx, j, SIGHASH_ALL));
+        BOOST_CHECK(VerifySignature(orphans[j], tx, j, true, SIGHASH_ALL));
     mapArgs.erase("-maxsigcachesize");
 
     LimitOrphanTxSize(0);

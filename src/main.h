@@ -1,5 +1,6 @@
 // Copyright (c) 2009-2016 Satoshi Nakamoto
 // Copyright (c) 2009-2016 The Bitcoin developers
+// Copyright (c) 2018 The MYCE developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 #ifndef ELECTRA_MAIN_H
@@ -36,15 +37,18 @@ static const unsigned int MAX_ORPHAN_TRANSACTIONS = MAX_BLOCK_SIZE/100;
 static const unsigned int MAX_INV_SZ = 50000;
 static const int64_t MIN_TX_FEE = 1000;
 static const int64_t MIN_RELAY_TX_FEE = MIN_TX_FEE;
-static const int64_t MAX_MONEY = 30000000000 * COIN;
-static const int64_t COIN_YEAR_REWARD =  50 * CENT;
-static const int64_t MAX_MINT_PROOF_OF_STAKE = 50 * CENT;
+static const int64_t MAX_FEE = 30000000000 * COIN;
+static const int64_t COIN_YEAR_REWARD = 2 * CENT; // unused
+static const int64_t MAX_MINT_PROOF_OF_STAKE_OLD = 50 * CENT;
 static const int MODIFIER_INTERVAL_SWITCH = 11811;
 
 //Fork to fix POS Rewards - last block of old protocol
 static const int LAST_OLD_POS_BLOCK = 17100;
 
-inline bool MoneyRange(int64_t nValue) { return (nValue >= 0 && nValue <= MAX_MONEY); }
+//Hard fork to reduce interest and block time - first block
+static const int64_t HARD_FORK_BLOCK = 108000;
+
+inline bool MoneyRange(int64_t nValue) { return (nValue >= 0); }
 // Threshold for nLockTime: below this value it is interpreted as block number, otherwise as UNIX timestamp.
 static const unsigned int LOCKTIME_THRESHOLD = 500000000; // Tue Nov  5 00:53:20 1985 UTC
 
@@ -67,6 +71,7 @@ extern std::map<uint256, CBlockIndex*> mapBlockIndex;
 extern std::set<std::pair<COutPoint, unsigned int> > setStakeSeen;
 extern CBlockIndex* pindexGenesisBlock;
 extern unsigned int nStakeMinAge;
+extern unsigned int nStakeMinAgeOld;
 extern unsigned int nNodeLifespan;
 extern int nCoinbaseMaturity;
 extern int nBestHeight;

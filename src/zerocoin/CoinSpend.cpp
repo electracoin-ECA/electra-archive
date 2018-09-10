@@ -76,7 +76,15 @@ CoinSpend::Verify(const Accumulator& a, const SpendMetaData &m) const {
 const uint256 CoinSpend::signatureHash(const SpendMetaData &m) const {
 	CHashWriter h(0,0);
 	h << m << serialCommitmentToCoinValue << accCommitmentToCoinValue << commitmentPoK << accumulatorPoK;
+	if (!HasValidSerial()) {
+		throw std::invalid_argument("Invalid serial # range");
+    }
 	return h.GetHash();
+}
+
+bool CoinSpend::HasValidSerial() const
+{
+	return coinSerialNumber > 0 && coinSerialNumber < params->coinCommitmentGroup.groupOrder;
 }
 
 } /* namespace libzerocoin */
