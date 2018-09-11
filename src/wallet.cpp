@@ -16,6 +16,7 @@
 
 using namespace std;
 extern unsigned int nStakeMaxAge;
+extern unsigned int nStakeMaxAgeOld;
 
 unsigned int nStakeSplitAge = 10 * 24 * 60 * 60;
 int64_t nStakeCombineThreshold = 25000 * COIN;
@@ -1540,13 +1541,13 @@ bool CWallet::GetStakeWeight(const CKeyStore& keystore, uint64_t& nMinWeight, ui
         }
 
         // Weight is greater than zero, but the maximum value isn't reached yet
-        if (nTimeWeight > 0 && nTimeWeight < nStakeMaxAge)
+        if (nTimeWeight > 0 && nTimeWeight < (pindexBest->nHeight+1>=HARD_FORK_BLOCK ? nStakeMaxAge : nStakeMaxAgeOld))
         {
             nMinWeight += bnCoinDayWeight.getuint64();
         }
 
         // Maximum weight was reached
-        if (nTimeWeight == nStakeMaxAge)
+        if (nTimeWeight == (pindexBest->nHeight+1>=HARD_FORK_BLOCK ? nStakeMaxAge : nStakeMaxAgeOld))
         {
             nMaxWeight += bnCoinDayWeight.getuint64();
         }

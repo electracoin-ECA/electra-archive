@@ -11,6 +11,7 @@
 using namespace std;
 
 extern unsigned int nStakeMaxAge;
+extern unsigned int nStakeMaxAgeOld;
 extern unsigned int nTargetSpacing;
 extern unsigned int nTargetSpacingOld;
 
@@ -29,13 +30,13 @@ static std::map<int, unsigned int> mapStakeModifierCheckpointsTestNet =
     ;
 
 // Get time weight
-int64_t GetWeight(int64_t nIntervalBeginning, int64_t nIntervalEnd, bool newMinAge)
+int64_t GetWeight(int64_t nIntervalBeginning, int64_t nIntervalEnd, bool newStakeAge)
 {
     // Kernel hash weight starts from 0 at the min age
     // this change increases active coins participating the hash and helps
     // to secure the network when proof-of-stake difficulty is low
 
-    return min(nIntervalEnd - nIntervalBeginning - (newMinAge ? nStakeMinAge : nStakeMinAgeOld), (int64_t)nStakeMaxAge);
+    return min(nIntervalEnd - nIntervalBeginning - (newStakeAge ? nStakeMinAge : nStakeMinAgeOld), (int64_t)(newStakeAge ? nStakeMaxAge : nStakeMaxAgeOld));
 }
 
 // Get the last stake modifier and its generation time from a given block

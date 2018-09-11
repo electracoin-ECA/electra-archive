@@ -45,7 +45,8 @@ unsigned int nTargetSpacing = 150; // 2.5 minutes
 unsigned int nTargetSpacingOld = 300; // 5 minutes
 unsigned int nStakeMinAge = 12 * 60 * 60 ; // 12 hours
 unsigned int nStakeMinAgeOld = 24 * 60 * 60 ; // 24 hours
-unsigned int nStakeMaxAge = -1;           //unlimited
+unsigned int nStakeMaxAge = 30 * 24 * 60 * 60; // 30 days
+unsigned int nStakeMaxAgeOld = -1; // unlimited
 unsigned int nModifierInterval = 10 * 60 ; // time to elapse before new modifier is computed
 
 int nCoinbaseMaturity = 10;
@@ -974,10 +975,9 @@ int64_t GetProofOfWorkReward(int64_t nFees)
     int64_t nSubsidy = 0 * COIN;
 
     if (pindexBest->nHeight == 1) { nSubsidy = 1000000019 * COIN; }
-  /*  if (pindexBest->nHeight > 1) { nSubsidy = 0.00390625 * COIN; }
+    if (pindexBest->nHeight > 1) { nSubsidy = 0.00390625 * COIN; }
     if (pindexBest->nHeight >= 11522) { nSubsidy = 65972222 * COIN; }
-    if (pindexBest->nHeight >= 11811) { nSubsidy = 1 * COIN; }*/
-    if (pindexBest->nHeight > 1) { nSubsidy = 1000 * COIN; }
+    if (pindexBest->nHeight >= 11811) { nSubsidy = 1 * COIN; }
 
     if (fDebug && GetBoolArg("-printcreation"))
         printf("GetProofOfWorkReward() : create=%s nSubsidy=%"PRId64"\n", FormatMoney(nSubsidy).c_str(), nSubsidy);
@@ -994,21 +994,21 @@ int64_t GetProofOfStakeReward(int64_t nCoinAge, int64_t nFees)
 
     int64_t nSubsidy;
 
-    if (pindexBest->nHeight >= HARD_FORK_BLOCK) // 24 * 60 / 2.5 = 576 blocks per day after fork (210240 blocks per year)
+    if (pindexBest->nHeight >= HARD_FORK_BLOCK) // 24 * 60 / 2.5 = 576 blocks per day after fork (210384 blocks per year)
     {
-        if (pindexBest->nHeight < HARD_FORK_BLOCK + 210240) // first year
+        if (pindexBest->nHeight < HARD_FORK_BLOCK + 210384) // first year
             nRewardCoinYear = 2.5 * CENT; // 2.5% interest
-        else if (pindexBest->nHeight < HARD_FORK_BLOCK + 210240 * 2) // second year
+        else if (pindexBest->nHeight < HARD_FORK_BLOCK + 210384 * 2) // second year
             nRewardCoinYear = 1.25 * CENT; // 1.25% interest
-        else if (pindexBest->nHeight < HARD_FORK_BLOCK + 210240 * 3) // third year
+        else if (pindexBest->nHeight < HARD_FORK_BLOCK + 210384 * 3) // third year
             nRewardCoinYear = 0.63 * CENT; // 0.63% interest
-        else if (pindexBest->nHeight < HARD_FORK_BLOCK + 210240 * 4) // fourth year
+        else if (pindexBest->nHeight < HARD_FORK_BLOCK + 210384 * 4) // fourth year
             nRewardCoinYear = 0.31 * CENT; // 0.31% interest
-        else if (pindexBest->nHeight < HARD_FORK_BLOCK + 210240 * 5) // fifth year
+        else if (pindexBest->nHeight < HARD_FORK_BLOCK + 210384 * 5) // fifth year
             nRewardCoinYear = 0.16 * CENT; // 0.16% interest
-        else if (pindexBest->nHeight < HARD_FORK_BLOCK + 210240 * 6) // sixth year
+        else if (pindexBest->nHeight < HARD_FORK_BLOCK + 210384 * 6) // sixth year
             nRewardCoinYear = 0.08 * CENT; // 0.08% interest
-        else if (pindexBest->nHeight < HARD_FORK_BLOCK + 210240 * 7) // seventh year
+        else if (pindexBest->nHeight < HARD_FORK_BLOCK + 210384 * 7) // seventh year
             nRewardCoinYear = 0.04 * CENT; // 0.04% interest
         else // eighth year and beyond
             nRewardCoinYear = 0.02 * CENT; // 0.02% interest
