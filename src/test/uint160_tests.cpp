@@ -1,5 +1,4 @@
 #include <boost/test/unit_test.hpp>
-#include <inttypes.h>
 
 #include "uint256.h"
 
