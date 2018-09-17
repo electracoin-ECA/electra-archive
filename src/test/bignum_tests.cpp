@@ -1,6 +1,5 @@
 #include <boost/test/unit_test.hpp>
 #include <limits>
-#include <inttypes.h>
 
 #include "bignum.h"
 #include "util.h"
@@ -47,7 +46,7 @@ BOOST_AUTO_TEST_SUITE(bignum_tests)
 // Let's force this code not to be inlined, in order to actually
 // test a generic version of the function. This increases the chance
 // that -ftrapv will detect overflows.
-NOINLINE void mysetint64(CBigNum& num, int64_t n)
+NOINLINE void mysetint64(CBigNum& num, int64 n)
 {
     num.setint64(n);
 }
@@ -56,7 +55,7 @@ NOINLINE void mysetint64(CBigNum& num, int64_t n)
 // value to 0, then the second one with a non-inlined function.
 BOOST_AUTO_TEST_CASE(bignum_setint64)
 {
-    int64_t n;
+    int64 n;
 
     {
         n = 0;
@@ -104,7 +103,7 @@ BOOST_AUTO_TEST_CASE(bignum_setint64)
         BOOST_CHECK(num.ToString() == "-5");
     }
     {
-        n = std::numeric_limits<int64_t>::min();
+        n = std::numeric_limits<int64>::min();
         CBigNum num(n);
         BOOST_CHECK(num.ToString() == "-9223372036854775808");
         num.setulong(0);
@@ -113,7 +112,7 @@ BOOST_AUTO_TEST_CASE(bignum_setint64)
         BOOST_CHECK(num.ToString() == "-9223372036854775808");
     }
     {
-        n = std::numeric_limits<int64_t>::max();
+        n = std::numeric_limits<int64>::max();
         CBigNum num(n);
         BOOST_CHECK(num.ToString() == "9223372036854775807");
         num.setulong(0);
