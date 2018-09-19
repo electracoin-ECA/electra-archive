@@ -48,6 +48,11 @@ static const int LAST_OLD_POS_BLOCK = 17100;
 //Hard fork to reduce interest and block time - first block
 static const int64_t HARD_FORK_BLOCK = 112200;
 
+//All the TESTNET options
+static const int LAST_POW_BLOCK_TEST = 290;
+static const int64_t MAX_MINT_PROOF_OF_STAKE_OLD_TEST = 50 * CENT;
+static const int64_t HARD_FORK_BLOCK_TEST = 350;
+
 inline bool MoneyRange(int64_t nValue) { return (nValue >= 0 && nValue <= MAX_TX); }
 // Threshold for nLockTime: below this value it is interpreted as block number, otherwise as UNIX timestamp.
 static const unsigned int LOCKTIME_THRESHOLD = 500000000; // Tue Nov  5 00:53:20 1985 UTC

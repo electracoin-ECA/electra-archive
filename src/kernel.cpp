@@ -150,8 +150,9 @@ bool ComputeNextStakeModifier(const CBlockIndex* pindexPrev, uint64_t& nStakeMod
         return true;
 
     // Sort candidate blocks by timestamp
+    int64_t nHardForkBlock = !fTestNet?HARD_FORK_BLOCK:HARD_FORK_BLOCK_TEST;
     vector<pair<int64_t, uint256> > vSortedByTimestamp;
-    vSortedByTimestamp.reserve(64 * nModifierInterval / (pindexPrev->nHeight+1>=HARD_FORK_BLOCK ? nTargetSpacing : nTargetSpacingOld));
+    vSortedByTimestamp.reserve(64 * nModifierInterval / (pindexPrev->nHeight+1>=nHardForkBlock ? nTargetSpacing : nTargetSpacingOld));
     int64_t nSelectionInterval = GetStakeModifierSelectionInterval();
     int64_t nSelectionIntervalStart = (pindexPrev->GetBlockTime() / nModifierInterval) * nModifierInterval - nSelectionInterval;
     const CBlockIndex* pindex = pindexPrev;
@@ -232,7 +233,8 @@ static bool GetKernelStakeModifier(uint256 hashBlockFrom, uint64_t& nStakeModifi
     {
         if (!pindex->pnext)
         {   // reached best block; may happen if node is behind on block chain
-            if (fPrintProofOfStake || (pindex->GetBlockTime() + (pindex->nHeight>=HARD_FORK_BLOCK ? nStakeMinAge : nStakeMinAgeOld) - nStakeModifierSelectionInterval > GetAdjustedTime()))
+            int64_t nHardForkBlock = !fTestNet?HARD_FORK_BLOCK:HARD_FORK_BLOCK_TEST;
+            if (fPrintProofOfStake || (pindex->GetBlockTime() + (pindex->nHeight>=nHardForkBlock ? nStakeMinAge : nStakeMinAgeOld) - nStakeModifierSelectionInterval > GetAdjustedTime()))
                 return error("GetKernelStakeModifier() : reached best block %s at height %d from block %s",
                     pindex->GetBlockHash().ToString().c_str(), pindex->nHeight, hashBlockFrom.ToString().c_str());
             else
@@ -276,7 +278,9 @@ bool CheckStakeKernelHash(unsigned int nBits, const CBlock& blockFrom, unsigned 
         return error("CheckStakeKernelHash() : nTime violation");
 
     unsigned int nTimeBlockFrom = blockFrom.GetBlockTime();
-    if (nTimeBlockFrom + (mapBlockIndex[blockFrom.GetHash()]->nHeight>=HARD_FORK_BLOCK ? nStakeMinAge : nStakeMinAgeOld) > nTimeTx) // Min age requirement
+    int64_t nHardForkBlock = !fTestNet?HARD_FORK_BLOCK:HARD_FORK_BLOCK_TEST;
+
+    if (nTimeBlockFrom + (mapBlockIndex[blockFrom.GetHash()]->nHeight>=nHardForkBlock ? nStakeMinAge : nStakeMinAgeOld) > nTimeTx) // Min age requirement
         return error("CheckStakeKernelHash() : min age violation");
 
     CBigNum bnTargetPerCoinDay;
@@ -285,7 +289,7 @@ bool CheckStakeKernelHash(unsigned int nBits, const CBlock& blockFrom, unsigned 
 
     uint256 hashBlockFrom = blockFrom.GetHash();
 
-    CBigNum bnCoinDayWeight = CBigNum(nValueIn) * GetWeight((int64_t)txPrev.nTime, (int64_t)nTimeTx, mapBlockIndex[hashBlockFrom]->nHeight>=HARD_FORK_BLOCK) / COIN / (24 * 60 * 60);
+    CBigNum bnCoinDayWeight = CBigNum(nValueIn) * GetWeight((int64_t)txPrev.nTime, (int64_t)nTimeTx, mapBlockIndex[hashBlockFrom]->nHeight>=nHardForkBlock) / COIN / (24 * 60 * 60);
     targetProofOfStake = (bnCoinDayWeight * bnTargetPerCoinDay).getuint256();
 
     // Calculate hash
