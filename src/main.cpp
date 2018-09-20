@@ -2553,7 +2553,10 @@ bool LoadBlockIndex(bool fAllowNew)
         pchMessageStart[3] = 0xe1;
 
         bnProofOfWorkLimit = bnProofOfWorkLimitTestNet; // 0x0000ffff PoW base target is fixed in testnet
-        nStakeMinAge = 20 * 60; // test net min age is 20 min
+        nTargetSpacing = 45; // 45 seconds
+        nTargetSpacingOld = 30; // 30 seconds
+        nStakeMinAge = 0.1 * 60 * 60 ; // 360 minutes
+        nStakeMinAgeOld = 0.5 * 60 * 60 ; // 1800 minutes
         nCoinbaseMaturity = 10; // test maturity is 10 blocks
     }
 #if 0
