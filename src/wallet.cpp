@@ -1722,7 +1722,7 @@ bool CWallet::CreateCoinStake(const CKeyStore& keystore, unsigned int nBits, int
             if (pcoin.first->vout[pcoin.second].nValue >= nStakeCombineThreshold)
                 continue;
             // Do not add input that is still too young
-            if (nTimeWeight < (pindexPrev->nHeight+1 >= nHardForkBlock ? nStakeMinAge : nStakeMinAgeOld)
+            if (nTimeWeight < (pindexPrev->nHeight+1 >= nHardForkBlock ? nStakeMinAge : nStakeMinAgeOld))
                 continue;
 
             txNew.vin.push_back(CTxIn(pcoin.first->GetHash(), pcoin.second));
