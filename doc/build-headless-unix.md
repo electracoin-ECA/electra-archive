@@ -23,7 +23,7 @@ $ git clone https://github.com/Electra-project/Electra ~/src/Electra
 ```
 5. Compile electra
 ```
-$ cd ~/src/Electra
+$ cd ~/src/Electra/src
 $ make -f makefile.unix Electrad
 ```
 6. Before starting the daemon, you can copy the config file into the correct folder, as well as the daemon.
