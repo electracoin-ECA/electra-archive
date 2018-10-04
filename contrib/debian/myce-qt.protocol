@@ -1,0 +1,11 @@
+[Protocol]
+exec=myce-qt '%u'
+protocol=myce
+input=none
+output=none
+helper=true
+listing=
+reading=false
+writing=false
+makedir=false
+deleting=false

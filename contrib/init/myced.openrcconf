@@ -1,0 +1,26 @@
+# /etc/conf.d/myced: config file for /etc/init.d/myced
+
+# Config file location
+#BITCOIND_CONFIGFILE="/etc/myce/myce.conf"
+
+# What directory to write pidfile to?  (created and owned by $BITCOIND_USER)
+#BITCOIND_PIDDIR="/var/run/myced"
+
+# What filename to give the pidfile
+#BITCOIND_PIDFILE="${BITCOIND_PIDDIR}/myced.pid"
+
+# Where to write myced data (be mindful that the blockchain is large)
+#BITCOIND_DATADIR="/var/lib/myced"
+
+# User and group to own myced process
+#BITCOIND_USER="myce"
+#BITCOIND_GROUP="myce"
+
+# Path to myced executable
+#BITCOIND_BIN="/usr/bin/myced"
+
+# Nice value to run myced under
+#BITCOIND_NICE=0
+
+# Additional options (avoid -conf and -datadir, use flags above)
+BITCOIND_OPTS=""
