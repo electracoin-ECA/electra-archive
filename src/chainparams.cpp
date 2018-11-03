@@ -137,7 +137,7 @@ public:
         nPOSStartBlock = 10000;
         nMandatoryUpgradeBlock = 378500;
         nUpgradeBlockVersion = 8;                                   // Block headers must be this version after upgrade block
-        nZerocoinStartHeight = 412460;                              // Activates zerocoin, cltv, and csv
+        nZerocoinStartHeight = 418000;                              // Activates zerocoin, cltv, and csv
         //nZerocoinStartTime = 4000000000;
         nModifierUpdateBlock = nZerocoinStartHeight - 1;
         nBlockEnforceSerialRange = -1;                              // Enforce serial range starting this block
