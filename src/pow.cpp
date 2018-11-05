@@ -70,6 +70,9 @@ unsigned int GetNextWorkRequired(const CBlockIndex* pindexLast, const CBlockHead
         if (height < (Params().WALLET_UPGRADE_BLOCK()+10) && height >= Params().WALLET_UPGRADE_BLOCK())
             bnNew *= (int)pow(4.0, (double)(10+Params().WALLET_UPGRADE_BLOCK()-height)); // slash difficulty and gradually ramp back up over 10 blocks
 
+        if (height < (Params().Zerocoin_StartHeight()+10) && height >= Params().Zerocoin_StartHeight())
+            bnNew *= (int)pow(4.0, (double)(10+Params().Zerocoin_StartHeight()-height)); // slash difficulty and gradually ramp back up over 10 blocks
+
         if (bnNew <= 0 || bnNew > bnTargetLimit)
             bnNew = bnTargetLimit;
 

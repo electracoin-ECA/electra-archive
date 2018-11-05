@@ -304,6 +304,9 @@ bool Stake(CStakeInput* stakeInput, unsigned int nBits, unsigned int nTimeBlockF
         return error("CheckStakeKernelHash() : min age violation - nTimeBlockFrom=%d nStakeMinAge=%d nTimeTx=%d",
                      nTimeBlockFrom, nStakeMinAge, nTimeTx);
 
+    // if (CBlockHeader::CURRENT_VERSION == Params().WALLET_UPGRADE_VERSION() && chainActive.Height() + 1 < Params().WALLET_UPGRADE_BLOCK()) // Do not stake until the upgrade block
+        // return error("CheckStakeKernelHash() : INFO: staking on new wallet disabled until block %d", Params().WALLET_UPGRADE_BLOCK());
+
     //grab difficulty
     uint256 bnTargetPerCoinDay;
     bnTargetPerCoinDay.SetCompact(nBits);
@@ -384,11 +387,6 @@ bool CheckProofOfStake(const CBlock block, uint256& hashProofOfStake, std::uniqu
     CBlock blockprev;
     if (!ReadBlockFromDisk(blockprev, pindex->GetBlockPos()))
         return error("CheckProofOfStake(): INFO: failed to find block");
-
-    if (block.nVersion < Params().WALLET_UPGRADE_VERSION() && chainActive.Height()+1 >= Params().WALLET_UPGRADE_BLOCK())
-        return error("CheckProofOfStake(): INFO: staking on old version disabled at block %d", Params().WALLET_UPGRADE_BLOCK());
-    else if (block.nVersion >= Params().WALLET_UPGRADE_VERSION() && chainActive.Height()+1 < Params().WALLET_UPGRADE_BLOCK())
-        return error("CheckProofOfStake(): INFO: staking on new wallet disabled until block %d", Params().WALLET_UPGRADE_BLOCK());
 
     uint256 bnTargetPerCoinDay;
     bnTargetPerCoinDay.SetCompact(block.nBits);

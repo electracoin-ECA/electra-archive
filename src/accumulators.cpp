@@ -474,7 +474,7 @@ bool GenerateAccumulatorWitness(const PublicCoin &coin, Accumulator& accumulator
     RandomizeSecurityLevel(nSecurityLevel); //make security level not always the same and predictable
     libzerocoin::Accumulator witnessAccumulator = accumulator;
 
-    bool fDoubleCounted = false;
+    // bool fDoubleCounted = false;
     while (pindex) {
         if (pindex->nHeight != nAccStartHeight && pindex->pprev->nAccumulatorCheckpoint != pindex->nAccumulatorCheckpoint)
             ++nCheckpointsAdded;
@@ -498,11 +498,11 @@ bool GenerateAccumulatorWitness(const PublicCoin &coin, Accumulator& accumulator
         nMintsAdded += AddBlockMintsToAccumulator(coin, nHeightMintAdded, pindex, &witnessAccumulator, true);
 
         // 10 blocks were accumulated twice when zYCE v2 was activated
-        if (pindex->nHeight == 1050010 && !fDoubleCounted) {
-            pindex = chainActive[1050000];
-            fDoubleCounted = true;
-            continue;
-        }
+        // if (pindex->nHeight == 1050010 && !fDoubleCounted) {
+            // pindex = chainActive[1050000];
+            // fDoubleCounted = true;
+            // continue;
+        // }
 
         pindex = chainActive.Next(pindex);
     }
