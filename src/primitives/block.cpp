@@ -13,9 +13,6 @@
 #include "tinyformat.h"
 #include "utilstrencodings.h"
 #include "util.h"
-#include "scrypt.h" 
-
-#define CVOIDBEGIN(a)        ((const void*)&(a)) 
 
 uint256 CBlockHeader::GetHash() const
 {
@@ -24,7 +21,7 @@ uint256 CBlockHeader::GetHash() const
     else if (nVersion > 6)
         return Hash(BEGIN(nVersion), END(nNonce));
     else
-        return scrypt_blockhash(CVOIDBEGIN(nVersion));
+        return HashNist5(BEGIN(nVersion), END(nNonce));
 }
 
 uint256 CBlock::BuildMerkleTree(bool* fMutated) const

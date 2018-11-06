@@ -130,10 +130,10 @@ public:
         nTargetSpacing = 1 * 60;  // 1 minute
         nMaturity = 10;
         nMasternodeCountDrift = 20;
-        nMaxMoneyOut = 250000000 * COIN;
+        nMaxMoneyOut = 30000000000 * COIN;
 
         /** Height or Time Based Activations **/
-        nLastPOWBlock = 200000;
+        nLastPOWBlock = 13815;
         nPOSStartBlock = 10000;
         nMandatoryUpgradeBlock = 378500;
         nUpgradeBlockVersion = 8;                                   // Block headers must be this version after upgrade block
@@ -278,7 +278,7 @@ public:
         genesis.nNonce = 26753;
 
         hashGenesisBlock = genesis.GetHash();
-        assert(hashGenesisBlock == uint256("0x00000f98da995de0ef1665c7d3338687923c1199230a44ecbdb5cec9306e4f4e"));
+        assert(hashGenesisBlock == uint256("0x00003892b5c64b1ef04b95e06bb019731ffc9d4031706d8a993e6103e7fc4a2d"));
 
         vFixedSeeds.clear();
         vSeeds.clear();
