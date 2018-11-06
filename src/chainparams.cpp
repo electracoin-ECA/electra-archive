@@ -114,21 +114,21 @@ public:
          * The characters are rarely used upper ASCII, not valid as UTF-8, and produce
          * a large 4-byte int at any alignment.
          */
-        pchMessageStart[0] = 0xfa;
-        pchMessageStart[1] = 0x23;
-        pchMessageStart[2] = 0x43;
-        pchMessageStart[3] = 0x65;
+        pchMessageStart[0] = 0xb4;
+        pchMessageStart[1] = 0xf1;
+        pchMessageStart[2] = 0xa2;
+        pchMessageStart[3] = 0xb5;
         vAlertPubKey = ParseHex("0358d5fb8000c49d38aaab6dc5d0c0a0322eff3090eff026963eb819dc3dec8439");
         nDefaultPort = 23511;
-        bnProofOfWorkLimit = ~uint256(0) >> 16; // Myce starting difficulty is 1 / 2^12
+        bnProofOfWorkLimit = ~uint256(0) >> 16; // Starting difficulty is 1 / 2^12
         nMaxReorganizationDepth = 100;
         nEnforceBlockUpgradeMajority = 1080;
         nRejectBlockOutdatedMajority = 1368;
         nToCheckBlockUpgradeMajority = 1440;
         nMinerThreads = 0;
-        nTargetTimespan = 1 * 60; // Myce: 1 day
-        nTargetSpacing = 1 * 60;  // Myce: 1 minute
-        nMaturity = 1;
+        nTargetTimespan = 24 * 60 * 60; // 1 day
+        nTargetSpacing = 1 * 60;  // 1 minute
+        nMaturity = 10;
         nMasternodeCountDrift = 20;
         nMaxMoneyOut = 250000000 * COIN;
 
@@ -137,7 +137,7 @@ public:
         nPOSStartBlock = 10000;
         nMandatoryUpgradeBlock = 378500;
         nUpgradeBlockVersion = 8;                                   // Block headers must be this version after upgrade block
-        nZerocoinStartHeight = 421000;                              // Activates zerocoin, cltv, and csv
+        nZerocoinStartHeight = nMandatoryUpgradeBlock + 10;         // Activates zerocoin, cltv, and csv
         //nZerocoinStartTime = 4000000000;
         nModifierUpdateBlock = nZerocoinStartHeight - 1;
         nBlockEnforceSerialRange = -1;                              // Enforce serial range starting this block
@@ -160,10 +160,10 @@ public:
          *     CTxOut(nValue=50.00000000, scriptPubKey=0xA9037BAC7050C479B121CF)
          *   vMerkleTree: e0028e
          */
-        const char* pszTimestamp = "Myce masternodes";
+        const char* pszTimestamp = "Electra is Born";
         CMutableTransaction txNew;
         txNew.nVersion = 1;
-        txNew.nTime = 1515436125;
+        txNew.nTime = 1489479450;
         txNew.vin.resize(1);
         txNew.vout.resize(1);
         txNew.vin[0].scriptSig = CScript() << 0 << CScriptNum(42) << vector<unsigned char>((const unsigned char*)pszTimestamp, (const unsigned char*)pszTimestamp + strlen(pszTimestamp));
@@ -173,16 +173,16 @@ public:
         genesis.hashPrevBlock = 0;
         genesis.hashMerkleRoot = genesis.BuildMerkleTree();
         genesis.nVersion = 1;
-        genesis.nTime = 1519813976;
+        genesis.nTime = 1489479450;
         genesis.nBits = 0x1f00ffff;
-        genesis.nNonce = 209474;
+        genesis.nNonce = 61281;
 
         hashGenesisBlock = genesis.GetHash();
 
-        assert(genesis.hashMerkleRoot == uint256("0x8ea58063fe9e14c45dbf5efab5b3812291074f6b1af5305b7b45647bdbfdea90"));
-        assert(hashGenesisBlock == uint256("0x0000c74cc66c72cb1a327c5c1d4893ae5276aa50be49fb23cec21df1a2f20d87"));
+        assert(genesis.hashMerkleRoot == uint256("0xa45c61b17857983dee346573eb46cae28171b98a2595115fea8bc5a9227467dd"));
+        assert(hashGenesisBlock == uint256("0x00000f98da995de0ef1665c7d3338687923c1199230a44ecbdb5cec9306e4f4e"));
 
-        vSeeds.push_back(CDNSSeedData("1", "zentec.ddns.net"));
+        //vSeeds.push_back(CDNSSeedData("1", "zentec.ddns.net"));
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 50);
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 85);
@@ -243,20 +243,20 @@ public:
     {
         networkID = CBaseChainParams::TESTNET;
         strNetworkID = "test";
-        pchMessageStart[0] = 0xfd;
-        pchMessageStart[1] = 0x44;
-        pchMessageStart[2] = 0x56;
-        pchMessageStart[3] = 0x78;
+        pchMessageStart[0] = 0xe7;
+        pchMessageStart[1] = 0xe3;
+        pchMessageStart[2] = 0xe2;
+        pchMessageStart[3] = 0xe1;
         vAlertPubKey = ParseHex("0358d5fb8000c49d38aaab6dc5d0c0a0322eff3090eff026963eb819dc3dec8439");
         nDefaultPort = 20114;
         nEnforceBlockUpgradeMajority = 51;
         nRejectBlockOutdatedMajority = 75;
         nToCheckBlockUpgradeMajority = 100;
         nMinerThreads = 0;
-        nTargetTimespan = 1 * 60; // Myce: 1 day
-        nTargetSpacing = 1 * 60;  // Myce: 1 minute
+        nTargetTimespan = 24 * 60 * 60; // 1 day
+        nTargetSpacing = 45;  // 45 seconds
         nLastPOWBlock = 200;
-        nMaturity = 15;
+        nMaturity = 10;
         nMasternodeCountDrift = 4;
         nModifierUpdateBlock = 51197; //approx Mon, 17 Apr 2017 04:00:00 GMT
         nMaxMoneyOut = 43199500 * COIN;
@@ -273,12 +273,12 @@ public:
         nRejectOldSporkKey = 1522454400; //!> Reject old spork key after Saturday, March 31, 2018 12:00:00 AM GMT
 
         //! Modify the testnet genesis block so the timestamp is valid for a later start.
-        //genesis.nTime = 1454124731;
+        //genesis.nTime = 1489479450;
         genesis.nBits = 0x1f00ffff;
-        genesis.nNonce = 209474;
+        genesis.nNonce = 26753;
 
         hashGenesisBlock = genesis.GetHash();
-        assert(hashGenesisBlock == uint256("0x0000c74cc66c72cb1a327c5c1d4893ae5276aa50be49fb23cec21df1a2f20d87"));
+        assert(hashGenesisBlock == uint256("0x00000f98da995de0ef1665c7d3338687923c1199230a44ecbdb5cec9306e4f4e"));
 
         vFixedSeeds.clear();
         vSeeds.clear();
@@ -336,8 +336,8 @@ public:
         nRejectBlockOutdatedMajority = 950;
         nToCheckBlockUpgradeMajority = 1000;
         nMinerThreads = 1;
-        nTargetTimespan = 24 * 60 * 60; // Myce: 1 day
-        nTargetSpacing = 1 * 60;        // Myce: 1 minutes
+        nTargetTimespan = 24 * 60 * 60; // 1 day
+        nTargetSpacing = 45;            // 45 seconds
         bnProofOfWorkLimit = ~uint256(0) >> 1;
         genesis.nTime = 1454124731;
         genesis.nBits = 0x207fffff;
