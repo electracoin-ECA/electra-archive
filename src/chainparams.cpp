@@ -54,18 +54,19 @@ static void convertSeed6(std::vector<CAddress>& vSeedsOut, const SeedSpec6* data
 // + Contains no strange transactions
 static Checkpoints::MapCheckpoints mapCheckpoints =
     boost::assign::map_list_of
-    (0, uint256("0000c74cc66c72cb1a327c5c1d4893ae5276aa50be49fb23cec21df1a2f20d87"))
-    (245145, uint256("d74019fd6d432b34e05febb5a8c32ca9e0ab500f21c378f1debcd8c939a59d95"))
-    (341500, uint256("769f485854697c20088703e205017b96853f1a0bfbd288110bed45d39a3a60b4"))
-    (382600, uint256("552836176069ce72494583d566ee0427abb47b32c70138cb0a16a6fa8608caf1"))
-    (384200, uint256("fab86b440d95a252b477128bd325153106a7220e3c7b5cbc74542f68945aa4f7"))
-    (412450, uint256("32e0e14e4b18d2ef1b598f03a86496a690709899141e70885e2e23c0533985a4"));
+    (0, uint256("00000f98da995de0ef1665c7d3338687923c1199230a44ecbdb5cec9306e4f4e"))
+    (10, uint256("000000510a92dcd0364d79ace286a8d44c060f96eff907f649c00b120901fa69"))
+    (11810, uint256("000000000011a409fad375babe9e521e31095de1707e261ca783242c95827593"))
+    (11816, uint256("3f90dc9f885df3e167a4ad3a665ffc5282e3d4cd2291b616abc3ddc8b623ffdc"))
+    (11920, uint256("000000000949e8afa1fc49b5faf29bdf3b7ed39ea7f230637fafbb7cf7b04956"))
+    (15160, uint256("e31d9b1163cb7193f35c5716dfc22e86fdabb7206b3c5a27967c8f3a83892633"))
+    (128926, uint256("79aa1982dcee614dadb2857a3491c1c900bd715af45cdb4f9779872280161be5"));
 static const Checkpoints::CCheckpointData data = {
     &mapCheckpoints,
-    1540931951, // * UNIX timestamp of last checkpoint block
-    754474,     // * total number of transactions between genesis and last checkpoint
+    0, // * UNIX timestamp of last checkpoint block
+    0,     // * total number of transactions between genesis and last checkpoint
                 //   (the tx=... number in the SetBestChain debug.log lines)
-    5000        // * estimated number of transactions per day after checkpoint
+    10000       // * estimated number of transactions per day after checkpoint
 };
 
 static Checkpoints::MapCheckpoints mapCheckpointsTestnet =
