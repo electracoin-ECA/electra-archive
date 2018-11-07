@@ -359,4 +359,4 @@ inline uint256 HashNist5(const T1 pbegin, const T1 pend)
 
 void scrypt_hash(const char* pass, unsigned int pLen, const char* salt, unsigned int sLen, char* output, unsigned int N, unsigned int r, unsigned int p, unsigned int dkLen);
 
-#endif // PIVX_HASH_H
+#endif // MYCE_HASH_H
