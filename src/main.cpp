@@ -1836,22 +1836,21 @@ int64_t GetBlockValue(int nHeight, bool fProofOfStake/*, int64_t nCoinAge*/)
 	}
 	else
 	{
-		// if (nHeight == 1)
-		// {
-			// nSubsidy = 1000000019 * COIN;
-		// } else if (nHeight <= 11521 && nHeight > 1)
-		// {
-			// nSubsidy = 0.00390625 * COIN;
-		// } else if (nHeight <= 11810 && nHeight > 11521)
-		// {
-			// nSubsidy = 65972222 * COIN;
-		// } else if (nHeight > 11810)
-		// {
-			// nSubsidy = 1 * COIN;
-		// } else {
-			// nSubsidy = 0 * COIN;
-		// }
-		nSubsidy = 1 * COIN;
+		if (nHeight == 2)
+		{
+			nSubsidy = 1000000019 * COIN;
+		} else if (nHeight <= 11522 && nHeight > 2)
+		{
+			nSubsidy = 0.00390625 * COIN;
+		} else if (nHeight <= 11811 && nHeight > 11522)
+		{
+			nSubsidy = 65972222 * COIN;
+		} else if (nHeight > 11811)
+		{
+			nSubsidy = 1 * COIN;
+		} else {
+			nSubsidy = 0 * COIN;
+		}
 	}
 	return nSubsidy;
 }

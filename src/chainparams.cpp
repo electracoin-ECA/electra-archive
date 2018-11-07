@@ -121,7 +121,7 @@ public:
         pchMessageStart[3] = 0xb5;
         vAlertPubKey = ParseHex("0358d5fb8000c49d38aaab6dc5d0c0a0322eff3090eff026963eb819dc3dec8439");
         nDefaultPort = 23511;
-        bnProofOfWorkLimit = ~uint256(0) >> 16; // Starting difficulty is 1 / 2^12
+        bnProofOfWorkLimit = ~uint256(0) >> 20;
         nMaxReorganizationDepth = 100;
         nEnforceBlockUpgradeMajority = 1080;
         nRejectBlockOutdatedMajority = 1368;
@@ -175,7 +175,7 @@ public:
         genesis.hashMerkleRoot = genesis.BuildMerkleTree();
         genesis.nVersion = 1;
         genesis.nTime = 1489479450;
-        genesis.nBits = 0x1f00ffff;
+        genesis.nBits = bnProofOfWorkLimit.GetCompact();
         genesis.nNonce = 61281;
 
         hashGenesisBlock = genesis.GetHash();
@@ -346,7 +346,7 @@ public:
 
         hashGenesisBlock = genesis.GetHash();
         nDefaultPort = 51476;
-        assert(hashGenesisBlock == uint256("0xc2854de687b4aa9d0113c2d7eeac592c540d1fc5683936266704f639d6fa7125"));
+        assert(hashGenesisBlock == uint256("0x96be48710e3fa38c89408487fb33107698c31fb1222693830332c247bd199a06"));
 
         vFixedSeeds.clear(); //! Testnet mode doesn't have any fixed seeds.
         vSeeds.clear();      //! Testnet mode doesn't have any DNS seeds.
