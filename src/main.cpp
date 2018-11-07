@@ -1429,7 +1429,7 @@ bool AcceptToMemoryPool(CTxMemPool& pool, CValidationState& state, const CTransa
                 nFees, ::minRelayTxFee.GetFee(nSize) * 10000);
 
 
-        bool fNewProtocolActive = chainActive.Height() >= Params().Zerocoin_StartHeight();
+        bool fNewProtocolActive = chainActive.Height() >= Params().WALLET_UPGRADE_BLOCK();
 
         // Check against previous transactions
         // This is done last to help prevent CPU exhaustion denial-of-service attacks.
@@ -1638,7 +1638,7 @@ bool AcceptableInputs(CTxMemPool& pool, CValidationState& state, const CTransact
                 hash.ToString(),
                 nFees, ::minRelayTxFee.GetFee(nSize) * 10000);
 
-        bool fNewProtocolActive = chainActive.Height() >= Params().Zerocoin_StartHeight();
+        bool fNewProtocolActive = chainActive.Height() >= Params().WALLET_UPGRADE_BLOCK();
 
         // Check against previous transactions
         // This is done last to help prevent CPU exhaustion denial-of-service attacks.
@@ -1821,7 +1821,7 @@ double ConvertBitsToDouble(unsigned int nBits)
     return dDiff;
 }
 
-int64_t GetBlockValue(int nHeight, bool fProofOfStake)
+int64_t GetBlockValue(int nHeight, bool fProofOfStake/*, int64_t nCoinAge*/)
 {
     if (Params().NetworkID() == CBaseChainParams::TESTNET) {
         if (nHeight < 200 && nHeight > 0)
@@ -1831,65 +1831,27 @@ int64_t GetBlockValue(int nHeight, bool fProofOfStake)
 	int64_t nSubsidy = 0;
 	if (fProofOfStake)
 	{
-		nHeight--; // Legacy wallet calculated PoS reward with height-1
-		if (nHeight >= 10000 && nHeight <= 50000)
-		{
-			nSubsidy = 25 * COIN;
-		} else if (nHeight <= 100000 && nHeight > 50000)
-		{
-			nSubsidy = 50 * COIN;
-		} else if (nHeight <= 150000 && nHeight > 100000)
-		{
-			nSubsidy = 75 * COIN;
-		} else if (nHeight <= 200000 && nHeight > 150000)
-		{
-			nSubsidy = 100 * COIN;
-		} else if (nHeight <= 250000 && nHeight > 200000)
-		{
-			nSubsidy = 75 * COIN;
-		} else if (nHeight <= 300000 && nHeight > 250000)
-		{
-			nSubsidy = 100 * COIN;
-		} else if (nHeight <= 350000 && nHeight > 300000)
-		{
-			nSubsidy = 75 * COIN;
-		} else if (nHeight <= 400000 && nHeight > 350000)
-		{
-			nSubsidy = 50 * COIN;
-		} else if (nHeight <= 450000 && nHeight > 400000)
-		{
-			nSubsidy = 25 * COIN;
-		} else if (nHeight <= 500000 && nHeight > 450000)
-		{
-			nSubsidy = 20 * COIN;
-		} else
-		{
-			nSubsidy = 10 * COIN;
-		}
+		//nHeight--; // Legacy wallet calculated PoS reward with height-1
+		nSubsidy = 1 * COIN;
 	}
 	else
 	{
-		if (nHeight == 1)
-		{
-			nSubsidy = 250 * COIN;
-		} else if (nHeight > 1 && nHeight <= 11)
-		{
-			nSubsidy = 3500000 * COIN;
-		} else if (nHeight > 11 && nHeight <= 20000)
-		{
-			nSubsidy = 50 * COIN;
-		} else if (nHeight > 20000 && nHeight <= 50000)
-		{
-			nSubsidy = 25 * COIN;
-		} else if(nHeight > 50000 && nHeight <= 100000)
-		{
-			nSubsidy = 20 * COIN;
-		} else if(nHeight > 100000 && nHeight <= 200000)
-		{
-			nSubsidy = 10 * COIN;
-		} else {
-			nSubsidy = 0 * COIN;
-		}
+		// if (nHeight == 1)
+		// {
+			// nSubsidy = 1000000019 * COIN;
+		// } else if (nHeight <= 11521 && nHeight > 1)
+		// {
+			// nSubsidy = 0.00390625 * COIN;
+		// } else if (nHeight <= 11810 && nHeight > 11521)
+		// {
+			// nSubsidy = 65972222 * COIN;
+		// } else if (nHeight > 11810)
+		// {
+			// nSubsidy = 1 * COIN;
+		// } else {
+			// nSubsidy = 0 * COIN;
+		// }
+		nSubsidy = 1 * COIN;
 	}
 	return nSubsidy;
 }
@@ -2705,7 +2667,7 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
     // If scripts won't be checked anyways, don't bother seeing if new protocol is active
     bool fNewProtocolActive = false;
     if (fScriptChecks && pindex->pprev) {
-        fNewProtocolActive = pindex->pprev->nHeight >= Params().Zerocoin_StartHeight();
+        fNewProtocolActive = pindex->pprev->nHeight >= Params().WALLET_UPGRADE_BLOCK();
     }
 
     // Do not allow blocks that contain transactions which 'overwrite' older transactions,
@@ -2896,7 +2858,7 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
         nExpectedMint += nFees;
 
     //Check that the block does not overmint
-    if (!IsBlockValueValid(block, nExpectedMint, pindex->nMint)) {
+    if (/*(block.IsProofOfWork() || pindex->nHeight >= Params().WALLET_UPGRADE_BLOCK()) &&*/ !IsBlockValueValid(block, nExpectedMint, pindex->nMint)) {
         return state.DoS(100, error("ConnectBlock() : reward pays too much (actual=%s vs limit=%s)",
                                     FormatMoney(pindex->nMint), FormatMoney(nExpectedMint)),
                          REJECT_INVALID, "bad-cb-amount");
@@ -5407,13 +5369,7 @@ bool static ProcessMessage(CNode* pfrom, string strCommand, CDataStream& vRecv, 
             pfrom->cleanSubVer = SanitizeString(pfrom->strSubVer);
         }
         // Instantly ban old peers once we are at the upgrade block
-        if (pfrom->cleanSubVer == "/Myce:1.0.0/" && chainActive.Height() + 1 >= Params().WALLET_UPGRADE_BLOCK()) {
-            LOCK(cs_main);
-            Misbehaving(pfrom->GetId(), 100);
-            return false;
-        }
-        // Ban peers that have not updated by the time zerocoin, cltv, and csv are deployed
-        if ((pfrom->cleanSubVer == "/Myce:2.0.0/" || pfrom->cleanSubVer == "/MYCE Core:2.0.0/") && chainActive.Height() + 1 >= Params().Zerocoin_StartHeight()) {
+        if (pfrom->nVersion < 70915 && chainActive.Height() + 1 >= Params().WALLET_UPGRADE_BLOCK()) {
             LOCK(cs_main);
             Misbehaving(pfrom->GetId(), 100);
             return false;

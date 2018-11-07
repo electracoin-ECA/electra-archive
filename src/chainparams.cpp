@@ -135,12 +135,12 @@ public:
 
         /** Height or Time Based Activations **/
         nLastPOWBlock = 13815;
-        nPOSStartBlock = 10000;
-        nMandatoryUpgradeBlock = 378500;
+        nPOSStartBlock = -1;
+        nMandatoryUpgradeBlock = 129000;
         nUpgradeBlockVersion = 8;                                   // Block headers must be this version after upgrade block
-        nZerocoinStartHeight = nMandatoryUpgradeBlock + 10;         // Activates zerocoin, cltv, and csv
+        nZerocoinStartHeight = 2100000000;                          // OFF
         //nZerocoinStartTime = 4000000000;
-        nModifierUpdateBlock = nZerocoinStartHeight - 1;
+        nModifierUpdateBlock = -1;
         nBlockEnforceSerialRange = -1;                              // Enforce serial range starting this block
         nBlockRecalculateAccumulators = nZerocoinStartHeight + 10;  // Trigger a recalculation of accumulators
         nBlockFirstFraudulent = nZerocoinStartHeight;               // First block that bad serials emerged
