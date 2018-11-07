@@ -5369,7 +5369,7 @@ bool static ProcessMessage(CNode* pfrom, string strCommand, CDataStream& vRecv, 
             pfrom->cleanSubVer = SanitizeString(pfrom->strSubVer);
         }
         // Instantly ban old peers once we are at the upgrade block
-        if (pfrom->nVersion < 70915 && chainActive.Height() + 1 >= Params().WALLET_UPGRADE_BLOCK()) {
+        if ((pfrom->cleanSubVer == "/Satoshi:1.2.0/" || pfrom->cleanSubVer == "/Satoshi:1.3.0/") && chainActive.Height() + 1 >= Params().WALLET_UPGRADE_BLOCK()) {
             LOCK(cs_main);
             Misbehaving(pfrom->GetId(), 100);
             return false;
