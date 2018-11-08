@@ -82,7 +82,7 @@ unsigned int nCoinCacheSize = 5000;
 bool fAlerts = DEFAULT_ALERTS;
 
 unsigned int nStakeMinAge = 12 * 60 * 60; // 12 hours
-unsigned int nStakeMaxAge = 30 * 24 * 60 * 60; // 30 days
+unsigned int nStakeMaxAge = 60 * 24 * 60 * 60; // 60 days (unused)
 int64_t nReserveBalance = 0;
 
 /** Fees smaller than this (in uyce) are considered zero fee (for relaying and mining)
@@ -110,7 +110,7 @@ static void CheckBlockIndex();
 /** Constant stuff for coinbase transactions we create: */
 CScript COINBASE_FLAGS;
 
-const string strMessageMagic = "DarkNet Signed Message:\n";
+const string strMessageMagic = "Electra very Signed Message:\n";
 
 // Internal stuff
 namespace
@@ -1828,14 +1828,14 @@ int64_t GetBlockValue(int nHeight, bool fProofOfStake, int64_t nCoinAge)
             return 250000 * COIN;
     }
 
-	int64_t nLastOldPoSBlock = 17100+1; // Legacy wallet calculated PoS reward with height-1
-	int64_t nHardForkBlock = 112200+1;
+	int64_t nLastOldPoSBlock = 17100;
+	int64_t nHardForkBlock = 112200;
 	int64_t nRewardCoinYear = 50 * CENT; // 50% interest
 
 	int64_t nSubsidy = 0;
 	if (fProofOfStake)
 	{
-		if (nHeight >= nHardForkBlock) // 1440 blocks per day (~525960 blocks per year)
+		if (nHeight > nHardForkBlock) // 1440 blocks per day (~525960 blocks per year)
 		{
 			if (nHeight < nHardForkBlock + 525960) // first year
 				nRewardCoinYear = 2.5 * CENT; // 2.5% interest
@@ -1859,7 +1859,7 @@ int64_t GetBlockValue(int nHeight, bool fProofOfStake, int64_t nCoinAge)
 			else
 				nSubsidy = nCoinAge * nRewardCoinYear / 365;
 		}
-		else if (nHeight > nLastOldPoSBlock)
+		else if (nHeight > nLastOldPoSBlock+1) // Legacy wallet calculated PoS reward with height-1
 			nSubsidy = nCoinAge * nRewardCoinYear / 365;
 		else
 			nSubsidy = nCoinAge * nRewardCoinYear / 365 / COIN;
