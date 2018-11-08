@@ -2894,7 +2894,7 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
         {
             nExpectedMint = nFees;
             if (!GetCoinAge(block.vtx[1], block.vtx[1].nTime, nCoinAge))
-                return error("ConnectBlock() : %s unable to get coin age for coinstake", vtx[1].GetHash().ToString().substr(0,10).c_str());
+                return error("ConnectBlock() : %s unable to get coin age for coinstake", block.vtx[1].GetHash().ToString().substr(0,10).c_str());
         }
 
         nExpectedMint += GetBlockValue(pindex->nHeight, true, nCoinAge);

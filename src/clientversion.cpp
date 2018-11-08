@@ -15,7 +15,7 @@
  * for both myced and myce-qt, to make it harder for attackers to
  * target servers or GUI users specifically.
  */
-const std::string CLIENT_NAME("Myce");
+const std::string CLIENT_NAME("Electra");
 
 /**
  * Client version number
