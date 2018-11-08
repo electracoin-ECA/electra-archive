@@ -913,11 +913,12 @@ bool GetCoinAge(const CTransaction& tx, const unsigned int nTxTime, uint64_t& nC
     }
 
     int64_t nLastOldPoSBlock = 17100;
+    uint256 bnCoinDay;
 
     if (pindex->nHeight >= nLastOldPoSBlock)
-        uint256 bnCoinDay = bnCentSecond / COIN / (24 * 60 * 60);
+        bnCoinDay = bnCentSecond / COIN / (24 * 60 * 60);
     else
-        uint256 bnCoinDay = bnCentSecond / (24 * 60 * 60);
+        bnCoinDay = bnCentSecond / (24 * 60 * 60);
 
     LogPrintf("coin age bnCoinDay=%s\n", bnCoinDay.ToString().c_str());
     nCoinAge = bnCoinDay.GetCompact();
