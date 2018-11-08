@@ -184,7 +184,7 @@ UniValue addnode(const UniValue& params, bool fHelp)
             "2. \"command\"  (string, required) 'add' to add a node to the list, 'remove' to remove a node from the list, 'onetry' to try a connection to the node once\n"
 
             "\nExamples:\n" +
-            HelpExampleCli("addnode", "\"192.168.0.6:23511\" \"onetry\"") + HelpExampleRpc("addnode", "\"192.168.0.6:23511\", \"onetry\""));
+            HelpExampleCli("addnode", "\"192.168.0.6:5817\" \"onetry\"") + HelpExampleRpc("addnode", "\"192.168.0.6:5817\", \"onetry\""));
 
     string strNode = params[0].get_str();
 
@@ -258,7 +258,7 @@ UniValue getaddednodeinfo(const UniValue& params, bool fHelp)
             "    \"connected\" : true|false,          (boolean) If connected\n"
             "    \"addresses\" : [\n"
             "       {\n"
-            "         \"address\" : \"192.168.0.201:23511\",  (string) The myce server host and port\n"
+            "         \"address\" : \"192.168.0.201:5817\",  (string) The myce server host and port\n"
             "         \"connected\" : \"outbound\"           (string) connection, inbound or outbound\n"
             "       }\n"
             "       ,...\n"

@@ -1821,18 +1821,48 @@ double ConvertBitsToDouble(unsigned int nBits)
     return dDiff;
 }
 
-int64_t GetBlockValue(int nHeight, bool fProofOfStake/*, int64_t nCoinAge*/)
+int64_t GetBlockValue(int nHeight, bool fProofOfStake, int64_t nCoinAge)
 {
     if (Params().NetworkID() == CBaseChainParams::TESTNET) {
         if (nHeight < 200 && nHeight > 0)
             return 250000 * COIN;
     }
 
+	int64_t nLastOldPoSBlock = 17100+1; // Legacy wallet calculated PoS reward with height-1
+	int64_t nHardForkBlock = 112200+1;
+	int64_t nRewardCoinYear = 50 * CENT; // 50% interest
+
 	int64_t nSubsidy = 0;
 	if (fProofOfStake)
 	{
-		//nHeight--; // Legacy wallet calculated PoS reward with height-1
-		nSubsidy = 1 * COIN;
+		if (nHeight >= nHardForkBlock) // 1440 blocks per day (~525960 blocks per year)
+		{
+			if (nHeight < nHardForkBlock + 525960) // first year
+				nRewardCoinYear = 2.5 * CENT; // 2.5% interest
+			else if (nHeight < nHardForkBlock + 525960 * 2) // second year
+				nRewardCoinYear = 1.25 * CENT; // 1.25% interest
+			else if (nHeight < nHardForkBlock + 525960 * 3) // third year
+				nRewardCoinYear = 0.63 * CENT; // 0.63% interest
+			else if (nHeight < nHardForkBlock + 525960 * 4) // fourth year
+				nRewardCoinYear = 0.31 * CENT; // 0.31% interest
+			else if (nHeight < nHardForkBlock + 525960 * 5) // fifth year
+				nRewardCoinYear = 0.16 * CENT; // 0.16% interest
+			else if (nHeight < nHardForkBlock + 525960 * 6) // sixth year
+				nRewardCoinYear = 0.08 * CENT; // 0.08% interest
+			else if (nHeight < nHardForkBlock + 525960 * 7) // seventh year
+				nRewardCoinYear = 0.04 * CENT; // 0.04% interest
+			else // eighth year and beyond
+				nRewardCoinYear = 0.02 * CENT; // 0.02% interest
+
+			if (nCoinAge == 0)
+				nSubsidy = nRewardCoinYear / 500;
+			else
+				nSubsidy = nCoinAge * nRewardCoinYear / 365;
+		}
+		else if (nHeight > nLastOldPoSBlock)
+			nSubsidy = nCoinAge * nRewardCoinYear / 365;
+		else
+			nSubsidy = nCoinAge * nRewardCoinYear / 365 / COIN;
 	}
 	else
 	{
@@ -2852,12 +2882,30 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
     LogPrint("bench", "      - Connect %u transactions: %.2fms (%.3fms/tx, %.3fms/txin) [%.2fs]\n", (unsigned)block.vtx.size(), 0.001 * (nTime1 - nTimeStart), 0.001 * (nTime1 - nTimeStart) / block.vtx.size(), nInputs <= 1 ? 0 : 0.001 * (nTime1 - nTimeStart) / (nInputs - 1), nTimeConnect * 0.000001);
 
     //PoW phase redistributed fees to miner. PoS stage destroys fees.
-    CAmount nExpectedMint = GetBlockValue(pindex->nHeight, block.IsProofOfStake());
-    if (pindex->nHeight < Params().WALLET_UPGRADE_BLOCK() || block.IsProofOfWork())
-        nExpectedMint += nFees;
+    // CAmount nExpectedMint = GetBlockValue(pindex->nHeight, block.IsProofOfStake());
+    // if (pindex->nHeight < Params().WALLET_UPGRADE_BLOCK() || block.IsProofOfWork())
+        // nExpectedMint += nFees;
+
+    CAmount nExpectedMint = 0;
+    uint64_t nCoinAge = 0;
+    if (block.IsProofOfStake())
+    {
+        if (pindex->nHeight < Params().WALLET_UPGRADE_BLOCK())
+        {
+            nExpectedMint = nFees;
+            if (!GetCoinAge(block.vtx[1], block.vtx[1].nTime, nCoinAge))
+                return error("ConnectBlock() : %s unable to get coin age for coinstake", vtx[1].GetHash().ToString().substr(0,10).c_str());
+        }
+
+        nExpectedMint += GetBlockValue(pindex->nHeight, true, nCoinAge);
+    }
+    else
+    {
+        nExpectedMint = GetBlockValue(pindex->nHeight, false, nCoinAge) + nFees;
+    }
 
     //Check that the block does not overmint
-    if (/*(block.IsProofOfWork() || pindex->nHeight >= Params().WALLET_UPGRADE_BLOCK()) &&*/ !IsBlockValueValid(block, nExpectedMint, pindex->nMint)) {
+    if (!IsBlockValueValid(block, nExpectedMint, pindex->nMint)) {
         return state.DoS(100, error("ConnectBlock() : reward pays too much (actual=%s vs limit=%s)",
                                     FormatMoney(pindex->nMint), FormatMoney(nExpectedMint)),
                          REJECT_INVALID, "bad-cb-amount");

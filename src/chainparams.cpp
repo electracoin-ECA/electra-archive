@@ -120,7 +120,7 @@ public:
         pchMessageStart[2] = 0xa2;
         pchMessageStart[3] = 0xb5;
         vAlertPubKey = ParseHex("0358d5fb8000c49d38aaab6dc5d0c0a0322eff3090eff026963eb819dc3dec8439");
-        nDefaultPort = 23511;
+        nDefaultPort = 5817;
         bnProofOfWorkLimit = ~uint256(0) >> 20;
         nMaxReorganizationDepth = 100;
         nEnforceBlockUpgradeMajority = 1080;
@@ -135,7 +135,7 @@ public:
 
         /** Height or Time Based Activations **/
         nLastPOWBlock = 13815;
-        nPOSStartBlock = -1;
+        nPOSStartBlock = 11811;
         nMandatoryUpgradeBlock = 129000;
         nUpgradeBlockVersion = 8;                                   // Block headers must be this version after upgrade block
         nZerocoinStartHeight = 2100000000;                          // OFF
@@ -183,14 +183,14 @@ public:
         assert(genesis.hashMerkleRoot == uint256("0xa45c61b17857983dee346573eb46cae28171b98a2595115fea8bc5a9227467dd"));
         assert(hashGenesisBlock == uint256("0x00000f98da995de0ef1665c7d3338687923c1199230a44ecbdb5cec9306e4f4e"));
 
-        //vSeeds.push_back(CDNSSeedData("1", "zentec.ddns.net"));
+        vSeeds.push_back(CDNSSeedData("1", "zentec.ddns.net"));
 
-        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 50);
-        base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 85);
-        base58Prefixes[SECRET_KEY] = std::vector<unsigned char>(1, 153);
+        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 33);
+        base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 40);
+        base58Prefixes[SECRET_KEY] = std::vector<unsigned char>(1, 161);
         base58Prefixes[EXT_PUBLIC_KEY] = boost::assign::list_of(0x04)(0x88)(0xB2)(0x1E).convert_to_container<std::vector<unsigned char> >();
         base58Prefixes[EXT_SECRET_KEY] = boost::assign::list_of(0x04)(0x88)(0xAD)(0xE4).convert_to_container<std::vector<unsigned char> >();
-        base58Prefixes[EXT_COIN_TYPE] = boost::assign::list_of(0x80)(0x10)(0x00)(0x00).convert_to_container<std::vector<unsigned char> >();
+        base58Prefixes[EXT_COIN_TYPE] = boost::assign::list_of(0x80)(0x12)(0x00)(0x00).convert_to_container<std::vector<unsigned char> >();
 
         convertSeed6(vFixedSeeds, pnSeed6_main, ARRAYLEN(pnSeed6_main));
 
@@ -249,7 +249,7 @@ public:
         pchMessageStart[2] = 0xe2;
         pchMessageStart[3] = 0xe1;
         vAlertPubKey = ParseHex("0358d5fb8000c49d38aaab6dc5d0c0a0322eff3090eff026963eb819dc3dec8439");
-        nDefaultPort = 20114;
+        nDefaultPort = 20119;
         nEnforceBlockUpgradeMajority = 51;
         nRejectBlockOutdatedMajority = 75;
         nToCheckBlockUpgradeMajority = 100;
@@ -284,9 +284,9 @@ public:
         vFixedSeeds.clear();
         vSeeds.clear();
 
-        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 139); // Testnet myce addresses start with 'x' or 'y'
-        base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 19);  // Testnet myce script addresses start with '8' or '9'
-        base58Prefixes[SECRET_KEY] = std::vector<unsigned char>(1, 239);     // Testnet private keys start with '9' or 'c' (Bitcoin defaults)
+        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 92);
+        base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 41);
+        base58Prefixes[SECRET_KEY] = std::vector<unsigned char>(1, 220);
         // Testnet myce BIP32 pubkeys start with 'DRKV'
         base58Prefixes[EXT_PUBLIC_KEY] = boost::assign::list_of(0x3a)(0x80)(0x61)(0xa0).convert_to_container<std::vector<unsigned char> >();
         // Testnet myce BIP32 prvkeys start with 'DRKP'
@@ -345,7 +345,7 @@ public:
         genesis.nNonce = 12345;
 
         hashGenesisBlock = genesis.GetHash();
-        nDefaultPort = 51476;
+        nDefaultPort = 51479;
         assert(hashGenesisBlock == uint256("0x96be48710e3fa38c89408487fb33107698c31fb1222693830332c247bd199a06"));
 
         vFixedSeeds.clear(); //! Testnet mode doesn't have any fixed seeds.
