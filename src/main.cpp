@@ -82,7 +82,9 @@ unsigned int nCoinCacheSize = 5000;
 bool fAlerts = DEFAULT_ALERTS;
 
 unsigned int nStakeMinAge = 12 * 60 * 60; // 12 hours
-unsigned int nStakeMaxAge = 60 * 24 * 60 * 60; // 60 days (unused)
+unsigned int nStakeMinAgeOld = 24 * 60 * 60; // 24 hours
+unsigned int nStakeMaxAge = 30 * 24 * 60 * 60; // 30 days
+unsigned int nStakeMaxAgeNew = 60 * 24 * 60 * 60; // 60 days
 int64_t nReserveBalance = 0;
 
 /** Fees smaller than this (in uyce) are considered zero fee (for relaying and mining)
@@ -879,6 +881,9 @@ bool GetCoinAge(const CTransaction& tx, const unsigned int nTxTime, uint64_t& nC
     uint256 bnCentSecond = 0; // coin age in the unit of cent-seconds
     nCoinAge = 0;
 
+	int64_t nLastOldPoSBlock = 17100;
+	int64_t nHardForkBlock = 112200;
+
     CBlockIndex* pindex = NULL;
     BOOST_FOREACH (const CTxIn& txin, tx.vin) {
         // First try finding the previous transaction in database
@@ -900,7 +905,7 @@ bool GetCoinAge(const CTransaction& tx, const unsigned int nTxTime, uint64_t& nC
         // Read block header
         CBlockHeader prevblock = pindex->GetBlockHeader();
 
-        if (prevblock.nTime + nStakeMinAge > nTxTime)
+        if (prevblock.nTime + (pindex->nHeight>=nHardForkBlock ? nStakeMinAge : nStakeMinAgeOld) > nTxTime)
             continue; // only count coins meeting min age requirement
 
         if (nTxTime < prevblock.nTime) {
@@ -908,20 +913,26 @@ bool GetCoinAge(const CTransaction& tx, const unsigned int nTxTime, uint64_t& nC
             return false; // Transaction timestamp violation
         }
 
+        unsigned int nTimeDiff = nTxTime - prevblock.nTime;
+        if (pindex->nHeight >= Params().WALLET_UPGRADE_BLOCK() && nTimeDiff > nStakeMaxAgeNew)
+            nTimeDiff = nStakeMaxAgeNew;
+        else if (pindex->nHeight >= nHardForkBlock && nTimeDiff > nStakeMaxAge)
+            nTimeDiff = nStakeMaxAge;
+
         int64_t nValueIn = txPrev.vout[txin.prevout.n].nValue;
-        bnCentSecond += uint256(nValueIn) * (nTxTime - prevblock.nTime);
+        bnCentSecond += uint256(nValueIn) * nTimeDiff;
+LogPrintf("coin age nValueIn=%"PRId64" nTimeDiff=%d bnCentSecond=%s\n", nValueIn, nTimeDiff, bnCentSecond.ToString().c_str());
     }
 
-    int64_t nLastOldPoSBlock = 17100;
     uint256 bnCoinDay;
-
-    if (pindex->nHeight >= nLastOldPoSBlock)
+    if (pindex->nHeight > nLastOldPoSBlock)
         bnCoinDay = bnCentSecond / COIN / (24 * 60 * 60);
     else
         bnCoinDay = bnCentSecond / (24 * 60 * 60);
 
     LogPrintf("coin age bnCoinDay=%s\n", bnCoinDay.ToString().c_str());
     nCoinAge = bnCoinDay.GetCompact();
+LogPrintf(nCoinAge);
     return true;
 }
 
@@ -2895,6 +2906,8 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
 
     CAmount nExpectedMint = 0;
     uint64_t nCoinAge = 0;
+    bool test = GetCoinAge(block.vtx[1], block.vtx[1].nTime, nCoinAge);
+    nCoinAge = 0;
     if (block.IsProofOfStake())
     {
         if (pindex->nHeight < Params().WALLET_UPGRADE_BLOCK())
