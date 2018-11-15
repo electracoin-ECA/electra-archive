@@ -348,9 +348,7 @@ RES_IMAGES = \
   qt/res/images/qtreeview_selected.png \
   qt/res/images/walletFrame.png \
   qt/res/images/walletFrame_bg.png \
-  qt/res/images/toolbar.png \
-  qt/res/images/myce-logo.png \
-  qt/res/images/walletFrame_bg_home.png
+  qt/res/images/walletFrame_bg.png
 
 RES_CSS = \
   qt/res/css/default.css
@@ -463,4 +461,3 @@ moc_%.cpp: %.h
 	@test -f $(LRELEASE)
 	@$(MKDIR_P) $(@D)
 	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(LRELEASE) -silent $< -qm $@
-
