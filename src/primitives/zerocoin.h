@@ -1,10 +1,10 @@
 // Copyright (c) 2017-2018 The PIVX developers
-// Copyright (c) 2018 The Myce developers
+// Copyright (c) 2018 The Electra developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef MYCE_ZEROCOIN_H
-#define MYCE_ZEROCOIN_H
+#ifndef ELECTRA_ZEROCOIN_H
+#define ELECTRA_ZEROCOIN_H
 
 #include <amount.h>
 #include <limits.h>
@@ -248,4 +248,4 @@ public:
     int GetNeededSpends();
 };
 
-#endif //MYCE_ZEROCOIN_H
+#endif //ELECTRA_ZEROCOIN_H

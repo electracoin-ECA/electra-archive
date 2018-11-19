@@ -1,10 +1,10 @@
 // Copyright (c) 2018 The PIVX developers
-// Copyright (c) 2018 The Myce developers
+// Copyright (c) 2018 The Electra developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef MYCE_ACCUMULATORCHECKPOINTS_H
-#define MYCE_ACCUMULATORCHECKPOINTS_H
+#ifndef ELECTRA_ACCUMULATORCHECKPOINTS_H
+#define ELECTRA_ACCUMULATORCHECKPOINTS_H
 
 #include <libzerocoin/bignum.h>
 #include <univalue/include/univalue.h>
@@ -19,4 +19,4 @@ namespace AccumulatorCheckpoints
     Checkpoint GetClosestCheckpoint(const int& nHeight, int& nHeightCheckpoint);
 }
 
-#endif //MYCE_ACCUMULATORCHECKPOINTS_H
+#endif //ELECTRA_ACCUMULATORCHECKPOINTS_H

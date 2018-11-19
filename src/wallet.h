@@ -2,7 +2,7 @@
 // Copyright (c) 2009-2014 The Bitcoin developers
 // Copyright (c) 2014-2015 The Dash developers
 // Copyright (c) 2015-2018 The PIVX developers
-// Copyright (c) 2018 The Myce developers
+// Copyright (c) 2018 The Electra developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -24,8 +24,8 @@
 #include "validationinterface.h"
 #include "wallet_ismine.h"
 #include "walletdb.h"
-#include "zycewallet.h"
-#include "zycetracker.h"
+#include "zecawallet.h"
+#include "zecatracker.h"
 
 #include <algorithm>
 #include <map>
@@ -85,30 +85,30 @@ enum AvailableCoinsType {
     ALL_COINS = 1,
     ONLY_DENOMINATED = 2,
     ONLY_NOT10000IFMN = 3,
-    ONLY_NONDENOMINATED_NOT10000IFMN = 4, // ONLY_NONDENOMINATED and not 10000 YCE at the same time
+    ONLY_NONDENOMINATED_NOT10000IFMN = 4, // ONLY_NONDENOMINATED and not 10000 ECA at the same time
     ONLY_10000 = 5,                        // find masternode outputs including locked ones (use with caution)
     STAKABLE_COINS = 6                          // UTXO's that are valid for staking
 };
 
-// Possible states for zYCE send
+// Possible states for zECA send
 enum ZerocoinSpendStatus {
-    ZYCE_SPEND_OKAY = 0,                            // No error
-    ZYCE_SPEND_ERROR = 1,                           // Unspecified class of errors, more details are (hopefully) in the returning text
-    ZYCE_WALLET_LOCKED = 2,                         // Wallet was locked
-    ZYCE_COMMIT_FAILED = 3,                         // Commit failed, reset status
-    ZYCE_ERASE_SPENDS_FAILED = 4,                   // Erasing spends during reset failed
-    ZYCE_ERASE_NEW_MINTS_FAILED = 5,                // Erasing new mints during reset failed
-    ZYCE_TRX_FUNDS_PROBLEMS = 6,                    // Everything related to available funds
-    ZYCE_TRX_CREATE = 7,                            // Everything related to create the transaction
-    ZYCE_TRX_CHANGE = 8,                            // Everything related to transaction change
-    ZYCE_TXMINT_GENERAL = 9,                        // General errors in MintToTxIn
-    ZYCE_INVALID_COIN = 10,                         // Selected mint coin is not valid
-    ZYCE_FAILED_ACCUMULATOR_INITIALIZATION = 11,    // Failed to initialize witness
-    ZYCE_INVALID_WITNESS = 12,                      // Spend coin transaction did not verify
-    ZYCE_BAD_SERIALIZATION = 13,                    // Transaction verification failed
-    ZYCE_SPENT_USED_ZYCE = 14,                      // Coin has already been spend
-    ZYCE_TX_TOO_LARGE = 15,                          // The transaction is larger than the max tx size
-    ZYCE_SPEND_V1_SEC_LEVEL                         // Spend is V1 and security level is not set to 100
+    ZECA_SPEND_OKAY = 0,                            // No error
+    ZECA_SPEND_ERROR = 1,                           // Unspecified class of errors, more details are (hopefully) in the returning text
+    ZECA_WALLET_LOCKED = 2,                         // Wallet was locked
+    ZECA_COMMIT_FAILED = 3,                         // Commit failed, reset status
+    ZECA_ERASE_SPENDS_FAILED = 4,                   // Erasing spends during reset failed
+    ZECA_ERASE_NEW_MINTS_FAILED = 5,                // Erasing new mints during reset failed
+    ZECA_TRX_FUNDS_PROBLEMS = 6,                    // Everything related to available funds
+    ZECA_TRX_CREATE = 7,                            // Everything related to create the transaction
+    ZECA_TRX_CHANGE = 8,                            // Everything related to transaction change
+    ZECA_TXMINT_GENERAL = 9,                        // General errors in MintToTxIn
+    ZECA_INVALID_COIN = 10,                         // Selected mint coin is not valid
+    ZECA_FAILED_ACCUMULATOR_INITIALIZATION = 11,    // Failed to initialize witness
+    ZECA_INVALID_WITNESS = 12,                      // Spend coin transaction did not verify
+    ZECA_BAD_SERIALIZATION = 13,                    // Transaction verification failed
+    ZECA_SPENT_USED_ZECA = 14,                      // Coin has already been spend
+    ZECA_TX_TOO_LARGE = 15,                          // The transaction is larger than the max tx size
+    ZECA_SPEND_V1_SEC_LEVEL                         // Spend is V1 and security level is not set to 100
 };
 
 struct CompactTallyItem {
@@ -214,15 +214,15 @@ public:
     std::string ResetMintZerocoin();
     std::string ResetSpentZerocoin();
     void ReconsiderZerocoins(std::list<CZerocoinMint>& listMintsRestored, std::list<CDeterministicMint>& listDMintsRestored);
-    void ZYceBackupWallet();
+    void ZEcaBackupWallet();
     bool GetZerocoinKey(const CBigNum& bnSerial, CKey& key);
-    bool CreateZYCEOutPut(libzerocoin::CoinDenomination denomination, CTxOut& outMint, CDeterministicMint& dMint);
+    bool CreateZECAOutPut(libzerocoin::CoinDenomination denomination, CTxOut& outMint, CDeterministicMint& dMint);
     bool GetMint(const uint256& hashSerial, CZerocoinMint& mint);
     bool GetMintFromStakeHash(const uint256& hashStake, CZerocoinMint& mint);
     bool DatabaseMint(CDeterministicMint& dMint);
     bool SetMintUnspent(const CBigNum& bnSerial);
     bool UpdateMint(const CBigNum& bnValue, const int& nHeight, const uint256& txid, const libzerocoin::CoinDenomination& denom);
-    string GetUniqueWalletBackupName(bool fzyceAuto) const;
+    string GetUniqueWalletBackupName(bool fzecaAuto) const;
 
 
     /** Zerocin entry changed.
@@ -238,13 +238,13 @@ public:
      */
     mutable CCriticalSection cs_wallet;
 
-    CzYCEWallet* zwalletMain;
+    CzECAWallet* zwalletMain;
 
     bool fFileBacked;
     bool fWalletUnlockAnonymizeOnly;
     std::string strWalletFile;
     bool fBackupMints;
-    std::unique_ptr<CzYCETracker> zyceTracker;
+    std::unique_ptr<CzECATracker> zecaTracker;
 
     std::set<int64_t> setKeyPool;
     std::map<CKeyID, CKeyMetadata> mapKeyMetadata;
@@ -329,20 +329,20 @@ public:
         return nZeromintPercentage;
     }
 
-    void setZWallet(CzYCEWallet* zwallet)
+    void setZWallet(CzECAWallet* zwallet)
     {
         zwalletMain = zwallet;
-        zyceTracker = std::unique_ptr<CzYCETracker>(new CzYCETracker(strWalletFile));
+        zecaTracker = std::unique_ptr<CzECATracker>(new CzECATracker(strWalletFile));
     }
 
-    CzYCEWallet* getZWallet() { return zwalletMain; }
+    CzECAWallet* getZWallet() { return zwalletMain; }
 
     bool isZeromintEnabled()
     {
         return fEnableZeromint;
     }
 
-    void setZYceAutoBackups(bool fEnabled)
+    void setZEcaAutoBackups(bool fEnabled)
     {
         fBackupMints = fEnabled;
     }
@@ -670,8 +670,8 @@ public:
     /** MultiSig address added */
     boost::signals2::signal<void(bool fHaveMultiSig)> NotifyMultiSigChanged;
 
-    /** zYCE reset */
-    boost::signals2::signal<void()> NotifyzYCEReset;
+    /** zECA reset */
+    boost::signals2::signal<void()> NotifyzECAReset;
 
     /** notify wallet file backed up */
     boost::signals2::signal<void (const bool& fSuccess, const std::string& filename)> NotifyWalletBacked;

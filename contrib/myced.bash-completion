@@ -1,12 +1,12 @@
-# bash programmable completion for myced(1) and myce-cli(1)
+# bash programmable completion for electrad(1) and electra-cli(1)
 # Copyright (c) 2012,2014 Christian von Roques <roques@mti.ag>
 # Distributed under the MIT/X11 software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-have myced && {
+have electrad && {
 
-# call $myced for RPC
-_myce_rpc() {
+# call $electrad for RPC
+_electra_rpc() {
     # determine already specified args necessary for RPC
     local rpcargs=()
     for i in ${COMP_LINE}; do
@@ -16,23 +16,23 @@ _myce_rpc() {
                 ;;
         esac
     done
-    $myced "${rpcargs[@]}" "$@"
+    $electrad "${rpcargs[@]}" "$@"
 }
 
-# Add myce accounts to COMPREPLY
-_myce_accounts() {
+# Add electra accounts to COMPREPLY
+_electra_accounts() {
     local accounts
-    accounts=$(_myce_rpc listaccounts | awk '/".*"/ { a=$1; gsub(/"/, "", a); print a}')
+    accounts=$(_electra_rpc listaccounts | awk '/".*"/ { a=$1; gsub(/"/, "", a); print a}')
     COMPREPLY=( "${COMPREPLY[@]}" $( compgen -W "$accounts" -- "$cur" ) )
 }
 
-_myced() {
+_electrad() {
     local cur prev words=() cword
-    local myced
+    local electrad
 
-    # save and use original argument to invoke myced
-    # myced might not be in $PATH
-    myced="$1"
+    # save and use original argument to invoke electrad
+    # electrad might not be in $PATH
+    electrad="$1"
 
     COMPREPLY=()
     _get_comp_words_by_ref -n = cur prev words cword
@@ -53,7 +53,7 @@ _myced() {
     if ((cword > 3)); then
         case ${words[cword-3]} in
             addmultisigaddress)
-                _myce_accounts
+                _electra_accounts
                 return 0
                 ;;
             getbalance|gettxout|importaddress|importprivkey|listreceivedbyaccount|listreceivedbyaddress|listsinceblock)
@@ -74,7 +74,7 @@ _myced() {
                 return 0
                 ;;
             move|setaccount)
-                _myce_accounts
+                _electra_accounts
                 return 0
                 ;;
         esac
@@ -90,7 +90,7 @@ _myced() {
             return 0
             ;;
         getaccountaddress|getaddressesbyaccount|getbalance|getnewaddress|getreceivedbyaccount|listtransactions|move|sendfrom|sendmany)
-            _myce_accounts
+            _electra_accounts
             return 0
             ;;
     esac
@@ -114,12 +114,12 @@ _myced() {
 
             # only parse --help if senseful
             if [[ -z "$cur" || "$cur" =~ ^- ]]; then
-                helpopts=$($myced --help 2>&1 | awk '$1 ~ /^-/ { sub(/=.*/, "="); print $1 }' )
+                helpopts=$($electrad --help 2>&1 | awk '$1 ~ /^-/ { sub(/=.*/, "="); print $1 }' )
             fi
 
             # only parse help if senseful
             if [[ -z "$cur" || "$cur" =~ ^[a-z] ]]; then
-                commands=$(_myce_rpc help 2>/dev/null | awk '$1 ~ /^[a-z]/ { print $1; }')
+                commands=$(_electra_rpc help 2>/dev/null | awk '$1 ~ /^[a-z]/ { print $1; }')
             fi
 
             COMPREPLY=( $( compgen -W "$helpopts $commands" -- "$cur" ) )
@@ -133,7 +133,7 @@ _myced() {
     esac
 }
 
-complete -F _myced myced myce-cli
+complete -F _electrad electrad electra-cli
 }
 
 # Local variables:

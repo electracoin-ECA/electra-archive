@@ -1,12 +1,12 @@
 [Desktop Entry]
 Encoding=UTF-8
-Name=Myce
-Comment=Myce P2P Cryptocurrency
-Comment[fr]=Myce, monnaie virtuelle cryptographique pair à pair
-Comment[tr]=Myce, eşten eşe kriptografik sanal para birimi
-Exec=myce-qt %u
+Name=Electra
+Comment=Electra P2P Cryptocurrency
+Comment[fr]=Electra, monnaie virtuelle cryptographique pair à pair
+Comment[tr]=Electra, eşten eşe kriptografik sanal para birimi
+Exec=electra-qt %u
 Terminal=false
 Type=Application
-Icon=myce128
-MimeType=x-scheme-handler/myce;
+Icon=electra128
+MimeType=x-scheme-handler/electra;
 Categories=Office;Finance;

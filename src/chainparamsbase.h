@@ -1,6 +1,6 @@
 // Copyright (c) 2014 The Bitcoin developers
 // Copyright (c) 2017 The PIVX developers
-// Copyright (c) 2018 The Myce developers
+// Copyright (c) 2018 The Electra developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -11,8 +11,8 @@
 #include <vector>
 
 /**
- * CBaseChainParams defines the base parameters (shared between myce-cli and myced)
- * of a given instance of the Myce system.
+ * CBaseChainParams defines the base parameters (shared between electra-cli and electrad)
+ * of a given instance of the Electra system.
  */
 class CBaseChainParams
 {

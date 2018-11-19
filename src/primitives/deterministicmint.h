@@ -1,10 +1,10 @@
 // Copyright (c) 2018 The PIVX developers
-// Copyright (c) 2018 The Myce developers
+// Copyright (c) 2018 The Electra developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef MYCE_DETERMINISTICMINT_H
-#define MYCE_DETERMINISTICMINT_H
+#ifndef ELECTRA_DETERMINISTICMINT_H
+#define ELECTRA_DETERMINISTICMINT_H
 
 #include <libzerocoin/Denominations.h>
 #include <uint256.h>
@@ -65,4 +65,4 @@ public:
     };
 };
 
-#endif //MYCE_DETERMINISTICMINT_H
+#endif //ELECTRA_DETERMINISTICMINT_H

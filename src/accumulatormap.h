@@ -1,10 +1,10 @@
 // Copyright (c) 2017-2018 The PIVX developers
-// Copyright (c) 2018 The Myce developers
+// Copyright (c) 2018 The Electra developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef MYCE_ACCUMULATORMAP_H
-#define MYCE_ACCUMULATORMAP_H
+#ifndef ELECTRA_ACCUMULATORMAP_H
+#define ELECTRA_ACCUMULATORMAP_H
 
 #include "libzerocoin/Accumulator.h"
 #include "libzerocoin/Coin.h"
@@ -26,4 +26,4 @@ public:
     void Reset();
     void Reset(libzerocoin::ZerocoinParams* params2);
 };
-#endif //MYCE_ACCUMULATORMAP_H
+#endif //ELECTRA_ACCUMULATORMAP_H

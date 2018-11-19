@@ -1,19 +1,19 @@
 [Unit]
-Description=Myce's distributed currency daemon
+Description=Electra's distributed currency daemon
 After=network.target
 
 [Service]
-User=myce
-Group=myce
+User=electra
+Group=electra
 
 Type=forking
-PIDFile=/var/lib/myced/myced.pid
+PIDFile=/var/lib/electrad/electrad.pid
 
-ExecStart=/usr/bin/myced -daemon -pid=/var/lib/myced/myced.pid \
-          -conf=/etc/myce/myce.conf -datadir=/var/lib/myced
+ExecStart=/usr/bin/electrad -daemon -pid=/var/lib/electrad/electrad.pid \
+          -conf=/etc/electra/electra.conf -datadir=/var/lib/electrad
 
-ExecStop=-/usr/bin/myce-cli -conf=/etc/myce/myce.conf \
-         -datadir=/var/lib/myced stop
+ExecStop=-/usr/bin/electra-cli -conf=/etc/electra/electra.conf \
+         -datadir=/var/lib/electrad stop
 
 Restart=always
 PrivateTmp=true

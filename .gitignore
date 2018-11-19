@@ -1,3 +1,4 @@
+.vscode/
 .gitignore
 *.sublime-project
 *.sublime-workspace
@@ -7,12 +8,12 @@ reset-files.bash
 *.tar.gz
 
 *.exe
-src/myce
-src/myced
-src/myce-cli
-src/myce-tx
-src/test/test_myce
-src/qt/test/test_myce-qt
+src/electra
+src/electrad
+src/electra-cli
+src/electra-tx
+src/test/test_electra
+src/qt/test/test_electra-qt
 
 # autoreconf
 Makefile.in
@@ -38,8 +39,8 @@ confdefs.h
 conftest.cpp
 conftest.err
 libtool
-src/config/myce-config.h
-src/config/myce-config.h.in
+src/config/electra-config.h
+src/config/electra-config.h.in
 src/config/stamp-h1
 share/setup.nsi
 share/qt/Info.plist
@@ -65,7 +66,7 @@ src/qt/test/moc*.cpp
 *.o
 *.o-*
 *.patch
-.myce
+.electra
 *.a
 *.pb.cc
 *.pb.h
@@ -84,12 +85,12 @@ src/qt/test/moc*.cpp
 # Compilation and Qt preprocessor part
 *.qm
 Makefile
-myce-qt
-Myce-Qt.app
+electra-qt
+Electra-Qt.app
 
 # Unit-tests
 Makefile.test
-myce-qt_test
+electra-qt_test
 src/test/buildenv.py
 
 # Resources cpp
@@ -105,7 +106,7 @@ build
 #lcov
 *.gcno
 /*.info
-test_myce.coverage/
+test_electra.coverage/
 total.coverage/
 coverage_percent.txt
 

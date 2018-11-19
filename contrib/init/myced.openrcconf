@@ -1,25 +1,25 @@
-# /etc/conf.d/myced: config file for /etc/init.d/myced
+# /etc/conf.d/electrad: config file for /etc/init.d/electrad
 
 # Config file location
-#BITCOIND_CONFIGFILE="/etc/myce/myce.conf"
+#BITCOIND_CONFIGFILE="/etc/electra/electra.conf"
 
 # What directory to write pidfile to?  (created and owned by $BITCOIND_USER)
-#BITCOIND_PIDDIR="/var/run/myced"
+#BITCOIND_PIDDIR="/var/run/electrad"
 
 # What filename to give the pidfile
-#BITCOIND_PIDFILE="${BITCOIND_PIDDIR}/myced.pid"
+#BITCOIND_PIDFILE="${BITCOIND_PIDDIR}/electrad.pid"
 
-# Where to write myced data (be mindful that the blockchain is large)
-#BITCOIND_DATADIR="/var/lib/myced"
+# Where to write electrad data (be mindful that the blockchain is large)
+#BITCOIND_DATADIR="/var/lib/electrad"
 
-# User and group to own myced process
-#BITCOIND_USER="myce"
-#BITCOIND_GROUP="myce"
+# User and group to own electrad process
+#BITCOIND_USER="electra"
+#BITCOIND_GROUP="electra"
 
-# Path to myced executable
-#BITCOIND_BIN="/usr/bin/myced"
+# Path to electrad executable
+#BITCOIND_BIN="/usr/bin/electrad"
 
-# Nice value to run myced under
+# Nice value to run electrad under
 #BITCOIND_NICE=0
 
 # Additional options (avoid -conf and -datadir, use flags above)

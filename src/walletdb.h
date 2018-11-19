@@ -1,7 +1,7 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2013 The Bitcoin developers
 // Copyright (c) 2016-2018 The PIVX developers
-// Copyright (c) 2018 The Myce developers
+// Copyright (c) 2018 The Electra developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -15,7 +15,7 @@
 #include "primitives/zerocoin.h"
 #include "libzerocoin/Accumulator.h"
 #include "libzerocoin/Denominations.h"
-#include "zycetracker.h"
+#include "zecatracker.h"
 
 #include <list>
 #include <stdint.h>
@@ -176,14 +176,14 @@ public:
     bool ReadZerocoinSpendSerialEntry(const CBigNum& bnSerial);
     bool WriteCurrentSeedHash(const uint256& hashSeed);
     bool ReadCurrentSeedHash(uint256& hashSeed);
-    bool WriteZYCESeed(const uint256& hashSeed, const vector<unsigned char>& seed);
-    bool ReadZYCESeed(const uint256& hashSeed, vector<unsigned char>& seed);
-    bool ReadZYCESeed_deprecated(uint256& seed);
-    bool EraseZYCESeed();
-    bool EraseZYCESeed_deprecated();
+    bool WriteZECASeed(const uint256& hashSeed, const vector<unsigned char>& seed);
+    bool ReadZECASeed(const uint256& hashSeed, vector<unsigned char>& seed);
+    bool ReadZECASeed_deprecated(uint256& seed);
+    bool EraseZECASeed();
+    bool EraseZECASeed_deprecated();
 
-    bool WriteZYCECount(const uint32_t& nCount);
-    bool ReadZYCECount(uint32_t& nCount);
+    bool WriteZECACount(const uint32_t& nCount);
+    bool ReadZECACount(uint32_t& nCount);
     std::map<uint256, std::vector<pair<uint256, uint32_t> > > MapMintPool();
     bool WriteMintPoolPair(const uint256& hashMasterSeed, const uint256& hashPubcoin, const uint32_t& nCount);
 

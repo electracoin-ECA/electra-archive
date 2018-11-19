@@ -1,10 +1,10 @@
 // Copyright (c) 2018 The PIVX developers
-// Copyright (c) 2018 The Myce developers
+// Copyright (c) 2018 The Electra developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef MYCE_ACCUMULATORCHECKPOINTS_JSON_H
-#define MYCE_ACCUMULATORCHECKPOINTS_JSON_H
+#ifndef ELECTRA_ACCUMULATORCHECKPOINTS_JSON_H
+#define ELECTRA_ACCUMULATORCHECKPOINTS_JSON_H
 
 #include <string>
 std::string GetMainCheckpoints() {
@@ -278,4 +278,4 @@ std::string GetRegTestCheckpoints() {
     return strRegTestCheckpoints;
 }
 
-#endif //MYCE_ACCUMULATORCHECKPOINTS_JSON_H
+#endif //ELECTRA_ACCUMULATORCHECKPOINTS_JSON_H

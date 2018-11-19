@@ -1,31 +1,31 @@
 #!/bin/bash
 #
-#  myced The Myce server.
+#  electrad The Electra server.
 #
 #
 # chkconfig: 345 80 20
-# description: myced
-# processname: myced
+# description: electrad
+# processname: electrad
 #
 
 # Source function library.
 . /etc/init.d/functions
 
-# you can override defaults in /etc/sysconfig/myced, see below
-if [ -f /etc/sysconfig/myced ]; then
-        . /etc/sysconfig/myced
+# you can override defaults in /etc/sysconfig/electrad, see below
+if [ -f /etc/sysconfig/electrad ]; then
+        . /etc/sysconfig/electrad
 fi
 
 RETVAL=0
 
-prog=myced
-# you can override the lockfile via BITCOIND_LOCKFILE in /etc/sysconfig/myced
-lockfile=${BITCOIND_LOCKFILE-/var/lock/subsys/myced}
+prog=electrad
+# you can override the lockfile via BITCOIND_LOCKFILE in /etc/sysconfig/electrad
+lockfile=${BITCOIND_LOCKFILE-/var/lock/subsys/electrad}
 
-# myced defaults to /usr/bin/myced, override with BITCOIND_BIN
-bitcoind=${BITCOIND_BIN-/usr/bin/myced}
+# electrad defaults to /usr/bin/electrad, override with BITCOIND_BIN
+bitcoind=${BITCOIND_BIN-/usr/bin/electrad}
 
-# myced opts default to -disablewallet, override with BITCOIND_OPTS
+# electrad opts default to -disablewallet, override with BITCOIND_OPTS
 bitcoind_opts=${BITCOIND_OPTS}
 
 start() {

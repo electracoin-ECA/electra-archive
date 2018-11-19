@@ -2,7 +2,7 @@
 // Copyright (c) 2009-2014 The Bitcoin developers
 // Copyright (c) 2014-2015 The Dash developers
 // Copyright (c) 2015-2018 The PIVX developers
-// Copyright (c) 2018 The Myce developers
+// Copyright (c) 2018 The Electra developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -119,12 +119,12 @@ UniValue blockToJSON(const CBlock& block, const CBlockIndex* blockindex, bool tx
 
     result.push_back(Pair("moneysupply",ValueFromAmount(blockindex->nMoneySupply)));
 
-    UniValue zyceObj(UniValue::VOBJ);
+    UniValue zecaObj(UniValue::VOBJ);
     for (auto denom : libzerocoin::zerocoinDenomList) {
-        zyceObj.push_back(Pair(to_string(denom), ValueFromAmount(blockindex->mapZerocoinSupply.at(denom) * (denom*COIN))));
+        zecaObj.push_back(Pair(to_string(denom), ValueFromAmount(blockindex->mapZerocoinSupply.at(denom) * (denom*COIN))));
     }
-    zyceObj.push_back(Pair("total", ValueFromAmount(blockindex->GetZerocoinSupply())));
-    result.push_back(Pair("zYCEsupply", zyceObj));
+    zecaObj.push_back(Pair("total", ValueFromAmount(blockindex->GetZerocoinSupply())));
+    result.push_back(Pair("zECAsupply", zecaObj));
 
     return result;
 }
@@ -244,7 +244,7 @@ UniValue getrawmempool(const UniValue& params, bool fHelp)
             "{                           (json object)\n"
             "  \"transactionid\" : {       (json object)\n"
             "    \"size\" : n,             (numeric) transaction size in bytes\n"
-            "    \"fee\" : n,              (numeric) transaction fee in myce\n"
+            "    \"fee\" : n,              (numeric) transaction fee in electra\n"
             "    \"time\" : n,             (numeric) local time transaction entered pool in seconds since 1 Jan 1970 GMT\n"
             "    \"height\" : n,           (numeric) block height when transaction entered pool\n"
             "    \"startingpriority\" : n, (numeric) priority when transaction entered pool\n"
@@ -324,17 +324,17 @@ UniValue getblock(const UniValue& params, bool fHelp)
             "  \"previousblockhash\" : \"hash\",  (string) The hash of the previous block\n"
             "  \"nextblockhash\" : \"hash\"       (string) The hash of the next block\n"
             "  \"moneysupply\" : \"supply\"       (numeric) The money supply when this block was added to the blockchain\n"
-            "  \"zYCEsupply\" :\n"
+            "  \"zECAsupply\" :\n"
             "  {\n"
-            "     \"1\" : n,            (numeric) supply of 1 zYCE denomination\n"
-            "     \"5\" : n,            (numeric) supply of 5 zYCE denomination\n"
-            "     \"10\" : n,           (numeric) supply of 10 zYCE denomination\n"
-            "     \"50\" : n,           (numeric) supply of 50 zYCE denomination\n"
-            "     \"100\" : n,          (numeric) supply of 100 zYCE denomination\n"
-            "     \"500\" : n,          (numeric) supply of 500 zYCE denomination\n"
-            "     \"1000\" : n,         (numeric) supply of 1000 zYCE denomination\n"
-            "     \"5000\" : n,         (numeric) supply of 5000 zYCE denomination\n"
-            "     \"total\" : n,        (numeric) The total supply of all zYCE denominations\n"
+            "     \"1\" : n,            (numeric) supply of 1 zECA denomination\n"
+            "     \"5\" : n,            (numeric) supply of 5 zECA denomination\n"
+            "     \"10\" : n,           (numeric) supply of 10 zECA denomination\n"
+            "     \"50\" : n,           (numeric) supply of 50 zECA denomination\n"
+            "     \"100\" : n,          (numeric) supply of 100 zECA denomination\n"
+            "     \"500\" : n,          (numeric) supply of 500 zECA denomination\n"
+            "     \"1000\" : n,         (numeric) supply of 1000 zECA denomination\n"
+            "     \"5000\" : n,         (numeric) supply of 5000 zECA denomination\n"
+            "     \"total\" : n,        (numeric) The total supply of all zECA denominations\n"
             "  }\n"
             "}\n"
 
@@ -486,8 +486,8 @@ UniValue gettxout(const UniValue& params, bool fHelp)
             "     \"hex\" : \"hex\",        (string) \n"
             "     \"reqSigs\" : n,          (numeric) Number of required signatures\n"
             "     \"type\" : \"pubkeyhash\", (string) The type, eg pubkeyhash\n"
-            "     \"addresses\" : [          (array of string) array of myce addresses\n"
-            "     \"myceaddress\"   	 	(string) myce address\n"
+            "     \"addresses\" : [          (array of string) array of electra addresses\n"
+            "     \"electraaddress\"   	 	(string) electra address\n"
             "        ,...\n"
             "     ]\n"
             "  },\n"

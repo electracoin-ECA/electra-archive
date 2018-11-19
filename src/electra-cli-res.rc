@@ -16,14 +16,14 @@ BEGIN
     BEGIN
         BLOCK "040904E4" // U.S. English - multilingual (hex)
         BEGIN
-            VALUE "CompanyName",        "Myce"
-            VALUE "FileDescription",    "myce-tx (CLI Myce transaction editor utility)"
+            VALUE "CompanyName",        "Electra"
+            VALUE "FileDescription",    "Electra-cli (OSS RPC client for Electra)"
             VALUE "FileVersion",        VER_FILEVERSION_STR
-            VALUE "InternalName",       "myce-tx"
+            VALUE "InternalName",       "electra-cli"
             VALUE "LegalCopyright",     COPYRIGHT_STR
-            VALUE "LegalTrademarks1",   "Distributed under the MIT software license, see the accompanying file COPYING or http://www.opensource.org/licenses/mit-license.php."
-            VALUE "OriginalFilename",   "myce-tx.exe"
-            VALUE "ProductName",        "myce-tx"
+            VALUE "LegalTrademarks1",   "Distributed under the MIT/X11 software license, see the accompanying file COPYING or http://www.opensource.org/licenses/mit-license.php."
+            VALUE "OriginalFilename",   "electra-cli.exe"
+            VALUE "ProductName",        "Electra-cli"
             VALUE "ProductVersion",     VER_PRODUCTVERSION_STR
         END
     END

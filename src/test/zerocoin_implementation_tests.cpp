@@ -1,5 +1,5 @@
 // Copyright (c) 2017-2018 The PIVX developers
-// Copyright (c) 2018 The Myce developers
+// Copyright (c) 2018 The Electra developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -16,8 +16,8 @@
 #include <iostream>
 #include <accumulators.h>
 #include "wallet.h"
-#include "zycewallet.h"
-#include "zycechain.h"
+#include "zecawallet.h"
+#include "zecachain.h"
 
 using namespace libzerocoin;
 
@@ -484,7 +484,7 @@ BOOST_AUTO_TEST_CASE(deterministic_tests)
     CWalletDB walletdb(strWalletFile, "cr+");
 
     CWallet wallet(strWalletFile);
-    CzYCEWallet zWallet(wallet.strWalletFile);
+    CzECAWallet zWallet(wallet.strWalletFile);
     zWallet.SetMasterSeed(seedMaster);
     wallet.setZWallet(&zWallet);
 
@@ -496,7 +496,7 @@ BOOST_AUTO_TEST_CASE(deterministic_tests)
     for (int i = 0; i < nTests; i++) {
         PrivateCoin coin(Params().Zerocoin_Params(false), denom, false);
         CDeterministicMint dMint;
-        zWallet.GenerateDeterministicZYCE(denom, coin, dMint);
+        zWallet.GenerateDeterministicZECA(denom, coin, dMint);
         vCoins.emplace_back(coin);
     }
 

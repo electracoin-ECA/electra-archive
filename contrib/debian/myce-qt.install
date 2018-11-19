@@ -1,6 +1,6 @@
-usr/local/bin/myce-qt usr/bin
+usr/local/bin/electra-qt usr/bin
 share/pixmaps/bitcoin32.xpm usr/share/pixmaps
 share/pixmaps/bitcoin16.xpm usr/share/pixmaps
 share/pixmaps/bitcoin128.png usr/share/pixmaps
-debian/myce-qt.desktop usr/share/applications
-debian/myce-qt.protocol usr/share/kde4/services/
+debian/electra-qt.desktop usr/share/applications
+debian/electra-qt.protocol usr/share/kde4/services/

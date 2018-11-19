@@ -1,6 +1,6 @@
 [Protocol]
-exec=myce-qt '%u'
-protocol=myce
+exec=electra-qt '%u'
+protocol=electra
 input=none
 output=none
 helper=true

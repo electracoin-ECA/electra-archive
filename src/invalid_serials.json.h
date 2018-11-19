@@ -1,12 +1,12 @@
 // Copyright (c) 2018 The PIVX developers
-// Copyright (c) 2018 The Myce developers
+// Copyright (c) 2018 The Electra developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 
 
-#ifndef MYCE_INVALID_SERIALS_JSON_H
-#define MYCE_INVALID_SERIALS_JSON_H
+#ifndef ELECTRA_INVALID_SERIALS_JSON_H
+#define ELECTRA_INVALID_SERIALS_JSON_H
 
 #include <string>
 
@@ -1190,4 +1190,4 @@ std::string LoadInvalidSerials()
     return str;
 }
 
-#endif //MYCE_INVALID_SERIALS_JSON_H
+#endif //ELECTRA_INVALID_SERIALS_JSON_H

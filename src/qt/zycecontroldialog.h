@@ -1,10 +1,10 @@
 // Copyright (c) 2017-2018 The Pivx developers 
-// Copyright (c) 2018 The Myce developers
+// Copyright (c) 2018 The Electra developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef ZYCECONTROLDIALOG_H
-#define ZYCECONTROLDIALOG_H
+#ifndef ZECACONTROLDIALOG_H
+#define ZECACONTROLDIALOG_H
 
 #include <QDialog>
 #include <QTreeWidgetItem>
@@ -15,16 +15,16 @@ class CZerocoinMint;
 class WalletModel;
 
 namespace Ui {
-class ZYceControlDialog;
+class ZEcaControlDialog;
 }
 
-class ZYceControlDialog : public QDialog
+class ZEcaControlDialog : public QDialog
 {
     Q_OBJECT
 
 public:
-    explicit ZYceControlDialog(QWidget *parent);
-    ~ZYceControlDialog();
+    explicit ZEcaControlDialog(QWidget *parent);
+    ~ZEcaControlDialog();
 
     void setModel(WalletModel* model);
 
@@ -33,7 +33,7 @@ public:
     static std::vector<CMintMeta> GetSelectedMints();
 
 private:
-    Ui::ZYceControlDialog *ui;
+    Ui::ZEcaControlDialog *ui;
     WalletModel* model;
     PrivacyDialog* privacyDialog;
 
@@ -54,4 +54,4 @@ private slots:
     void ButtonAllClicked();
 };
 
-#endif // ZYCECONTROLDIALOG_H
+#endif // ZECACONTROLDIALOG_H

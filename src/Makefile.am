@@ -80,15 +80,15 @@ noinst_PROGRAMS =
 TESTS =
 
 if BUILD_BITCOIND
-  bin_PROGRAMS += myced
+  bin_PROGRAMS += electrad
 endif
 
 if BUILD_BITCOIN_UTILS
-  bin_PROGRAMS += myce-cli myce-tx
+  bin_PROGRAMS += electra-cli electra-tx
 endif
 
 .PHONY: FORCE
-# myce #
+# electra #
 BITCOIN_CORE_H = \
   activemasternode.h \
   accumulators.h \
@@ -192,9 +192,9 @@ BITCOIN_CORE_H = \
   wallet.h \
   wallet_ismine.h \
   walletdb.h \
-  zycechain.h \
-  zycetracker.h \
-  zycewallet.h \
+  zecachain.h \
+  zecatracker.h \
+  zecawallet.h \
   zmq/zmqabstractnotifier.h \
   zmq/zmqconfig.h \
   zmq/zmqnotificationinterface.h \
@@ -206,7 +206,7 @@ obj/build.h: FORCE
 	  "$(abs_top_srcdir)"
 libbitcoin_util_a-clientversion.$(OBJEXT): obj/build.h
 
-# server: shared between myced and myce-qt
+# server: shared between electrad and electra-qt
 libbitcoin_server_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES) $(MINIUPNPC_CPPFLAGS) $(EVENT_CFLAGS) $(EVENT_PTHREADS_CFLAGS)
 libbitcoin_server_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
 libbitcoin_server_a_SOURCES = \
@@ -242,7 +242,7 @@ libbitcoin_server_a_SOURCES = \
   txdb.cpp \
   txmempool.cpp \
   validationinterface.cpp \
-  zycechain.cpp \
+  zecachain.cpp \
   $(BITCOIN_CORE_H)
 
 if ENABLE_ZMQ
@@ -254,7 +254,7 @@ libbitcoin_zmq_a_SOURCES = \
   zmq/zmqpublishnotifier.cpp
 endif
 
-# wallet: shared between myced and myce-qt, but only linked
+# wallet: shared between electrad and electra-qt, but only linked
 # when wallet enabled
 libbitcoin_wallet_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
 libbitcoin_wallet_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
@@ -284,8 +284,8 @@ libbitcoin_wallet_a_SOURCES = \
   wallet.cpp \
   wallet_ismine.cpp \
   walletdb.cpp \
-  zycewallet.cpp \
-  zycetracker.cpp \
+  zecawallet.cpp \
+  zecatracker.cpp \
   stakeinput.cpp \
   $(BITCOIN_CORE_H)
 
@@ -355,7 +355,7 @@ libzerocoin_libbitcoin_zerocoin_a_SOURCES = \
   libzerocoin/Params.cpp \
   libzerocoin/SerialNumberSignatureOfKnowledge.cpp
 
-# common: shared between myced, and myce-qt and non-server tools
+# common: shared between electrad, and electra-qt and non-server tools
 libbitcoin_common_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
 libbitcoin_common_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
 libbitcoin_common_a_SOURCES = \
@@ -418,7 +418,7 @@ if GLIBC_BACK_COMPAT
 libbitcoin_util_a_SOURCES += compat/glibc_compat.cpp
 endif
 
-# cli: shared between myce-cli and myce-qt
+# cli: shared between electra-cli and electra-qt
 libbitcoin_cli_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
 libbitcoin_cli_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
 libbitcoin_cli_a_SOURCES = \
@@ -428,16 +428,16 @@ libbitcoin_cli_a_SOURCES = \
 nodist_libbitcoin_util_a_SOURCES = $(srcdir)/obj/build.h
 #
 
-# myced binary #
-myced_SOURCES = myced.cpp
-myced_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
-myced_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-myced_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+# electrad binary #
+electrad_SOURCES = electrad.cpp
+electrad_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
+electrad_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+electrad_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
 
 if TARGET_WINDOWS
-myced_SOURCES += myced-res.rc
+electrad_SOURCES += electrad-res.rc
 endif
-myced_LDADD = \
+electrad_LDADD = \
   $(LIBBITCOIN_SERVER) \
   $(LIBBITCOIN_COMMON) \
   $(LIBUNIVALUE) \
@@ -450,38 +450,38 @@ myced_LDADD = \
   $(LIBMEMENV) \
   $(LIBSECP256K1)
 
-myced_LDADD += $(BOOST_LIBS) $(BDB_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(MINIUPNPC_LIBS) $(EVENT_PTHREADS_LIBS) $(EVENT_LIBS) $(ZMQ_LIBS)
+electrad_LDADD += $(BOOST_LIBS) $(BDB_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(MINIUPNPC_LIBS) $(EVENT_PTHREADS_LIBS) $(EVENT_LIBS) $(ZMQ_LIBS)
 
-# myce-cli binary #
-myce_cli_SOURCES = myce-cli.cpp
-myce_cli_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES) $(EVENT_CFLAGS)
-myce_cli_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-myce_cli_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+# electra-cli binary #
+electra_cli_SOURCES = electra-cli.cpp
+electra_cli_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES) $(EVENT_CFLAGS)
+electra_cli_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+electra_cli_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
 
 if TARGET_WINDOWS
-myce_cli_SOURCES += myce-cli-res.rc
+electra_cli_SOURCES += electra-cli-res.rc
 endif
 
-myce_cli_LDADD = \
+electra_cli_LDADD = \
   $(LIBBITCOIN_CLI) \
   $(LIBUNIVALUE) \
   $(LIBBITCOIN_UTIL) \
   $(LIBBITCOIN_CRYPTO)
 
-myce_cli_LDADD += $(BOOST_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(EVENT_LIBS)
+electra_cli_LDADD += $(BOOST_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(EVENT_LIBS)
 #
 
-# myce-tx binary #
-myce_tx_SOURCES = myce-tx.cpp
-myce_tx_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
-myce_tx_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-myce_tx_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+# electra-tx binary #
+electra_tx_SOURCES = electra-tx.cpp
+electra_tx_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
+electra_tx_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+electra_tx_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
 
 if TARGET_WINDOWS
-myce_tx_SOURCES += myce-tx-res.rc
+electra_tx_SOURCES += electra-tx-res.rc
 endif
 
-myce_tx_LDADD = \
+electra_tx_LDADD = \
   $(LIBUNIVALUE) \
   $(LIBBITCOIN_COMMON) \
   $(LIBBITCOIN_ZEROCOIN) \
@@ -489,7 +489,7 @@ myce_tx_LDADD = \
   $(LIBBITCOIN_CRYPTO) \
   $(LIBSECP256K1)
 
-myce_tx_LDADD += $(BOOST_LIBS) $(CRYPTO_LIBS)
+electra_tx_LDADD += $(BOOST_LIBS) $(CRYPTO_LIBS)
 #
 
 # bitcoinconsensus library #

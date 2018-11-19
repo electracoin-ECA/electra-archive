@@ -1,40 +1,40 @@
-Myce
+Electra
 =====================
 
 Setup
 ---------------------
-[Myce](http://myce.org/wallet) is the original Myce client and it builds the backbone of the network. However, it downloads and stores the entire history of Myce transactions; depending on the speed of your computer and network connection, the synchronization process can take anywhere from a few hours to a day or more. Thankfully you only have to do this once.
+[Electra](http://electra.org/wallet) is the original Electra client and it builds the backbone of the network. However, it downloads and stores the entire history of Electra transactions; depending on the speed of your computer and network connection, the synchronization process can take anywhere from a few hours to a day or more. Thankfully you only have to do this once.
 
 Running
 ---------------------
-The following are some helpful notes on how to run Myce on your native platform.
+The following are some helpful notes on how to run Electra on your native platform.
 
 ### Unix
 
 Unpack the files into a directory and run:
 
-- bin/32/myce-qt (GUI, 32-bit) or bin/32/myced (headless, 32-bit)
-- bin/64/myce-qt (GUI, 64-bit) or bin/64/myced (headless, 64-bit)
+- bin/32/electra-qt (GUI, 32-bit) or bin/32/electrad (headless, 32-bit)
+- bin/64/electra-qt (GUI, 64-bit) or bin/64/electrad (headless, 64-bit)
 
 ### Windows
 
-Unpack the files into a directory, and then run myce-qt.exe.
+Unpack the files into a directory, and then run electra-qt.exe.
 
 ### OSX
 
-Drag Myce-Qt to your applications folder, and then run Myce-Qt.
+Drag Electra-Qt to your applications folder, and then run Electra-Qt.
 
 ### Need Help?
 
-* See the documentation at the [Myce Wiki](https://en.bitcoin.it/wiki/Main_Page) ***TODO***
+* See the documentation at the [Electra Wiki](https://en.bitcoin.it/wiki/Main_Page) ***TODO***
 for help and more information.
-* Ask for help on [BitcoinTalk](https://bitcointalk.org/index.php?topic=1262920.0) or on the [Myce Forum](http://forum.myce.org/).
-* Join our Discord server [Discord Server](https://discord.myce.org)
-* Join one of our Slack groups [Myce Slack Groups](https://myce.org/slack-logins/) (Main community is replaced by Discord).
+* Ask for help on [BitcoinTalk](https://bitcointalk.org/index.php?topic=1262920.0) or on the [Electra Forum](http://forum.electra.org/).
+* Join our Discord server [Discord Server](https://discord.electra.org)
+* Join one of our Slack groups [Electra Slack Groups](https://electra.org/slack-logins/) (Main community is replaced by Discord).
 
 Building
 ---------------------
-The following are developer notes on how to build Myce on your native platform. They are not complete guides, but include notes on the necessary libraries, compile flags, etc.
+The following are developer notes on how to build Electra on your native platform. They are not complete guides, but include notes on the necessary libraries, compile flags, etc.
 
 - [OSX Build Notes](build-osx.md)
 - [Unix Build Notes](build-unix.md)
@@ -42,7 +42,7 @@ The following are developer notes on how to build Myce on your native platform. 
 
 Development
 ---------------------
-The Myce repo's [root README](https://github.com/mycelliumcoin/MycelliumMN/blob/master/README.md) contains relevant information on the development process and automated testing.
+The Electra repo's [root README](https://github.com/electralliumcoin/ElectralliumMN/blob/master/README.md) contains relevant information on the development process and automated testing.
 
 - [Developer Notes](developer-notes.md)
 - [Multiwallet Qt Development](multiwallet-qt.md)
@@ -56,8 +56,8 @@ The Myce repo's [root README](https://github.com/mycelliumcoin/MycelliumMN/blob/
 
 ### Resources
 
-* Discuss on the [BitcoinTalk](https://bitcointalk.org/index.php?topic=1262920.0) or the [Myce](http://forum.myce.org/) forum.
-* Join the [Myce-Dev](https://myce-dev.slack.com/) Slack group ([Sign-Up](https://myce-dev.herokuapp.com/)).
+* Discuss on the [BitcoinTalk](https://bitcointalk.org/index.php?topic=1262920.0) or the [Electra](http://forum.electra.org/) forum.
+* Join the [Electra-Dev](https://electra-dev.slack.com/) Slack group ([Sign-Up](https://electra-dev.herokuapp.com/)).
 
 ### Miscellaneous
 - [Assets Attribution](assets-attribution.md)

@@ -2,7 +2,7 @@
 // Copyright (c) 2009-2014 The Bitcoin developers
 // Copyright (c) 2014-2015 The Dash developers
 // Copyright (c) 2015-2017 The PIVX developers
-// Copyright (c) 2018 The Myce developers
+// Copyright (c) 2018 The Electra developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -27,7 +27,7 @@ const CBlockIndex* GetLastBlockIndex(const CBlockIndex* pindex, bool fProofOfSta
 
 unsigned int GetNextWorkRequired(const CBlockIndex* pindexLast, const CBlockHeader* pblock, bool fProofOfStake)
 {
-    /* current difficulty formula, myce - DarkGravity v3, written by Evan Duffield - evan@dashpay.io */
+    /* current difficulty formula, electra - DarkGravity v3, written by Evan Duffield - evan@dashpay.io */
     const CBlockIndex* BlockLastSolved = pindexLast;
     const CBlockIndex* BlockReading = pindexLast;
     int64_t nActualTimespan = 0;
@@ -56,8 +56,8 @@ unsigned int GetNextWorkRequired(const CBlockIndex* pindexLast, const CBlockHead
         if (nActualSpacing < 0)
             nActualSpacing = 1;
 
-        // ppcoin: target change every block
-        // ppcoin: retarget with exponential moving toward target spacing
+        // ecacoin: target change every block
+        // ecacoin: retarget with exponential moving toward target spacing
         uint256 bnNew;
         bnNew.SetCompact(pindexPrev->nBits);
 
@@ -152,8 +152,8 @@ unsigned int GetLegacyNextWorkRequired(const CBlockIndex* pindexLast, const CBlo
     if (nActualSpacing < 0)
         nActualSpacing = (pindexLast->nHeight+1>=nHardForkBlock ? nTargetSpacing : nTargetSpacingOld);
 
-    // ppcoin: target change every block
-    // ppcoin: retarget with exponential moving toward target spacing
+    // eca coin: target change every block
+    // eca coin: retarget with exponential moving toward target spacing
     uint256 bnNew;
     bnNew.SetCompact(pindexPrev->nBits);
 

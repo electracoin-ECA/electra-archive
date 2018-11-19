@@ -1,10 +1,10 @@
 Sample configuration files for:
 
-SystemD: myced.service
-Upstart: myced.conf
-OpenRC:  myced.openrc
-         myced.openrcconf
-CentOS:  myced.init
+SystemD: electrad.service
+Upstart: electrad.conf
+OpenRC:  electrad.openrc
+         electrad.openrcconf
+CentOS:  electrad.init
 
 have been made available to assist packagers in creating node packages here.
 

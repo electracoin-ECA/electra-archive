@@ -1,5 +1,5 @@
 ---
-name: "myce-dmg-signer"
+name: "electra-dmg-signer"
 suites:
 - "trusty"
 architectures:
@@ -7,10 +7,10 @@ architectures:
 packages:
 - "faketime"
 remotes:
-- "url": "https://github.com/mycelliumcoin/myce-detached-sigs.git"
+- "url": "https://github.com/Electra-project/electra-detached-sigs.git"
   "dir": "signature"
 files:
-- "myce-osx-unsigned.tar.gz"
+- "electra-osx-unsigned.tar.gz"
 script: |
   WRAP_DIR=$HOME/wrapped
   mkdir -p ${WRAP_DIR}
@@ -27,11 +27,11 @@ script: |
     chmod +x ${WRAP_DIR}/${prog}
   done
 
-  UNSIGNED=myce-osx-unsigned.tar.gz
-  SIGNED=myce-osx-signed.dmg
+  UNSIGNED=electra-osx-unsigned.tar.gz
+  SIGNED=electra-osx-signed.dmg
 
   tar -xf ${UNSIGNED}
   OSX_VOLNAME="$(cat osx_volname)"
   ./detached-sig-apply.sh ${UNSIGNED} signature/osx
-  ${WRAP_DIR}/genisoimage -no-cache-inodes -D -l -probe -V "Myce-Qt" -no-pad -r -dir-mode 0755 -apple -o uncompressed.dmg signed-app
+  ${WRAP_DIR}/genisoimage -no-cache-inodes -D -l -probe -V "Electra-Qt" -no-pad -r -dir-mode 0755 -apple -o uncompressed.dmg signed-app
   ${WRAP_DIR}/dmg dmg uncompressed.dmg ${OUTDIR}/${SIGNED}

@@ -1,10 +1,10 @@
 // Copyright (c) 2017-2018 The PIVX developers
-// Copyright (c) 2018 The Myce developers
+// Copyright (c) 2018 The Electra developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef MYCE_STAKEINPUT_H
-#define MYCE_STAKEINPUT_H
+#ifndef ELECTRA_STAKEINPUT_H
+#define ELECTRA_STAKEINPUT_H
 
 class CKeyStore;
 class CWallet;
@@ -23,15 +23,15 @@ public:
     virtual CAmount GetValue() = 0;
     virtual bool CreateTxOuts(CWallet* pwallet, vector<CTxOut>& vout, CAmount nTotal) = 0;
     virtual bool GetModifier(uint64_t& nStakeModifier) = 0;
-    virtual bool IsZYCE() = 0;
+    virtual bool IsZECA() = 0;
     virtual CDataStream GetUniqueness() = 0;
 };
 
 
-// zYCEStake can take two forms
+// zECAStake can take two forms
 // 1) the stake candidate, which is a zcmint that is attempted to be staked
-// 2) a staked zyce, which is a zcspend that has successfully staked
-class CZYceStake : public CStakeInput
+// 2) a staked zeca, which is a zcspend that has successfully staked
+class CZEcaStake : public CStakeInput
 {
 private:
     uint32_t nChecksum;
@@ -40,7 +40,7 @@ private:
     uint256 hashSerial;
 
 public:
-    explicit CZYceStake(libzerocoin::CoinDenomination denom, const uint256& hashSerial)
+    explicit CZEcaStake(libzerocoin::CoinDenomination denom, const uint256& hashSerial)
     {
         this->denom = denom;
         this->hashSerial = hashSerial;
@@ -48,7 +48,7 @@ public:
         fMint = true;
     }
 
-    explicit CZYceStake(const libzerocoin::CoinSpend& spend);
+    explicit CZEcaStake(const libzerocoin::CoinSpend& spend);
 
     CBlockIndex* GetIndexFrom() override;
     bool GetTxFrom(CTransaction& tx) override;
@@ -58,19 +58,19 @@ public:
     bool CreateTxIn(CWallet* pwallet, CTxIn& txIn, uint256 hashTxOut = 0) override;
     bool CreateTxOuts(CWallet* pwallet, vector<CTxOut>& vout, CAmount nTotal) override;
     bool MarkSpent(CWallet* pwallet, const uint256& txid);
-    bool IsZYCE() override { return true; }
+    bool IsZECA() override { return true; }
     int GetChecksumHeightFromMint();
     int GetChecksumHeightFromSpend();
     uint32_t GetChecksum();
 };
 
-class CYceStake : public CStakeInput
+class CEcaStake : public CStakeInput
 {
 private:
     CTransaction txFrom;
     unsigned int nPosition;
 public:
-    CYceStake()
+    CEcaStake()
     {
         this->pindexFrom = nullptr;
     }
@@ -84,8 +84,8 @@ public:
     CDataStream GetUniqueness() override;
     bool CreateTxIn(CWallet* pwallet, CTxIn& txIn, uint256 hashTxOut = 0) override;
     bool CreateTxOuts(CWallet* pwallet, vector<CTxOut>& vout, CAmount nTotal) override;
-    bool IsZYCE() override { return false; }
+    bool IsZECA() override { return false; }
 };
 
 
-#endif //MYCE_STAKEINPUT_H
+#endif //ELECTRA_STAKEINPUT_H

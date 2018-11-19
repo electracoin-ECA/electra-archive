@@ -1,12 +1,12 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2014 The Bitcoin developers
 // Copyright (c) 2016-2018 The PIVX developers
-// Copyright (c) 2018 The Myce developers
+// Copyright (c) 2018 The Electra developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef MYCE_PUBKEY_H
-#define MYCE_PUBKEY_H
+#ifndef ELECTRA_PUBKEY_H
+#define ELECTRA_PUBKEY_H
 
 #include "hash.h"
 #include "serialize.h"
@@ -269,4 +269,4 @@ public:
     ~ECCVerifyHandle();
 };
 
-#endif // MYCE_PUBKEY_H
+#endif // ELECTRA_PUBKEY_H

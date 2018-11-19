@@ -16,14 +16,14 @@ BEGIN
     BEGIN
         BLOCK "040904E4" // U.S. English - multilingual (hex)
         BEGIN
-            VALUE "CompanyName",        "Myce"
-            VALUE "FileDescription",    "myced (OSS daemon/client for Myce)"
+            VALUE "CompanyName",        "Electra"
+            VALUE "FileDescription",    "electrad (OSS daemon/client for Electra)"
             VALUE "FileVersion",        VER_FILEVERSION_STR
-            VALUE "InternalName",       "myced"
+            VALUE "InternalName",       "electrad"
             VALUE "LegalCopyright",     COPYRIGHT_STR
             VALUE "LegalTrademarks1",   "Distributed under the MIT/X11 software license, see the accompanying file COPYING or http://www.opensource.org/licenses/mit-license.php."
-            VALUE "OriginalFilename",   "myced.exe"
-            VALUE "ProductName",        "myced"
+            VALUE "OriginalFilename",   "electrad.exe"
+            VALUE "ProductName",        "electrad"
             VALUE "ProductVersion",     VER_PRODUCTVERSION_STR
         END
     END

@@ -2,7 +2,7 @@
 // Copyright (c) 2009-2014 The Bitcoin developers
 // Copyright (c) 2014-2015 The Dash developers
 // Copyright (c) 2015-2018 The PIVX developers
-// Copyright (c) 2018 The Myce developers
+// Copyright (c) 2018 The Electra developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -264,11 +264,11 @@ UniValue stop(const UniValue& params, bool fHelp)
     if (fHelp || params.size() > 1)
         throw runtime_error(
             "stop\n"
-            "\nStop Myce server.");
+            "\nStop Electra server.");
     // Event loop will exit after current HTTP requests have been handled, so
     // this reply will get back to the client.
     StartShutdown();
-    return "Myce server stopping";
+    return "Electra server stopping";
 }
 
 
@@ -352,37 +352,37 @@ static const CRPCCommand vRPCCommands[] =
         {"hidden", "reconsiderblock", &reconsiderblock, true, true, false},
         {"hidden", "setmocktime", &setmocktime, true, false, false},
 
-        /* Myce features */
-        {"myce", "masternode", &masternode, true, true, false},
-        {"myce", "listmasternodes", &listmasternodes, true, true, false},
-        {"myce", "getmasternodecount", &getmasternodecount, true, true, false},
-        {"myce", "masternodeconnect", &masternodeconnect, true, true, false},
-        {"myce", "createmasternodebroadcast", &createmasternodebroadcast, true, true, false},
-        {"myce", "decodemasternodebroadcast", &decodemasternodebroadcast, true, true, false},
-        {"myce", "relaymasternodebroadcast", &relaymasternodebroadcast, true, true, false},
-        {"myce", "masternodecurrent", &masternodecurrent, true, true, false},
-        {"myce", "masternodedebug", &masternodedebug, true, true, false},
-        {"myce", "startmasternode", &startmasternode, true, true, false},
-        {"myce", "createmasternodekey", &createmasternodekey, true, true, false},
-        {"myce", "getmasternodeoutputs", &getmasternodeoutputs, true, true, false},
-        {"myce", "listmasternodeconf", &listmasternodeconf, true, true, false},
-        {"myce", "getmasternodestatus", &getmasternodestatus, true, true, false},
-        {"myce", "getmasternodewinners", &getmasternodewinners, true, true, false},
-        {"myce", "getmasternodescores", &getmasternodescores, true, true, false},
-        {"myce", "mnbudget", &mnbudget, true, true, false},
-        {"myce", "preparebudget", &preparebudget, true, true, false},
-        {"myce", "submitbudget", &submitbudget, true, true, false},
-        {"myce", "mnbudgetvote", &mnbudgetvote, true, true, false},
-        {"myce", "getbudgetvotes", &getbudgetvotes, true, true, false},
-        {"myce", "getnextsuperblock", &getnextsuperblock, true, true, false},
-        {"myce", "getbudgetprojection", &getbudgetprojection, true, true, false},
-        {"myce", "getbudgetinfo", &getbudgetinfo, true, true, false},
-        {"myce", "mnbudgetrawvote", &mnbudgetrawvote, true, true, false},
-        {"myce", "mnfinalbudget", &mnfinalbudget, true, true, false},
-        {"myce", "checkbudgets", &checkbudgets, true, true, false},
-        {"myce", "mnsync", &mnsync, true, true, false},
-        {"myce", "spork", &spork, true, true, false},
-        {"myce", "getpoolinfo", &getpoolinfo, true, true, false},
+        /* Electra features */
+        {"electra", "masternode", &masternode, true, true, false},
+        {"electra", "listmasternodes", &listmasternodes, true, true, false},
+        {"electra", "getmasternodecount", &getmasternodecount, true, true, false},
+        {"electra", "masternodeconnect", &masternodeconnect, true, true, false},
+        {"electra", "createmasternodebroadcast", &createmasternodebroadcast, true, true, false},
+        {"electra", "decodemasternodebroadcast", &decodemasternodebroadcast, true, true, false},
+        {"electra", "relaymasternodebroadcast", &relaymasternodebroadcast, true, true, false},
+        {"electra", "masternodecurrent", &masternodecurrent, true, true, false},
+        {"electra", "masternodedebug", &masternodedebug, true, true, false},
+        {"electra", "startmasternode", &startmasternode, true, true, false},
+        {"electra", "createmasternodekey", &createmasternodekey, true, true, false},
+        {"electra", "getmasternodeoutputs", &getmasternodeoutputs, true, true, false},
+        {"electra", "listmasternodeconf", &listmasternodeconf, true, true, false},
+        {"electra", "getmasternodestatus", &getmasternodestatus, true, true, false},
+        {"electra", "getmasternodewinners", &getmasternodewinners, true, true, false},
+        {"electra", "getmasternodescores", &getmasternodescores, true, true, false},
+        {"electra", "mnbudget", &mnbudget, true, true, false},
+        {"electra", "preparebudget", &preparebudget, true, true, false},
+        {"electra", "submitbudget", &submitbudget, true, true, false},
+        {"electra", "mnbudgetvote", &mnbudgetvote, true, true, false},
+        {"electra", "getbudgetvotes", &getbudgetvotes, true, true, false},
+        {"electra", "getnextsuperblock", &getnextsuperblock, true, true, false},
+        {"electra", "getbudgetprojection", &getbudgetprojection, true, true, false},
+        {"electra", "getbudgetinfo", &getbudgetinfo, true, true, false},
+        {"electra", "mnbudgetrawvote", &mnbudgetrawvote, true, true, false},
+        {"electra", "mnfinalbudget", &mnfinalbudget, true, true, false},
+        {"electra", "checkbudgets", &checkbudgets, true, true, false},
+        {"electra", "mnsync", &mnsync, true, true, false},
+        {"electra", "spork", &spork, true, true, false},
+        {"electra", "getpoolinfo", &getpoolinfo, true, true, false},
 
 #ifdef ENABLE_WALLET
         /* Wallet */
@@ -447,11 +447,11 @@ static const CRPCCommand vRPCCommands[] =
         {"zerocoin", "exportzerocoins", &exportzerocoins, false, false, true},
         {"zerocoin", "reconsiderzerocoins", &reconsiderzerocoins, false, false, true},
         {"zerocoin", "getspentzerocoinamount", &getspentzerocoinamount, false, false, false},
-        {"zerocoin", "getzyceseed", &getzyceseed, false, false, true},
-        {"zerocoin", "setzyceseed", &setzyceseed, false, false, true},
+        {"zerocoin", "getzecaseed", &getzecaseed, false, false, true},
+        {"zerocoin", "setzecaseed", &setzecaseed, false, false, true},
         {"zerocoin", "generatemintlist", &generatemintlist, false, false, true},
-        {"zerocoin", "searchdzyce", &searchdzyce, false, false, true},
-        {"zerocoin", "dzycestate", &dzycestate, false, false, true}
+        {"zerocoin", "searchdzeca", &searchdzeca, false, false, true},
+        {"zerocoin", "dzecastate", &dzecastate, false, false, true}
 
 #endif // ENABLE_WALLET
 };
@@ -615,7 +615,7 @@ std::vector<std::string> CRPCTable::listCommands() const
 
 std::string HelpExampleCli(string methodname, string args)
 {
-    return "> myce-cli " + methodname + " " + args + "\n";
+    return "> electra-cli " + methodname + " " + args + "\n";
 }
 
 std::string HelpExampleRpc(string methodname, string args)

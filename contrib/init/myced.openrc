@@ -2,24 +2,24 @@
 
 # backward compatibility for existing gentoo layout
 #
-if [ -d "/var/lib/myce/.myce" ]; then
-	BITCOIND_DEFAULT_DATADIR="/var/lib/myce/.myce"
+if [ -d "/var/lib/electra/.electra" ]; then
+	BITCOIND_DEFAULT_DATADIR="/var/lib/electra/.electra"
 else
-	BITCOIND_DEFAULT_DATADIR="/var/lib/myced"
+	BITCOIND_DEFAULT_DATADIR="/var/lib/electrad"
 fi
 
-BITCOIND_CONFIGFILE=${BITCOIND_CONFIGFILE:-/etc/myce/myce.conf}
-BITCOIND_PIDDIR=${BITCOIND_PIDDIR:-/var/run/myced}
-BITCOIND_PIDFILE=${BITCOIND_PIDFILE:-${BITCOIND_PIDDIR}/myced.pid}
+BITCOIND_CONFIGFILE=${BITCOIND_CONFIGFILE:-/etc/electra/electra.conf}
+BITCOIND_PIDDIR=${BITCOIND_PIDDIR:-/var/run/electrad}
+BITCOIND_PIDFILE=${BITCOIND_PIDFILE:-${BITCOIND_PIDDIR}/electrad.pid}
 BITCOIND_DATADIR=${BITCOIND_DATADIR:-${BITCOIND_DEFAULT_DATADIR}}
-BITCOIND_USER=${BITCOIND_USER:-myce}
-BITCOIND_GROUP=${BITCOIND_GROUP:-myce}
-BITCOIND_BIN=${BITCOIND_BIN:-/usr/bin/myced}
+BITCOIND_USER=${BITCOIND_USER:-electra}
+BITCOIND_GROUP=${BITCOIND_GROUP:-electra}
+BITCOIND_BIN=${BITCOIND_BIN:-/usr/bin/electrad}
 
-name="Myce Daemon"
-description="Myce crypto-currency p2p network daemon"
+name="Electra Daemon"
+description="Electra crypto-currency p2p network daemon"
 
-command="/usr/bin/myced"
+command="/usr/bin/electrad"
 command_args="-pid=\"${BITCOIND_PIDFILE}\" \
 		-conf=\"${BITCOIND_CONFIGFILE}\" \
 		-datadir=\"${BITCOIND_DATADIR}\" \
@@ -65,7 +65,7 @@ checkconfig()
 {
 	if ! grep -qs '^rpcpassword=' "${BITCOIND_CONFIGFILE}" ; then
 		eerror ""
-		eerror "ERROR: You must set a secure rpcpassword to run myced."
+		eerror "ERROR: You must set a secure rpcpassword to run electrad."
 		eerror "The setting must appear in ${BITCOIND_CONFIGFILE}"
 		eerror ""
 		eerror "This password is security critical to securing wallets "
@@ -78,7 +78,7 @@ checkconfig()
 		eerror "It is also recommended that you also set alertnotify so you are "
 		eerror "notified of problems:"
 		eerror ""
-		eerror "ie: alertnotify=echo %%s | mail -s \"Myce Alert\"" \
+		eerror "ie: alertnotify=echo %%s | mail -s \"Electra Alert\"" \
 			"admin@foo.com"
 		eerror ""
 		return 1

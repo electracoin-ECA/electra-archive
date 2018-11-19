@@ -17,7 +17,7 @@ osx=true
 SIGNER=
 VERSION=
 commit=false
-url=https://github.com/mycelliumcoin/MycelliumMN
+url=https://github.com/Electra-project/electra
 proc=2
 mem=2000
 lxc=true
@@ -31,7 +31,7 @@ commitFiles=true
 read -d '' usage <<- EOF
 Usage: $scriptName [-c|u|v|b|s|B|o|h|j|m|] signer version
 
-Run this script from the directory containing the myce, gitian-builder, gitian.sigs, and myce-detached-sigs.
+Run this script from the directory containing the electra, gitian-builder, gitian.sigs, and electra-detached-sigs.
 
 Arguments:
 signer          GPG signer to sign each build assert file
@@ -39,7 +39,7 @@ version		Version number, commit, or branch to build. If building a commit or bra
 
 Options:
 -c|--commit	Indicate that the version argument is for a commit or branch
--u|--url	Specify the URL of the repository. Default is https://github.com/mycelliumcoin/MycelliumMN
+-u|--url	Specify the URL of the repository. Default is https://github.com/electralliumcoin/ElectralliumMN
 -v|--verify 	Verify the gitian build
 -b|--build	Do a gitian build
 -s|--sign	Make signed binaries for Windows and Mac OSX
@@ -237,8 +237,8 @@ echo ${COMMIT}
 if [[ $setup = true ]]
 then
     sudo apt-get install ruby apache2 git apt-cacher-ng python-vm-builder qemu-kvm qemu-utils
-    git clone https://github.com/mycelliumcoin/gitian.sigs.git
-    git clone https://github.com/mycelliumcoin/myce-detached-sigs.git
+    git clone https://github.com/electralliumcoin/gitian.sigs.git
+    git clone https://github.com/electralliumcoin/electra-detached-sigs.git
     git clone https://github.com/devrandom/gitian-builder.git
     pushd ./gitian-builder
     if [[ -n "$USE_LXC" ]]
@@ -252,7 +252,7 @@ then
 fi
 
 # Set up build
-pushd ./myce
+pushd ./electra
 git fetch
 git checkout ${COMMIT}
 popd
@@ -261,7 +261,7 @@ popd
 if [[ $build = true ]]
 then
 	# Make output folder
-	mkdir -p ./myce-binaries/${VERSION}
+	mkdir -p ./electra-binaries/${VERSION}
 
 	# Build Dependencies
 	echo ""
@@ -271,7 +271,7 @@ then
 	mkdir -p inputs
 	wget -N -P inputs $osslPatchUrl
 	wget -N -P inputs $osslTarUrl
-	make -C ../myce/depends download SOURCES_PATH=`pwd`/cache/common
+	make -C ../electra/depends download SOURCES_PATH=`pwd`/cache/common
 
 	# Linux
 	if [[ $linux = true ]]
@@ -279,9 +279,9 @@ then
             echo ""
 	    echo "Compiling ${VERSION} Linux"
 	    echo ""
-	    ./bin/gbuild -j ${proc} -m ${mem} --commit myce=${COMMIT} --url myce=${url} ../myce/contrib/gitian-descriptors/gitian-linux.yml
-	    ./bin/gsign -p $signProg --signer $SIGNER --release ${VERSION}-linux --destination ../gitian.sigs/ ../myce/contrib/gitian-descriptors/gitian-linux.yml
-	    mv build/out/myce-*.tar.gz build/out/src/myce-*.tar.gz ../myce-binaries/${VERSION}
+	    ./bin/gbuild -j ${proc} -m ${mem} --commit electra=${COMMIT} --url electra=${url} ../electra/contrib/gitian-descriptors/gitian-linux.yml
+	    ./bin/gsign -p $signProg --signer $SIGNER --release ${VERSION}-linux --destination ../gitian.sigs/ ../electra/contrib/gitian-descriptors/gitian-linux.yml
+	    mv build/out/electra-*.tar.gz build/out/src/electra-*.tar.gz ../electra-binaries/${VERSION}
 	fi
 	# Windows
 	if [[ $windows = true ]]
@@ -289,10 +289,10 @@ then
 	    echo ""
 	    echo "Compiling ${VERSION} Windows"
 	    echo ""
-	    ./bin/gbuild -j ${proc} -m ${mem} --commit myce=${COMMIT} --url myce=${url} ../myce/contrib/gitian-descriptors/gitian-win.yml
-	    ./bin/gsign -p $signProg --signer $SIGNER --release ${VERSION}-win-unsigned --destination ../gitian.sigs/ ../myce/contrib/gitian-descriptors/gitian-win.yml
-	    mv build/out/myce-*-win-unsigned.tar.gz inputs/myce-win-unsigned.tar.gz
-	    mv build/out/myce-*.zip build/out/myce-*.exe ../myce-binaries/${VERSION}
+	    ./bin/gbuild -j ${proc} -m ${mem} --commit electra=${COMMIT} --url electra=${url} ../electra/contrib/gitian-descriptors/gitian-win.yml
+	    ./bin/gsign -p $signProg --signer $SIGNER --release ${VERSION}-win-unsigned --destination ../gitian.sigs/ ../electra/contrib/gitian-descriptors/gitian-win.yml
+	    mv build/out/electra-*-win-unsigned.tar.gz inputs/electra-win-unsigned.tar.gz
+	    mv build/out/electra-*.zip build/out/electra-*.exe ../electra-binaries/${VERSION}
 	fi
 	# Mac OSX
 	if [[ $osx = true ]]
@@ -300,10 +300,10 @@ then
 	    echo ""
 	    echo "Compiling ${VERSION} Mac OSX"
 	    echo ""
-	    ./bin/gbuild -j ${proc} -m ${mem} --commit myce=${COMMIT} --url myce=${url} ../myce/contrib/gitian-descriptors/gitian-osx.yml
-	    ./bin/gsign -p $signProg --signer $SIGNER --release ${VERSION}-osx-unsigned --destination ../gitian.sigs/ ../myce/contrib/gitian-descriptors/gitian-osx.yml
-	    mv build/out/myce-*-osx-unsigned.tar.gz inputs/myce-osx-unsigned.tar.gz
-	    mv build/out/myce-*.tar.gz build/out/myce-*.dmg ../myce-binaries/${VERSION}
+	    ./bin/gbuild -j ${proc} -m ${mem} --commit electra=${COMMIT} --url electra=${url} ../electra/contrib/gitian-descriptors/gitian-osx.yml
+	    ./bin/gsign -p $signProg --signer $SIGNER --release ${VERSION}-osx-unsigned --destination ../gitian.sigs/ ../electra/contrib/gitian-descriptors/gitian-osx.yml
+	    mv build/out/electra-*-osx-unsigned.tar.gz inputs/electra-osx-unsigned.tar.gz
+	    mv build/out/electra-*.tar.gz build/out/electra-*.dmg ../electra-binaries/${VERSION}
 	fi
 	# AArch64
 	if [[ $aarch64 = true ]]
@@ -311,9 +311,9 @@ then
 	    echo ""
 	    echo "Compiling ${VERSION} AArch64"
 	    echo ""
-	    ./bin/gbuild -j ${proc} -m ${mem} --commit myce=${COMMIT} --url myce=${url} ../myce/contrib/gitian-descriptors/gitian-aarch64.yml
-	    ./bin/gsign -p $signProg --signer $SIGNER --release ${VERSION}-aarch64 --destination ../gitian.sigs/ ../myce/contrib/gitian-descriptors/gitian-aarch64.yml
-	    mv build/out/myce-*.tar.gz build/out/src/myce-*.tar.gz ../myce-binaries/${VERSION}
+	    ./bin/gbuild -j ${proc} -m ${mem} --commit electra=${COMMIT} --url electra=${url} ../electra/contrib/gitian-descriptors/gitian-aarch64.yml
+	    ./bin/gsign -p $signProg --signer $SIGNER --release ${VERSION}-aarch64 --destination ../gitian.sigs/ ../electra/contrib/gitian-descriptors/gitian-aarch64.yml
+	    mv build/out/electra-*.tar.gz build/out/src/electra-*.tar.gz ../electra-binaries/${VERSION}
 	popd
 
         if [[ $commitFiles = true ]]
@@ -340,32 +340,32 @@ then
 	echo ""
 	echo "Verifying v${VERSION} Linux"
 	echo ""
-	./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-linux ../myce/contrib/gitian-descriptors/gitian-linux.yml
+	./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-linux ../electra/contrib/gitian-descriptors/gitian-linux.yml
 	# Windows
 	echo ""
 	echo "Verifying v${VERSION} Windows"
 	echo ""
-	./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-win-unsigned ../myce/contrib/gitian-descriptors/gitian-win.yml
+	./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-win-unsigned ../electra/contrib/gitian-descriptors/gitian-win.yml
 	# Mac OSX
 	echo ""
 	echo "Verifying v${VERSION} Mac OSX"
 	echo ""
-	./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-osx-unsigned ../myce/contrib/gitian-descriptors/gitian-osx.yml
+	./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-osx-unsigned ../electra/contrib/gitian-descriptors/gitian-osx.yml
 	# AArch64
 	echo ""
 	echo "Verifying v${VERSION} AArch64"
 	echo ""
-	./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-aarch64 ../myce/contrib/gitian-descriptors/gitian-aarch64.yml
+	./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-aarch64 ../electra/contrib/gitian-descriptors/gitian-aarch64.yml
 	# Signed Windows
 	echo ""
 	echo "Verifying v${VERSION} Signed Windows"
 	echo ""
-	./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-osx-signed ../myce/contrib/gitian-descriptors/gitian-osx-signer.yml
+	./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-osx-signed ../electra/contrib/gitian-descriptors/gitian-osx-signer.yml
 	# Signed Mac OSX
 	echo ""
 	echo "Verifying v${VERSION} Signed Mac OSX"
 	echo ""
-	./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-osx-signed ../myce/contrib/gitian-descriptors/gitian-osx-signer.yml
+	./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-osx-signed ../electra/contrib/gitian-descriptors/gitian-osx-signer.yml
 	popd
 fi
 
@@ -380,10 +380,10 @@ then
 	    echo ""
 	    echo "Signing ${VERSION} Windows"
 	    echo ""
-	    ./bin/gbuild -i --commit signature=${COMMIT} ../myce/contrib/gitian-descriptors/gitian-win-signer.yml
-	    ./bin/gsign -p $signProg --signer $SIGNER --release ${VERSION}-win-signed --destination ../gitian.sigs/ ../myce/contrib/gitian-descriptors/gitian-win-signer.yml
-	    mv build/out/myce-*win64-setup.exe ../myce-binaries/${VERSION}
-	    mv build/out/myce-*win32-setup.exe ../myce-binaries/${VERSION}
+	    ./bin/gbuild -i --commit signature=${COMMIT} ../electra/contrib/gitian-descriptors/gitian-win-signer.yml
+	    ./bin/gsign -p $signProg --signer $SIGNER --release ${VERSION}-win-signed --destination ../gitian.sigs/ ../electra/contrib/gitian-descriptors/gitian-win-signer.yml
+	    mv build/out/electra-*win64-setup.exe ../electra-binaries/${VERSION}
+	    mv build/out/electra-*win32-setup.exe ../electra-binaries/${VERSION}
 	fi
 	# Sign Mac OSX
 	if [[ $osx = true ]]
@@ -391,9 +391,9 @@ then
 	    echo ""
 	    echo "Signing ${VERSION} Mac OSX"
 	    echo ""
-	    ./bin/gbuild -i --commit signature=${COMMIT} ../myce/contrib/gitian-descriptors/gitian-osx-signer.yml
-	    ./bin/gsign -p $signProg --signer $SIGNER --release ${VERSION}-osx-signed --destination ../gitian.sigs/ ../myce/contrib/gitian-descriptors/gitian-osx-signer.yml
-	    mv build/out/myce-osx-signed.dmg ../myce-binaries/${VERSION}/myce-${VERSION}-osx.dmg
+	    ./bin/gbuild -i --commit signature=${COMMIT} ../electra/contrib/gitian-descriptors/gitian-osx-signer.yml
+	    ./bin/gsign -p $signProg --signer $SIGNER --release ${VERSION}-osx-signed --destination ../gitian.sigs/ ../electra/contrib/gitian-descriptors/gitian-osx-signer.yml
+	    mv build/out/electra-osx-signed.dmg ../electra-binaries/${VERSION}/electra-${VERSION}-osx.dmg
 	fi
 	popd
 

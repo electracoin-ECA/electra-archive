@@ -1,10 +1,10 @@
 // Copyright (c) 2017-2018 The Pivx developers 
-// Copyright (c) 2018 The Myce developers
+// Copyright (c) 2018 The Electra developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#include "zycecontroldialog.h"
-#include "ui_zycecontroldialog.h"
+#include "zecacontroldialog.h"
+#include "ui_zecacontroldialog.h"
 
 #include "accumulators.h"
 #include "main.h"
@@ -13,12 +13,12 @@
 using namespace std;
 using namespace libzerocoin;
 
-std::set<std::string> ZYceControlDialog::setSelectedMints;
-std::set<CMintMeta> ZYceControlDialog::setMints;
+std::set<std::string> ZEcaControlDialog::setSelectedMints;
+std::set<CMintMeta> ZEcaControlDialog::setMints;
 
-ZYceControlDialog::ZYceControlDialog(QWidget *parent) :
+ZEcaControlDialog::ZEcaControlDialog(QWidget *parent) :
     QDialog(parent, Qt::WindowSystemMenuHint | Qt::WindowTitleHint | Qt::WindowCloseButtonHint),
-    ui(new Ui::ZYceControlDialog),
+    ui(new Ui::ZEcaControlDialog),
     model(0)
 {
     ui->setupUi(this);
@@ -32,19 +32,19 @@ ZYceControlDialog::ZYceControlDialog(QWidget *parent) :
     connect(ui->pushButtonAll, SIGNAL(clicked()), this, SLOT(ButtonAllClicked()));
 }
 
-ZYceControlDialog::~ZYceControlDialog()
+ZEcaControlDialog::~ZEcaControlDialog()
 {
     delete ui;
 }
 
-void ZYceControlDialog::setModel(WalletModel *model)
+void ZEcaControlDialog::setModel(WalletModel *model)
 {
     this->model = model;
     updateList();
 }
 
 //Update the tree widget
-void ZYceControlDialog::updateList()
+void ZEcaControlDialog::updateList()
 {
     // need to prevent the slot from being called each time something is changed
     ui->treeWidget->blockSignals(true);
@@ -129,7 +129,7 @@ void ZYceControlDialog::updateList()
 }
 
 // Update the list when a checkbox is clicked
-void ZYceControlDialog::updateSelection(QTreeWidgetItem* item, int column)
+void ZEcaControlDialog::updateSelection(QTreeWidgetItem* item, int column)
 {
     // only want updates from non top level items that are available to spend
     if (item->parent() && column == COLUMN_CHECKBOX && !item->isDisabled()){
@@ -151,7 +151,7 @@ void ZYceControlDialog::updateSelection(QTreeWidgetItem* item, int column)
 }
 
 // Update the Quantity and Amount display
-void ZYceControlDialog::updateLabels()
+void ZEcaControlDialog::updateLabels()
 {
     int64_t nAmount = 0;
     for (const CMintMeta& mint : setMints) {
@@ -160,14 +160,14 @@ void ZYceControlDialog::updateLabels()
     }
 
     //update this dialog's labels
-    ui->labelZYce_int->setText(QString::number(nAmount));
+    ui->labelZEca_int->setText(QString::number(nAmount));
     ui->labelQuantity_int->setText(QString::number(setSelectedMints.size()));
 
     //update PrivacyDialog labels
-    privacyDialog->setZYceControlLabels(nAmount, setSelectedMints.size());
+    privacyDialog->setZEcaControlLabels(nAmount, setSelectedMints.size());
 }
 
-std::vector<CMintMeta> ZYceControlDialog::GetSelectedMints()
+std::vector<CMintMeta> ZEcaControlDialog::GetSelectedMints()
 {
     std::vector<CMintMeta> listReturn;
     for (const CMintMeta& mint : setMints) {
@@ -179,7 +179,7 @@ std::vector<CMintMeta> ZYceControlDialog::GetSelectedMints()
 }
 
 // select or deselect all of the mints
-void ZYceControlDialog::ButtonAllClicked()
+void ZEcaControlDialog::ButtonAllClicked()
 {
     ui->treeWidget->blockSignals(true);
     Qt::CheckState state = Qt::Checked;

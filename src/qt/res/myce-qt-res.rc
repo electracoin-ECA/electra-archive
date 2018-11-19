@@ -19,14 +19,14 @@ BEGIN
     BEGIN
         BLOCK "040904E4" // U.S. English - multilingual (hex)
         BEGIN
-            VALUE "CompanyName",        "MYCE"
-            VALUE "FileDescription",    "MYCE Core (OSS GUI client for MYCE)"
+            VALUE "CompanyName",        "ELECTRA"
+            VALUE "FileDescription",    "ELECTRA Core (OSS GUI client for ELECTRA)"
             VALUE "FileVersion",        VER_FILEVERSION_STR
-            VALUE "InternalName",       "myce-qt"
+            VALUE "InternalName",       "electra-qt"
             VALUE "LegalCopyright",     COPYRIGHT_STR
             VALUE "LegalTrademarks1",   "Distributed under the MIT/X11 software license, see the accompanying file COPYING or http://www.opensource.org/licenses/mit-license.php."
-            VALUE "OriginalFilename",   "myce-qt.exe"
-            VALUE "ProductName",        "MYCE Core"
+            VALUE "OriginalFilename",   "electra-qt.exe"
+            VALUE "ProductName",        "ELECTRA Core"
             VALUE "ProductVersion",     VER_PRODUCTVERSION_STR
         END
     END
