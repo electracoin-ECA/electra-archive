@@ -348,7 +348,6 @@ RES_IMAGES = \
   qt/res/images/qtreeview_selected.png \
   qt/res/images/walletFrame.png \
   qt/res/images/walletFrame_bg.png \
-  qt/res/images/toolbar.png \
   qt/res/images/electra-logo.png \
   qt/res/images/walletFrame_bg_home.png
 
