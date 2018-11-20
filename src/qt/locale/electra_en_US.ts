@@ -837,7 +837,7 @@ Address: %4
         <translation>TextLabel</translation>
     </message>
     <message>
-        <source>Not all transactions will be shown. To view all transactions you need to set txindex=1 in the configuration file (electra.conf).</source>
+        <source>Not all transactions will be shown. To view all transactions you need to set txindex=1 in the configuration file (Electra.conf).</source>
         <translation>Not all transactions will be shown. To view all transactions you need to set txindex=1 in the configuration file (electra.conf).</translation>
     </message>
 </context>

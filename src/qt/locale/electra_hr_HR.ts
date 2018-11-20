@@ -893,7 +893,7 @@ Višestruko slanje: %1</translation>
     </message>
     <message>
         <source>Not all transactions will be shown. To view all transactions you need to set txindex=1 in the configuration file (electra.conf).</source>
-        <translation>Nisu prikazane sve transakcije. Za pregled svih transakcija morate postaviti txindex = 1 u konfiguracijskoj datoteci (electra.conf).</translation>
+        <translation>Nisu prikazane sve transakcije. Za pregled svih transakcija morate postaviti txindex = 1 u konfiguracijskoj datoteci (Electra.conf).</translation>
     </message>
 </context>
 <context>
@@ -2255,12 +2255,12 @@ Ako je omogućeno automatsko navođenje, ovaj postotak će se podmiriti oko konf
         <translation>AutoMint je trenutno omogućen i podešen na</translation>
     </message>
     <message>
-        <source>To disable AutoMint add 'enablezeromint=0' in electra.conf.</source>
+        <source>To disable AutoMint add 'enablezeromint=0' in Electra.conf.</source>
         <translation>Da biste onemogućili AutoMint, dodajte 'enablezeromint=0' u electra.conf.</translation>
     </message>
     <message>
         <source>AutoMint is currently disabled.
-To enable AutoMint change 'enablezeromint=0' to 'enablezeromint=1' in electra.conf</source>
+To enable AutoMint change 'enablezeromint=0' to 'enablezeromint=1' in Electra.conf</source>
         <translation>AutoMint je trenutno onemogućen.
 Da biste omogućili, promjenite postavke AutoMint 'enablezeromint=0' na 'enablezeromint=1' u electra.conf</translation>
     </message>
@@ -2579,8 +2579,8 @@ Nezreli: potvrđeno, ali manje od 1 minta iste denominacije nakon mintanja</tran
         <source>Show the current status of automatic zECA minting.
 
 To change the status (restart required):
-- enable: add 'enablezeromint=1' to electra.conf
-- disable: add 'enablezeromint=0' to electra.conf
+- enable: add 'enablezeromint=1' to Electra.conf
+- disable: add 'enablezeromint=0' to Electra.conf
 
 To change the percentage (no restart required):
 - menu Settings-&gt;Options-&gt;Percentage of autominted zECA
@@ -2589,8 +2589,8 @@ To change the percentage (no restart required):
         <translation>Pokažite trenutačni status automatskog zECA mintanja.
 
 Da biste promijenili status (potrebno je ponovno pokretanje):
-- omogući: dodajte 'enablezeromint = 1' u electra.conf
-- onemogućiti: dodajte 'enablezeromint = 0' na electra.conf
+- omogući: dodajte 'enablezeromint = 1' u Electra.conf
+- onemogućiti: dodajte 'enablezeromint = 0' na Electra.conf
 
 Promjena postotka (nije potrebno ponovno pokretanje):
 - izbornik Postavke-&gt; Opcije-&gt; Postotak zECA</translation>

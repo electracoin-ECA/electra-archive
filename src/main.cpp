@@ -890,7 +890,7 @@ bool GetCoinAge(const CTransaction& tx, const unsigned int nTxTime, uint64_t& nC
         CTransaction txPrev;
         uint256 hashBlockPrev;
         if (!GetTransaction(txin.prevout.hash, txPrev, hashBlockPrev, true)) {
-            LogPrintf("GetCoinAge: failed to find vin transaction %d\n", hashBlockPrev);
+            LogPrintf("GetCoinAge: failed to find vin transaction\n");
             continue; // previous transaction not in main chain
         }
 

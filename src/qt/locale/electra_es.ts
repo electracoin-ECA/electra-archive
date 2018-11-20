@@ -892,8 +892,8 @@ MultiEnvío: %1</translation>
         <translation>EtiquetaDeTexto</translation>
     </message>
     <message>
-        <source>Not all transactions will be shown. To view all transactions you need to set txindex=1 in the configuration file (electra.conf).</source>
-        <translation>No se muestran todas las transacciones. Para ver todas las transacciones introduzca la línea "txindex=1" en el archivo de configuración (electra.conf).</translation>
+        <source>Not all transactions will be shown. To view all transactions you need to set txindex=1 in the configuration file (Electra.conf).</source>
+        <translation>No se muestran todas las transacciones. Para ver todas las transacciones introduzca la línea "txindex=1" en el archivo de configuración (Electra.conf).</translation>
     </message>
 </context>
 <context>
@@ -2255,14 +2255,14 @@ Si AutoMint está habilitado, este porcentaje se establecerá alrededor del porc
         <translation>AutoMint está actualmente habilitado y configurado en</translation>
     </message>
     <message>
-        <source>To disable AutoMint add 'enablezeromint=0' in electra.conf.</source>
-        <translation>Para desactivar AutoMint agrega 'enablezeromint=0' en electra.conf.</translation>
+        <source>To disable AutoMint add 'enablezeromint=0' in Electra.conf.</source>
+        <translation>Para desactivar AutoMint agrega 'enablezeromint=0' en Electra.conf.</translation>
     </message>
     <message>
         <source>AutoMint is currently disabled.
-To enable AutoMint change 'enablezeromint=0' to 'enablezeromint=1' in electra.conf</source>
+To enable AutoMint change 'enablezeromint=0' to 'enablezeromint=1' in Electra.conf</source>
         <translation>AutoMint está actualmente desactivado.
-Para habilitar AutoMint cambie 'enablezeromint = 0' a 'enablezeromint = 1' en electra.conf</translation>
+Para habilitar AutoMint cambie 'enablezeromint = 0' a 'enablezeromint = 1' en Electra.conf</translation>
     </message>
 </context>
 <context>
@@ -2579,8 +2579,8 @@ Inmaduro: confirmado, pero menos de 1 acuñación de la misma denominación desp
         <source>Show the current status of automatic zECA minting.
 
 To change the status (restart required):
-- enable: add 'enablezeromint=1' to electra.conf
-- disable: add 'enablezeromint=0' to electra.conf
+- enable: add 'enablezeromint=1' to Electra.conf
+- disable: add 'enablezeromint=0' to Electra.conf
 
 To change the percentage (no restart required):
 - menu Settings-&gt;Options-&gt;Percentage of autominted zECA
@@ -2589,8 +2589,8 @@ To change the percentage (no restart required):
         <translation>Muestra el estado actual de zECA minting automática.
 
 Para cambiar el estado (reinicio requerido):
-- activar: añade 'enablezeromint = 1' en electra.conf
-- desctivar: añade 'enablezeromint = 0' en electra.conf
+- activar: añade 'enablezeromint = 1' en Electra.conf
+- desctivar: añade 'enablezeromint = 0' en Electra.conf
 
 Para cambiar el porcentaje (no se requiere reiniciar):
 - menú Configuración-&gt;Opciones-&gt;Porcentaje de zECA automint

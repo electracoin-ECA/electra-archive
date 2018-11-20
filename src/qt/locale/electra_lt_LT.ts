@@ -892,7 +892,7 @@ MultiSend: %1</translation>
         <translation>Teksto etiketė</translation>
     </message>
     <message>
-        <source>Not all transactions will be shown. To view all transactions you need to set txindex=1 in the configuration file (electra.conf).</source>
+        <source>Not all transactions will be shown. To view all transactions you need to set txindex=1 in the configuration file (Electra.conf).</source>
         <translation>Ne visi pavedimai bus rodomi. Norėdami peržiūrėti visus pavedimus, reikia nustatyti txindex = 1 konfigūracijos faile (electra.conf).</translation>
     </message>
 </context>
@@ -2141,7 +2141,7 @@ Nesubrendusios: patvirtintos, bet mažiau nei 1 konvertacijos to pačio nominalo
         <translation>AutoMint šiuo metu įgalintas ir nustatytas</translation>
     </message>
     <message>
-        <source>To disable AutoMint add 'enablezeromint=0' in electra.conf.</source>
+        <source>To disable AutoMint add 'enablezeromint=0' in Electra.conf.</source>
         <translation>Norėdami išjungti Automatinį Kalimą pridėkite 'enablezeromint=0' Electra.conf faile.</translation>
     </message>
     </context>

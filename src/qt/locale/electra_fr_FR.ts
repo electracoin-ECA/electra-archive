@@ -876,8 +876,8 @@ Adresse : %4
         <translation>TextLabel</translation>
     </message>
     <message>
-        <source>Not all transactions will be shown. To view all transactions you need to set txindex=1 in the configuration file (electra.conf).</source>
-        <translation>Toutes les transaction ne seront pas affichés. Pour voir toutes les transactions, vous devez régler txindex=1 dans le fichier de configuration (electra.conf).</translation>
+        <source>Not all transactions will be shown. To view all transactions you need to set txindex=1 in the configuration file (Electra.conf).</source>
+        <translation>Toutes les transaction ne seront pas affichés. Pour voir toutes les transactions, vous devez régler txindex=1 dans le fichier de configuration (Electra.conf).</translation>
     </message>
 </context>
 <context>
@@ -2189,14 +2189,14 @@ Si Auto-monnayage est activé, ce pourcentage sera réglé autour du pourcentage
         <translation>Auto-monnayage est actuellement activé et mis à</translation>
     </message>
     <message>
-        <source>To disable AutoMint add 'enablezeromint=0' in electra.conf.</source>
-        <translation>Pour désactiver Auto-monnayage, ajoutez 'enablezeromint = 0' dans electra.conf.</translation>
+        <source>To disable AutoMint add 'enablezeromint=0' in Electra.conf.</source>
+        <translation>Pour désactiver Auto-monnayage, ajoutez 'enablezeromint = 0' dans Electra.conf.</translation>
     </message>
     <message>
         <source>AutoMint is currently disabled.
-To enable AutoMint change 'enablezeromint=0' to 'enablezeromint=1' in electra.conf</source>
+To enable AutoMint change 'enablezeromint=0' to 'enablezeromint=1' in Electra.conf</source>
         <translation>Auto-monnayage est actuellement désactivé.
-Pour activer Auto-monnayage, changez 'enablezeromint = 0' en 'enablezeromint = 1' dans le fichier electra.conf</translation>
+Pour activer Auto-monnayage, changez 'enablezeromint = 0' en 'enablezeromint = 1' dans le fichier Electra.conf</translation>
     </message>
 </context>
 <context>
@@ -2513,8 +2513,8 @@ Immature: confirmé, mais moins de 1 monnayer de la même dénomination après s
         <source>Show the current status of automatic zECA minting.
 
 To change the status (restart required):
-- enable: add 'enablezeromint=1' to electra.conf
-- disable: add 'enablezeromint=0' to electra.conf
+- enable: add 'enablezeromint=1' to Electra.conf
+- disable: add 'enablezeromint=0' to Electra.conf
 
 To change the percentage (no restart required):
 - menu Settings-&gt;Options-&gt;Percentage of autominted zECA
@@ -2523,8 +2523,8 @@ To change the percentage (no restart required):
         <translation>Afficher l'état actuel de monnayage automatique zECA.
 
 Pour changer le statut (redémarrage requis):
-- enable: ajoute 'enablezeromint = 1' au fichier electra.conf
-- disable: ajoute 'enablezeromint = 0' au fichier electra.conf
+- enable: ajoute 'enablezeromint = 1' au fichier Electra.conf
+- disable: ajoute 'enablezeromint = 0' au fichier Electra.conf
 
 Pour changer le pourcentage (pas de redémarrage requis):
 - menu Paramètres-&gt; Options-&gt; Pourcentage de zECA auto-monnayé

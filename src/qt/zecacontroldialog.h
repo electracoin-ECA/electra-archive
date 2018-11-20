@@ -1,5 +1,4 @@
-// Copyright (c) 2017-2018 The Pivx developers 
-// Copyright (c) 2018 The Electra developers
+// Copyright (c) 2017-2018 The PIVX developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -15,8 +14,18 @@ class CZerocoinMint;
 class WalletModel;
 
 namespace Ui {
-class ZEcaControlDialog;
+    class ZEcaControlDialog;
 }
+
+class CZEcaControlWidgetItem : public QTreeWidgetItem
+{
+public:
+    explicit CZEcaControlWidgetItem(QTreeWidget *parent, int type = Type) : QTreeWidgetItem(parent, type) {}
+    explicit CZEcaControlWidgetItem(int type = Type) : QTreeWidgetItem(type) {}
+    explicit CZEcaControlWidgetItem(QTreeWidgetItem *parent, int type = Type) : QTreeWidgetItem(parent, type) {}
+
+    bool operator<(const QTreeWidgetItem &other) const;
+};
 
 class ZEcaControlDialog : public QDialog
 {
@@ -48,9 +57,10 @@ private:
         COLUMN_CONFIRMATIONS,
         COLUMN_ISSPENDABLE
     };
+    friend class CZEcaControlWidgetItem;
 
 private slots:
-    void updateSelection(QTreeWidgetItem* item, int column);
+            void updateSelection(QTreeWidgetItem* item, int column);
     void ButtonAllClicked();
 };
 
