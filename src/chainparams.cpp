@@ -60,13 +60,14 @@ static Checkpoints::MapCheckpoints mapCheckpoints =
     (11816, uint256("3f90dc9f885df3e167a4ad3a665ffc5282e3d4cd2291b616abc3ddc8b623ffdc"))
     (11920, uint256("000000000949e8afa1fc49b5faf29bdf3b7ed39ea7f230637fafbb7cf7b04956"))
     (15160, uint256("e31d9b1163cb7193f35c5716dfc22e86fdabb7206b3c5a27967c8f3a83892633"))
-    (128926, uint256("79aa1982dcee614dadb2857a3491c1c900bd715af45cdb4f9779872280161be5"));
+    (128926, uint256("79aa1982dcee614dadb2857a3491c1c900bd715af45cdb4f9779872280161be5"))
+    (146500, uint256("540485ed391d8fb089eeb28ce9e4b61425b9f95d831855944f98b995e4407cec"));
 static const Checkpoints::CCheckpointData data = {
     &mapCheckpoints,
-    0, // * UNIX timestamp of last checkpoint block
-    0,     // * total number of transactions between genesis and last checkpoint
+    1544562461, // * UNIX timestamp of last checkpoint block
+    435012,     // * total number of transactions between genesis and last checkpoint
                 //   (the tx=... number in the SetBestChain debug.log lines)
-    10000       // * estimated number of transactions per day after checkpoint
+    4000        // * estimated number of transactions per day after checkpoint
 };
 
 static Checkpoints::MapCheckpoints mapCheckpointsTestnet =
@@ -128,7 +129,7 @@ public:
         nToCheckBlockUpgradeMajority = 10800; // Approximate expected amount of blocks in 7 days (1440*7.5)
         nMinerThreads = 0;
         nTargetTimespan = 24 * 60 * 60; // 1 day
-        nTargetSpacing = 5*1 * 60;  // 5 minute
+        nTargetSpacing = 1 * 60;  // 1 minute
         nMaturity = 10;
         nMasternodeCountDrift = 20;
         nMaxMoneyOut = 30000000000 * COIN;
@@ -136,7 +137,7 @@ public:
         /** Height or Time Based Activations **/
         nLastPOWBlock = 13815;
         nPOSStartBlock = 11811;
-        nMandatoryUpgradeBlock = 129000;
+        nMandatoryUpgradeBlock = 147500;
         nUpgradeBlockVersion = 8;                                   // Block headers must be this version after upgrade block
         nZerocoinStartHeight = 2100000000;                          // OFF
         //nZerocoinStartTime = 4000000000;
@@ -222,7 +223,7 @@ public:
         nRequiredAccumulation = 1;
         nDefaultSecurityLevel = 100; //full security level for accumulators
         nZerocoinHeaderVersion = nUpgradeBlockVersion + 1; //Block headers must be this version once zerocoin is active
-        nZerocoinRequiredStakeDepth = 200; //The required confirmations for a zeca to be stakable
+        nZerocoinRequiredStakeDepth = 200; //The required confirmations for a zyce to be stakable
 
         nBudget_Fee_Confirmations = 6; // Number of confirmations for the finalization fee
     }
@@ -249,7 +250,7 @@ public:
         pchMessageStart[2] = 0xe2;
         pchMessageStart[3] = 0xe1;
         vAlertPubKey = ParseHex("0358d5fb8000c49d38aaab6dc5d0c0a0322eff3090eff026963eb819dc3dec8439");
-        nDefaultPort = 15817;
+        nDefaultPort = 20119;
         nEnforceBlockUpgradeMajority = 4320; // 75%
         nRejectBlockOutdatedMajority = 5472; // 95%
         nToCheckBlockUpgradeMajority = 5760; // 4 days

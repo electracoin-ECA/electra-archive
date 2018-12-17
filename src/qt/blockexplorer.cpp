@@ -229,7 +229,7 @@ std::string BlockToString(CBlockIndex* pBlock)
     if (pBlock->nHeight == 0)
         Generated = OutVolume;
     else
-        Generated = GetBlockValue(pBlock->nHeight - 1);
+        Generated = GetBlockValue(pBlock->nHeight - 1, pBlock->pprev->IsProofOfStake(), uint64_t(0));
 
     std::string BlockContentCells[] =
         {

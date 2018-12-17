@@ -148,6 +148,8 @@ extern bool fVerifyingBlocks;
 extern bool fLargeWorkForkFound;
 extern bool fLargeWorkInvalidChainFound;
 
+extern unsigned int nLastOldPoSBlock;
+extern unsigned int nHardForkBlock;
 extern unsigned int nStakeMinAge;
 extern unsigned int nStakeMinAgeOld;
 extern unsigned int nStakeMaxAge;
@@ -244,7 +246,7 @@ unsigned int GetNextWorkRequired(const CBlockIndex* pindexLast, const CBlockHead
 unsigned int GetLegacyNextWorkRequired(const CBlockIndex* pindexLast, const CBlockHeader* pblock, bool fProofOfStake);
 
 bool ActivateBestChain(CValidationState& state, CBlock* pblock = NULL, bool fAlreadyChecked = false);
-CAmount GetBlockValue(int nHeight, bool fProofOfStake = false, int64_t nCoinAge = 0);
+CAmount GetBlockValue(int nHeight, bool fProofOfStake, uint64_t nCoinAge);
 
 /** Create a new block index entry for a given block hash */
 CBlockIndex* InsertBlockIndex(uint256 hash);
@@ -265,7 +267,7 @@ bool AcceptableInputs(CTxMemPool& pool, CValidationState& state, const CTransact
 
 int GetInputAge(CTxIn& vin);
 int GetInputAgeIX(uint256 nTXHash, CTxIn& vin);
-bool GetCoinAge(const CTransaction& tx, unsigned int nTxTime, uint64_t& nCoinAge);
+bool GetCoinAge(const CTransaction& tx, unsigned int nTxTime, int nBestHeight, uint64_t& nCoinAge);
 int GetIXConfirmations(uint256 nTXHash);
 
 struct CNodeStateStats {

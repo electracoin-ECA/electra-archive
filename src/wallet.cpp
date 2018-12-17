@@ -2391,12 +2391,7 @@ bool CWallet::SelectCoinsByDenominations(int nDenom, CAmount nValueMin, CAmount 
 
     BOOST_FOREACH (const COutput& out, vCoins) {
         // masternode-like input should not be selected by AvailableCoins now anyway
-
-
-
-
-
-//if(out.tx->vout[out.i].nValue == 100000*COIN) continue;
+        //if(out.tx->vout[out.i].nValue == 100000*COIN) continue;
         if (nValueRet + out.tx->vout[out.i].nValue <= nValueMax) {
             bool fAccepted = false;
 
