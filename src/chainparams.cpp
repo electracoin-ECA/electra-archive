@@ -61,11 +61,12 @@ static Checkpoints::MapCheckpoints mapCheckpoints =
     (11920, uint256("000000000949e8afa1fc49b5faf29bdf3b7ed39ea7f230637fafbb7cf7b04956"))
     (15160, uint256("e31d9b1163cb7193f35c5716dfc22e86fdabb7206b3c5a27967c8f3a83892633"))
     (128926, uint256("79aa1982dcee614dadb2857a3491c1c900bd715af45cdb4f9779872280161be5"))
-    (146500, uint256("540485ed391d8fb089eeb28ce9e4b61425b9f95d831855944f98b995e4407cec"));
+    (146500, uint256("540485ed391d8fb089eeb28ce9e4b61425b9f95d831855944f98b995e4407cec"))
+    (148000, uint256("e51e81dd77a36b5d5db7e273463fc034360d779076d8a31ebfb8dd3d5ebd7a3d"));
 static const Checkpoints::CCheckpointData data = {
     &mapCheckpoints,
-    1544562461, // * UNIX timestamp of last checkpoint block
-    435012,     // * total number of transactions between genesis and last checkpoint
+    1544823071, // * UNIX timestamp of last checkpoint block
+    438251,     // * total number of transactions between genesis and last checkpoint
                 //   (the tx=... number in the SetBestChain debug.log lines)
     4000        // * estimated number of transactions per day after checkpoint
 };
@@ -137,7 +138,7 @@ public:
         /** Height or Time Based Activations **/
         nLastPOWBlock = 13815;
         nPOSStartBlock = 11811;
-        nMandatoryUpgradeBlock = 147500;
+        nMandatoryUpgradeBlock = 148500;
         nUpgradeBlockVersion = 8;                                   // Block headers must be this version after upgrade block
         nZerocoinStartHeight = 2100000000;                          // OFF
         //nZerocoinStartTime = 4000000000;
@@ -222,7 +223,7 @@ public:
         nMintRequiredConfirmations = 20; //the maximum amount of confirmations until accumulated in 19
         nRequiredAccumulation = 1;
         nDefaultSecurityLevel = 100; //full security level for accumulators
-        nZerocoinHeaderVersion = nUpgradeBlockVersion + 1; //Block headers must be this version once zerocoin is active
+        nZerocoinHeaderVersion = nUpgradeBlockVersion + 2; //Block headers must be this version once zerocoin is active
         nZerocoinRequiredStakeDepth = 200; //The required confirmations for a zyce to be stakable
 
         nBudget_Fee_Confirmations = 6; // Number of confirmations for the finalization fee
@@ -250,7 +251,7 @@ public:
         pchMessageStart[2] = 0xe2;
         pchMessageStart[3] = 0xe1;
         vAlertPubKey = ParseHex("0358d5fb8000c49d38aaab6dc5d0c0a0322eff3090eff026963eb819dc3dec8439");
-        nDefaultPort = 20119;
+        nDefaultPort = 15817;
         nEnforceBlockUpgradeMajority = 4320; // 75%
         nRejectBlockOutdatedMajority = 5472; // 95%
         nToCheckBlockUpgradeMajority = 5760; // 4 days
