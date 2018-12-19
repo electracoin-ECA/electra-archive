@@ -1869,7 +1869,7 @@ int64_t GetBlockValue(int nHeight, bool fProofOfStake, uint64_t nCoinAge)
 			else // eighth year and beyond
 				nRewardCoinYear = 0.02 * CENT; // 0.02% interest
 
-			if (nCoinAge == 0)
+			if (nCoinAge == uint64_t(0))
 				nSubsidy = nRewardCoinYear / 500;
 			else
 				nSubsidy = nCoinAge * nRewardCoinYear / 365;

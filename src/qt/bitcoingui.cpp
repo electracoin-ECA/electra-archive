@@ -574,9 +574,8 @@ void BitcoinGUI::createToolBars()
         toolbar->addAction(overviewAction);
         toolbar->addAction(sendCoinsAction);
         toolbar->addAction(receiveCoinsAction);
-        toolbar->addAction(privacyAction);
         toolbar->addAction(historyAction);
-        toolbar->addAction(privacyAction);
+//      toolbar->addAction(privacyAction);
         QSettings settings;
         if (settings.value("fShowMasternodesTab").toBool()) {
             toolbar->addAction(masternodeAction);
@@ -623,6 +622,7 @@ void BitcoinGUI::setClientModel(ClientModel* clientModel)
         connect(clientModel, SIGNAL(showProgress(QString, int)), this, SLOT(showProgress(QString, int)));
 
         rpcConsole->setClientModel(clientModel);
+
 
         updateTorIcon();
 
@@ -736,24 +736,10 @@ void BitcoinGUI::createTrayIconMenu()
     trayIconMenu->addSeparator();
     trayIconMenu->addAction(sendCoinsAction);
     trayIconMenu->addAction(receiveCoinsAction);
-    trayIconMenu->addAction(privacyAction);
     trayIconMenu->addSeparator();
-    trayIconMenu->addAction(signMessageAction);
-    trayIconMenu->addAction(verifyMessageAction);
-    trayIconMenu->addAction(bip38ToolAction);
     trayIconMenu->addSeparator();
     trayIconMenu->addAction(optionsAction);
     trayIconMenu->addSeparator();
-    trayIconMenu->addAction(openInfoAction);
-    trayIconMenu->addAction(openRPCConsoleAction);
-    trayIconMenu->addAction(openNetworkAction);
-    trayIconMenu->addAction(openPeersAction);
-    trayIconMenu->addAction(openRepairAction);
-    trayIconMenu->addSeparator();
-    trayIconMenu->addAction(openConfEditorAction);
-    trayIconMenu->addAction(openMNConfEditorAction);
-    trayIconMenu->addAction(showBackupsAction);
-    trayIconMenu->addAction(openBlockExplorerAction);
 #ifndef Q_OS_MAC // This is built-in on Mac
     trayIconMenu->addSeparator();
     trayIconMenu->addAction(quitAction);
