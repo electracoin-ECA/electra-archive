@@ -13,6 +13,7 @@
 #include "checkpoints.h"
 #include "coincontrol.h"
 #include "kernel.h"
+#include "main.h"
 #include "masternode-budget.h"
 #include "net.h"
 #include "primitives/transaction.h"
@@ -2391,12 +2392,7 @@ bool CWallet::SelectCoinsByDenominations(int nDenom, CAmount nValueMin, CAmount 
 
     BOOST_FOREACH (const COutput& out, vCoins) {
         // masternode-like input should not be selected by AvailableCoins now anyway
-
-
-
-
-
-//if(out.tx->vout[out.i].nValue == 100000*COIN) continue;
+        //if(out.tx->vout[out.i].nValue == 100000*COIN) continue;
         if (nValueRet + out.tx->vout[out.i].nValue <= nValueMax) {
             bool fAccepted = false;
 
@@ -3008,7 +3004,14 @@ bool CWallet::CreateCoinStake(const CKeyStore& keystore, unsigned int nBits, int
 
             // Calculate reward
             CAmount nReward;
-            nReward = GetBlockValue(chainActive.Height() + 1, true, 0);
+            uint64_t nCoinAge = 0;
+            unsigned int nTimeDiff = nTxNewTime - block.GetBlockTime();
+            if (nTimeDiff > nStakeMaxAgeNew)
+                nTimeDiff = nStakeMaxAgeNew;
+            uint256 bnCentSecond = uint256(stakeInput->GetValue()) * nTimeDiff;
+            uint256 bnCoinDay = bnCentSecond / COIN / (24 * 60 * 60);
+            nCoinAge = bnCoinDay.Get64();
+            nReward = GetBlockValue(chainActive.Height() + 1, true, nCoinAge);
             nCredit += nReward;
 
             // Create the output transaction(s)

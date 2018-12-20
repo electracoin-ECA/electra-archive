@@ -15,13 +15,6 @@ using namespace libzerocoin;
 std::set<std::string> ZEcaControlDialog::setSelectedMints;
 std::set<CMintMeta> ZEcaControlDialog::setMints;
 
-bool CZEcaControlWidgetItem::operator<(const QTreeWidgetItem &other) const {
-    int column = treeWidget()->sortColumn();
-    if (column == ZEcaControlDialog::COLUMN_DENOMINATION || column == ZEcaControlDialog::COLUMN_VERSION || column == ZEcaControlDialog::COLUMN_CONFIRMATIONS)
-        return data(column, Qt::UserRole).toLongLong() < other.data(column, Qt::UserRole).toLongLong();
-    return QTreeWidgetItem::operator<(other);
-}
-
 
 ZEcaControlDialog::ZEcaControlDialog(QWidget *parent) :
         QDialog(parent, Qt::WindowSystemMenuHint | Qt::WindowTitleHint | Qt::WindowCloseButtonHint),
@@ -62,7 +55,7 @@ void ZEcaControlDialog::updateList()
     QFlags<Qt::ItemFlag> flgTristate = Qt::ItemIsEnabled | Qt::ItemIsUserCheckable | Qt::ItemIsTristate;
     map<libzerocoin::CoinDenomination, int> mapDenomPosition;
     for (auto denom : libzerocoin::zerocoinDenomList) {
-        CZEcaControlWidgetItem* itemDenom(new CZEcaControlWidgetItem);
+        QTreeWidgetItem* itemDenom(new QTreeWidgetItem);
         ui->treeWidget->addTopLevelItem(itemDenom);
 
         //keep track of where this is positioned in tree widget
@@ -70,7 +63,6 @@ void ZEcaControlDialog::updateList()
 
         itemDenom->setFlags(flgTristate);
         itemDenom->setText(COLUMN_DENOMINATION, QString::number(denom));
-        itemDenom->setData(COLUMN_DENOMINATION, Qt::UserRole, QVariant((qlonglong) denom));
     }
 
     // select all unused coins - including not mature. Update status of coins too.
@@ -84,7 +76,7 @@ void ZEcaControlDialog::updateList()
     for (const CMintMeta& mint : setMints) {
         // assign this mint to the correct denomination in the tree view
         libzerocoin::CoinDenomination denom = mint.denom;
-        CZEcaControlWidgetItem *itemMint = new CZEcaControlWidgetItem(ui->treeWidget->topLevelItem(mapDenomPosition.at(denom)));
+        QTreeWidgetItem *itemMint = new QTreeWidgetItem(ui->treeWidget->topLevelItem(mapDenomPosition.at(denom)));
 
         // if the mint is already selected, then it needs to have the checkbox checked
         std::string strPubCoinHash = mint.hashPubcoin.GetHex();
@@ -95,10 +87,8 @@ void ZEcaControlDialog::updateList()
             itemMint->setCheckState(COLUMN_CHECKBOX, Qt::Unchecked);
 
         itemMint->setText(COLUMN_DENOMINATION, QString::number(mint.denom));
-        itemMint->setData(COLUMN_DENOMINATION, Qt::UserRole, QVariant((qlonglong) denom));
         itemMint->setText(COLUMN_PUBCOIN, QString::fromStdString(strPubCoinHash));
         itemMint->setText(COLUMN_VERSION, QString::number(mint.nVersion));
-        itemMint->setData(COLUMN_VERSION, Qt::UserRole, QVariant((qlonglong) mint.nVersion));
 
         int nConfirmations = (mint.nHeight ? nBestHeight - mint.nHeight : 0);
         if (nConfirmations < 0) {
@@ -107,7 +97,6 @@ void ZEcaControlDialog::updateList()
         }
 
         itemMint->setText(COLUMN_CONFIRMATIONS, QString::number(nConfirmations));
-        itemMint->setData(COLUMN_CONFIRMATIONS, Qt::UserRole, QVariant((qlonglong) nConfirmations));
 
         // check for maturity
         bool isMature = false;
