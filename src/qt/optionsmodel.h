@@ -49,7 +49,7 @@ public:
         ZeromintPrefDenom,   // int
         HideZeroBalances,    // bool
         AnonymizeElectraAmount, //int
-        ShowMasternodesTab,  // bool
+//        ShowMasternodesTab,  // bool
         Listen,              // bool
         StakeSplitThreshold, // int
         OptionIDRowCount,
