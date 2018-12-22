@@ -91,7 +91,7 @@ bool static IsCompressedOrUncompressedPubKey(const valtype &vchPubKey) {
  * Where R and S are not negative (their first byte has its highest bit not set), and not
  * excessively padded (do not start with a 0 byte, unless an otherwise negative number follows,
  * in which case a single 0 byte is necessary and even required).
- * 
+ *
  * See https://bitcointalk.org/index.php?topic=8392.msg127623#msg127623
  *
  * This function is consensus-critical since BIP66.
@@ -131,7 +131,7 @@ bool static IsValidSignatureEncoding(const std::vector<unsigned char> &sig) {
     // Verify that the length of the signature matches the sum of the length
     // of the elements.
     if ((size_t)(lenR + lenS + 7) != sig.size()) return false;
- 
+
     // Check whether the R element is an integer.
     if (sig[2] != 0x02) return false;
 
@@ -342,40 +342,52 @@ bool EvalScript(vector<vector<unsigned char> >& stack, const CScript& script, un
                 {
                     if (!(flags & SCRIPT_VERIFY_CHECKLOCKTIMEVERIFY)) {
                         // not enabled; treat as a NOP2
-                        if (flags & SCRIPT_VERIFY_DISCOURAGE_UPGRADABLE_NOPS) {
-                            return set_error(serror, SCRIPT_ERR_DISCOURAGE_UPGRADABLE_NOPS);
+                        if (flags &
+                            SCRIPT_VERIFY_DISCOURAGE_UPGRADABLE_NOPS) {
+                            return set_error(
+                                serror,
+                                SCRIPT_ERR_DISCOURAGE_UPGRADABLE_NOPS);
                         }
                         break;
                     }
 
-                    if (stack.size() < 1)
-                        return set_error(serror, SCRIPT_ERR_INVALID_STACK_OPERATION);
+                    if (stack.size() < 1) {
+                        return set_error(
+                            serror, SCRIPT_ERR_INVALID_STACK_OPERATION);
+                    }
 
                     // Note that elsewhere numeric opcodes are limited to
-                    // operands in the range -2**31+1 to 2**31-1, however it is
-                    // legal for opcodes to produce results exceeding that
-                    // range. This limitation is implemented by CScriptNum's
-                    // default 4-byte limit.
+                    // operands in the range -2**31+1 to 2**31-1, however it
+                    // is legal for opcodes to produce results exceeding
+                    // that range. This limitation is implemented by
+                    // CScriptNum's default 4-byte limit.
                     //
-                    // If we kept to that limit we'd have a year 2038 problem,
-                    // even though the nLockTime field in transactions
-                    // themselves is uint32 which only becomes meaningless
-                    // after the year 2106.
+                    // If we kept to that limit we'd have a year 2038
+                    // problem, even though the nLockTime field in
+                    // transactions themselves is uint32 which only becomes
+                    // meaningless after the year 2106.
                     //
-                    // Thus as a special case we tell CScriptNum to accept up
-                    // to 5-byte bignums, which are good until 2**39-1, well
-                    // beyond the 2**32-1 limit of the nLockTime field itself.
-                    const CScriptNum nLockTime(stacktop(-1), fRequireMinimal, 5);
+                    // Thus as a special case we tell CScriptNum to accept
+                    // up to 5-byte bignums, which are good until 2**39-1,
+                    // well beyond the 2**32-1 limit of the nLockTime field
+                    // itself.
+                    const CScriptNum nLockTime(stacktop(-1),
+                                               fRequireMinimal, 5);
 
                     // In the rare event that the argument may be < 0 due to
                     // some arithmetic being done first, you can always use
                     // 0 MAX CHECKLOCKTIMEVERIFY.
-                    if (nLockTime < 0)
-                        return set_error(serror, SCRIPT_ERR_NEGATIVE_LOCKTIME);
+                    if (nLockTime < 0) {
+                        return set_error(serror,
+                                         SCRIPT_ERR_NEGATIVE_LOCKTIME);
+                    }
 
-                    // Actually compare the specified lock time with the transaction.
-                    if (!checker.CheckLockTime(nLockTime))
-                        return set_error(serror, SCRIPT_ERR_UNSATISFIED_LOCKTIME);
+                    // Actually compare the specified lock time with the
+                    // transaction.
+                    if (!checker.CheckLockTime(nLockTime)) {
+                        return set_error(serror,
+                                         SCRIPT_ERR_UNSATISFIED_LOCKTIME);
+                    }
 
                     break;
                 }
@@ -384,60 +396,92 @@ bool EvalScript(vector<vector<unsigned char> >& stack, const CScript& script, un
                 {
                     if (!(flags & SCRIPT_VERIFY_CHECKSEQUENCEVERIFY)) {
                         // not enabled; treat as a NOP3
-                        if (flags & SCRIPT_VERIFY_DISCOURAGE_UPGRADABLE_NOPS) {
-                            return set_error(serror, SCRIPT_ERR_DISCOURAGE_UPGRADABLE_NOPS);
+                        if (flags &
+                            SCRIPT_VERIFY_DISCOURAGE_UPGRADABLE_NOPS) {
+                            return set_error(
+                                serror,
+                                SCRIPT_ERR_DISCOURAGE_UPGRADABLE_NOPS);
                         }
                         break;
                     }
 
-                    if (stack.size() < 1)
-                        return set_error(serror, SCRIPT_ERR_INVALID_STACK_OPERATION);
+                    if (stack.size() < 1) {
+                        return set_error(
+                            serror, SCRIPT_ERR_INVALID_STACK_OPERATION);
+                    }
 
-                    // nSequence, like nLockTime, is a 32-bit unsigned integer
-                    // field. See the comment in CHECKLOCKTIMEVERIFY regarding
-                    // 5-byte numeric operands.
-                    const CScriptNum nSequence(stacktop(-1), fRequireMinimal, 5);
+                    // nSequence, like nLockTime, is a 32-bit unsigned
+                    // integer field. See the comment in CHECKLOCKTIMEVERIFY
+                    // regarding 5-byte numeric operands.
+                    const CScriptNum nSequence(stacktop(-1),
+                                               fRequireMinimal, 5);
 
                     // In the rare event that the argument may be < 0 due to
                     // some arithmetic being done first, you can always use
                     // 0 MAX CHECKSEQUENCEVERIFY.
-                    if (nSequence < 0)
-                        return set_error(serror, SCRIPT_ERR_NEGATIVE_LOCKTIME);
+                    if (nSequence < 0) {
+                        return set_error(serror,
+                                         SCRIPT_ERR_NEGATIVE_LOCKTIME);
+                    }
 
                     // To provide for future soft-fork extensibility, if the
                     // operand has the disabled lock-time flag set,
                     // CHECKSEQUENCEVERIFY behaves as a NOP.
-                    if ((nSequence & CTxIn::SEQUENCE_LOCKTIME_DISABLE_FLAG) != 0)
+                    if ((nSequence &
+                         CTxIn::SEQUENCE_LOCKTIME_DISABLE_FLAG) != 0) {
                         break;
+                    }
 
                     // Compare the specified sequence number with the input.
-                    if (!checker.CheckSequence(nSequence))
-                        return set_error(serror, SCRIPT_ERR_UNSATISFIED_LOCKTIME);
+                    if (!checker.CheckSequence(nSequence)) {
+                        return set_error(serror,
+                                         SCRIPT_ERR_UNSATISFIED_LOCKTIME);
+                    }
 
                     break;
                 }
 
-                case OP_NOP1: case OP_NOP4: case OP_NOP5: case OP_NOP6: 
-                case OP_NOP7: case OP_NOP8: case OP_NOP9: case OP_NOP10:
-                {
-                    if (flags & SCRIPT_VERIFY_DISCOURAGE_UPGRADABLE_NOPS)
-                        return set_error(serror, SCRIPT_ERR_DISCOURAGE_UPGRADABLE_NOPS);
+                case OP_NOP1:
+                case OP_NOP4:
+                case OP_NOP5:
+                case OP_NOP6:
+                case OP_NOP7:
+                case OP_NOP8:
+                case OP_NOP9:
+                case OP_NOP10: {
+                    if (flags & SCRIPT_VERIFY_DISCOURAGE_UPGRADABLE_NOPS) {
+                        return set_error(
+                            serror, SCRIPT_ERR_DISCOURAGE_UPGRADABLE_NOPS);
+                    }
                 }
                 break;
 
                 case OP_IF:
                 case OP_NOTIF:
                 {
-                    // <expression> if [statements] [else [statements]] endif
+                    // <expression> if [statements] [else [statements]]
+                    // endif
                     bool fValue = false;
-                    if (fExec)
-                    {
-                        if (stack.size() < 1)
-                            return set_error(serror, SCRIPT_ERR_UNBALANCED_CONDITIONAL);
-                        valtype& vch = stacktop(-1);
+                    if (fExec) {
+                        if (stack.size() < 1) {
+                            return set_error(
+                                serror, SCRIPT_ERR_UNBALANCED_CONDITIONAL);
+                        }
+                        valtype &vch = stacktop(-1);
+                        if (flags & SCRIPT_VERIFY_MINIMALIF) {
+                            if (vch.size() > 1) {
+                                return set_error(serror,
+                                                 SCRIPT_ERR_MINIMALIF);
+                            }
+                            if (vch.size() == 1 && vch[0] != 1) {
+                                return set_error(serror,
+                                                 SCRIPT_ERR_MINIMALIF);
+                            }
+                        }
                         fValue = CastToBool(vch);
-                        if (opcode == OP_NOTIF)
+                        if (opcode == OP_NOTIF) {
                             fValue = !fValue;
+                        }
                         popstack(stack);
                     }
                     vfExec.push_back(fValue);
@@ -446,16 +490,20 @@ bool EvalScript(vector<vector<unsigned char> >& stack, const CScript& script, un
 
                 case OP_ELSE:
                 {
-                    if (vfExec.empty())
-                        return set_error(serror, SCRIPT_ERR_UNBALANCED_CONDITIONAL);
+                    if (vfExec.empty()) {
+                        return set_error(serror,
+                                         SCRIPT_ERR_UNBALANCED_CONDITIONAL);
+                    }
                     vfExec.back() = !vfExec.back();
                 }
                 break;
 
                 case OP_ENDIF:
                 {
-                    if (vfExec.empty())
-                        return set_error(serror, SCRIPT_ERR_UNBALANCED_CONDITIONAL);
+                    if (vfExec.empty()) {
+                        return set_error(serror,
+                                         SCRIPT_ERR_UNBALANCED_CONDITIONAL);
+                    }
                     vfExec.pop_back();
                 }
                 break;
@@ -853,7 +901,7 @@ bool EvalScript(vector<vector<unsigned char> >& stack, const CScript& script, un
                     popstack(stack);
                     stack.push_back(vchHash);
                 }
-                break;                                   
+                break;
 
                 case OP_CODESEPARATOR:
                 {
@@ -866,33 +914,45 @@ bool EvalScript(vector<vector<unsigned char> >& stack, const CScript& script, un
                 case OP_CHECKSIGVERIFY:
                 {
                     // (sig pubkey -- bool)
-                    if (stack.size() < 2)
-                        return set_error(serror, SCRIPT_ERR_INVALID_STACK_OPERATION);
+                    if (stack.size() < 2) {
+                        return set_error(
+                            serror, SCRIPT_ERR_INVALID_STACK_OPERATION);
+                    }
+                    valtype &vchSig = stacktop(-2);
+                    valtype &vchPubKey = stacktop(-1);
 
-                    valtype& vchSig    = stacktop(-2);
-                    valtype& vchPubKey = stacktop(-1);
+                    if (!CheckSignatureEncoding(vchSig, flags,
+                                                           serror) ||
+                        !CheckPubKeyEncoding(vchPubKey, flags, serror)) {
+                        // serror is set
+                        return false;
+                    }
 
-                    // Subset of script starting at the most recent codeseparator
+                    // Subset of script starting at the most recent
+                    // codeseparator
                     CScript scriptCode(pbegincodehash, pend);
 
                     // Drop the signature, since there's no way for a signature to sign itself
                     scriptCode.FindAndDelete(CScript(vchSig));
 
-                    if (!CheckSignatureEncoding(vchSig, flags, serror) || !CheckPubKeyEncoding(vchPubKey, flags, serror)) {
-                        //serror is set
-                        return false;
+                    bool fSuccess = checker.CheckSig(vchSig, vchPubKey,
+                                                     scriptCode, flags);
+
+                    if (!fSuccess && (flags & SCRIPT_VERIFY_NULLFAIL) &&
+                        vchSig.size()) {
+                        return set_error(serror, SCRIPT_ERR_SIG_NULLFAIL);
                     }
-                    bool fSuccess = checker.CheckSig(vchSig, vchPubKey, scriptCode);
 
                     popstack(stack);
                     popstack(stack);
                     stack.push_back(fSuccess ? vchTrue : vchFalse);
-                    if (opcode == OP_CHECKSIGVERIFY)
-                    {
-                        if (fSuccess)
+                    if (opcode == OP_CHECKSIGVERIFY) {
+                        if (fSuccess) {
                             popstack(stack);
-                        else
-                            return set_error(serror, SCRIPT_ERR_CHECKSIGVERIFY);
+                        } else {
+                            return set_error(serror,
+                                             SCRIPT_ERR_CHECKSIGVERIFY);
+                        }
                     }
                 }
                 break;
@@ -900,11 +960,14 @@ bool EvalScript(vector<vector<unsigned char> >& stack, const CScript& script, un
                 case OP_CHECKMULTISIG:
                 case OP_CHECKMULTISIGVERIFY:
                 {
-                    // ([sig ...] num_of_signatures [pubkey ...] num_of_pubkeys -- bool)
+                    // ([sig ...] num_of_signatures [pubkey ...]
+                    // num_of_pubkeys -- bool)
 
                     int i = 1;
-                    if ((int)stack.size() < i)
-                        return set_error(serror, SCRIPT_ERR_INVALID_STACK_OPERATION);
+                    if ((int)stack.size() < i) {
+                        return set_error(
+                            serror, SCRIPT_ERR_INVALID_STACK_OPERATION);
+                    }
 
                     int nKeysCount = CScriptNum(stacktop(-i), fRequireMinimal).getint();
                     if (nKeysCount < 0 || nKeysCount > 20)
@@ -913,44 +976,59 @@ bool EvalScript(vector<vector<unsigned char> >& stack, const CScript& script, un
                     if (nOpCount > 201)
                         return set_error(serror, SCRIPT_ERR_OP_COUNT);
                     int ikey = ++i;
+                    // ikey2 is the position of last non-signature item in
+                    // the stack. Top stack item = 1. With
+                    // SCRIPT_VERIFY_NULLFAIL, this is used for cleanup if
+                    // operation fails.
+                    int ikey2 = nKeysCount + 2;
                     i += nKeysCount;
-                    if ((int)stack.size() < i)
-                        return set_error(serror, SCRIPT_ERR_INVALID_STACK_OPERATION);
+                    if ((int)stack.size() < i) {
+                        return set_error(
+                            serror, SCRIPT_ERR_INVALID_STACK_OPERATION);
+                    }
 
-                    int nSigsCount = CScriptNum(stacktop(-i), fRequireMinimal).getint();
-                    if (nSigsCount < 0 || nSigsCount > nKeysCount)
+                    int nSigsCount =
+                        CScriptNum(stacktop(-i), fRequireMinimal).getint();
+                    if (nSigsCount < 0 || nSigsCount > nKeysCount) {
                         return set_error(serror, SCRIPT_ERR_SIG_COUNT);
+                    }
                     int isig = ++i;
                     i += nSigsCount;
-                    if ((int)stack.size() < i)
-                        return set_error(serror, SCRIPT_ERR_INVALID_STACK_OPERATION);
+                    if ((int)stack.size() < i) {
+                        return set_error(
+                            serror, SCRIPT_ERR_INVALID_STACK_OPERATION);
+                    }
 
-                    // Subset of script starting at the most recent codeseparator
+                    // Subset of script starting at the most recent
+                    // codeseparator
                     CScript scriptCode(pbegincodehash, pend);
 
                     // Drop the signatures, since there's no way for a signature to sign itself
-                    for (int k = 0; k < nSigsCount; k++)
-                    {
-                        valtype& vchSig = stacktop(-isig-k);
+                    for (int k = 0; k < nSigsCount; k++) {
+                        valtype &vchSig = stacktop(-isig - k);
                         scriptCode.FindAndDelete(CScript(vchSig));
                     }
 
                     bool fSuccess = true;
-                    while (fSuccess && nSigsCount > 0)
-                    {
-                        valtype& vchSig    = stacktop(-isig);
-                        valtype& vchPubKey = stacktop(-ikey);
+                    while (fSuccess && nSigsCount > 0) {
+                        valtype &vchSig = stacktop(-isig);
+                        valtype &vchPubKey = stacktop(-ikey);
 
-                        // Note how this makes the exact order of pubkey/signature evaluation
-                        // distinguishable by CHECKMULTISIG NOT if the STRICTENC flag is set.
+                        // Note how this makes the exact order of
+                        // pubkey/signature evaluation distinguishable by
+                        // CHECKMULTISIG NOT if the STRICTENC flag is set.
                         // See the script_(in)valid tests for details.
-                        if (!CheckSignatureEncoding(vchSig, flags, serror) || !CheckPubKeyEncoding(vchPubKey, flags, serror)) {
+                        if (!CheckSignatureEncoding(
+                                vchSig, flags, serror) ||
+                            !CheckPubKeyEncoding(vchPubKey, flags,
+                                                 serror)) {
                             // serror is set
                             return false;
                         }
 
                         // Check signature
-                        bool fOk = checker.CheckSig(vchSig, vchPubKey, scriptCode);
+                        bool fOk = checker.CheckSig(vchSig, vchPubKey,
+                                                    scriptCode, flags);
 
                         if (fOk) {
                             isig++;
@@ -962,34 +1040,51 @@ bool EvalScript(vector<vector<unsigned char> >& stack, const CScript& script, un
                         // If there are more signatures left than keys left,
                         // then too many signatures have failed. Exit early,
                         // without checking any further signatures.
-                        if (nSigsCount > nKeysCount)
+                        if (nSigsCount > nKeysCount) {
                             fSuccess = false;
+                        }
                     }
 
                     // Clean up stack of actual arguments
-                    while (i-- > 1)
+                    while (i-- > 1) {
+                        // If the operation failed, we require that all
+                        // signatures must be empty vector
+                        if (!fSuccess && (flags & SCRIPT_VERIFY_NULLFAIL) &&
+                            !ikey2 && stacktop(-1).size()) {
+                            return set_error(serror,
+                                             SCRIPT_ERR_SIG_NULLFAIL);
+                        }
+                        if (ikey2 > 0) {
+                            ikey2--;
+                        }
                         popstack(stack);
+                    }
 
-                    // A bug causes CHECKMULTISIG to consume one extra argument
-                    // whose contents were not checked in any way.
+                    // A bug causes CHECKMULTISIG to consume one extra
+                    // argument whose contents were not checked in any way.
                     //
-                    // Unfortunately this is a potential source of mutability,
-                    // so optionally verify it is exactly equal to zero prior
-                    // to removing it from the stack.
-                    if (stack.size() < 1)
-                        return set_error(serror, SCRIPT_ERR_INVALID_STACK_OPERATION);
-                    if ((flags & SCRIPT_VERIFY_NULLDUMMY) && stacktop(-1).size())
+                    // Unfortunately this is a potential source of
+                    // mutability, so optionally verify it is exactly equal
+                    // to zero prior to removing it from the stack.
+                    if (stack.size() < 1) {
+                        return set_error(
+                            serror, SCRIPT_ERR_INVALID_STACK_OPERATION);
+                    }
+                    if ((flags & SCRIPT_VERIFY_NULLDUMMY) &&
+                        stacktop(-1).size()) {
                         return set_error(serror, SCRIPT_ERR_SIG_NULLDUMMY);
+                    }
                     popstack(stack);
 
                     stack.push_back(fSuccess ? vchTrue : vchFalse);
 
-                    if (opcode == OP_CHECKMULTISIGVERIFY)
-                    {
-                        if (fSuccess)
+                    if (opcode == OP_CHECKMULTISIGVERIFY) {
+                        if (fSuccess) {
                             popstack(stack);
-                        else
-                            return set_error(serror, SCRIPT_ERR_CHECKMULTISIGVERIFY);
+                        } else {
+                            return set_error(
+                                serror, SCRIPT_ERR_CHECKMULTISIGVERIFY);
+                        }
                     }
                 }
                 break;
@@ -1142,11 +1237,12 @@ bool TransactionSignatureChecker::VerifySignature(const std::vector<unsigned cha
     return pubkey.Verify(sighash, vchSig);
 }
 
-bool TransactionSignatureChecker::CheckSig(const vector<unsigned char>& vchSigIn, const vector<unsigned char>& vchPubKey, const CScript& scriptCode) const
+bool TransactionSignatureChecker::CheckSig(const vector<unsigned char>& vchSigIn, const vector<unsigned char>& vchPubKey, const CScript& scriptCode, uint32_t flags) const
 {
     CPubKey pubkey(vchPubKey);
-    if (!pubkey.IsValid())
+    if (!pubkey.IsValid()) {
         return false;
+    }
 
     // Hash type is one byte tacked on to the end of the signature
     vector<unsigned char> vchSig(vchSigIn);
@@ -1157,8 +1253,9 @@ bool TransactionSignatureChecker::CheckSig(const vector<unsigned char>& vchSigIn
 
     uint256 sighash = SignatureHash(scriptCode, *txTo, nIn, nHashType);
 
-    if (!VerifySignature(vchSig, pubkey, sighash))
+    if (!VerifySignature(vchSig, pubkey, sighash)) {
         return false;
+    }
 
     return true;
 }

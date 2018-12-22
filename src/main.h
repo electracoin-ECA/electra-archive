@@ -148,8 +148,8 @@ extern bool fVerifyingBlocks;
 extern bool fLargeWorkForkFound;
 extern bool fLargeWorkInvalidChainFound;
 
-extern unsigned int nLastOldPoSBlock;
-extern unsigned int nHardForkBlock;
+extern int nLastOldPoSBlock;
+extern int nHardForkBlock;
 extern unsigned int nStakeMinAge;
 extern unsigned int nStakeMinAgeOld;
 extern unsigned int nStakeMaxAge;

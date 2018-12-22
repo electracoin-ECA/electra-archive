@@ -81,8 +81,8 @@ bool fVerifyingBlocks = false;
 unsigned int nCoinCacheSize = 5000;
 bool fAlerts = DEFAULT_ALERTS;
 
-unsigned int nLastOldPoSBlock = 17100;
-unsigned int nHardForkBlock = 112200;
+int nLastOldPoSBlock = 17100;
+int nHardForkBlock = 112200;
 unsigned int nStakeMinAge = 12 * 60 * 60; // 12 hours
 unsigned int nStakeMinAgeOld = 24 * 60 * 60; // 24 hours
 unsigned int nStakeMaxAge = 30 * 24 * 60 * 60; // 30 days
@@ -1452,7 +1452,7 @@ bool AcceptToMemoryPool(CTxMemPool& pool, CValidationState& state, const CTransa
         // This is done last to help prevent CPU exhaustion denial-of-service attacks.
         int flags = STANDARD_SCRIPT_VERIFY_FLAGS;
         if (fNewProtocolActive)
-            flags |= SCRIPT_VERIFY_CLEANSTACK | SCRIPT_VERIFY_CHECKLOCKTIMEVERIFY | SCRIPT_VERIFY_CHECKSEQUENCEVERIFY;
+            flags |= SCRIPT_VERIFY_CLEANSTACK | SCRIPT_VERIFY_MINIMALIF | SCRIPT_VERIFY_NULLFAIL | SCRIPT_VERIFY_CHECKLOCKTIMEVERIFY | SCRIPT_VERIFY_CHECKSEQUENCEVERIFY;
         if (!CheckInputs(tx, state, view, true, flags, true)) {
             return error("AcceptToMemoryPool: : ConnectInputs failed %s", hash.ToString());
         }
@@ -1468,7 +1468,7 @@ bool AcceptToMemoryPool(CTxMemPool& pool, CValidationState& state, const CTransa
         // can be exploited as a DoS attack.
         flags = MANDATORY_SCRIPT_VERIFY_FLAGS;
         if (fNewProtocolActive)
-            flags |= SCRIPT_VERIFY_CLEANSTACK | SCRIPT_VERIFY_CHECKLOCKTIMEVERIFY | SCRIPT_VERIFY_CHECKSEQUENCEVERIFY;
+            flags |= SCRIPT_VERIFY_CLEANSTACK | SCRIPT_VERIFY_MINIMALIF | SCRIPT_VERIFY_NULLFAIL | SCRIPT_VERIFY_CHECKLOCKTIMEVERIFY | SCRIPT_VERIFY_CHECKSEQUENCEVERIFY;
         if (!CheckInputs(tx, state, view, true, flags, true)) {
             return error("AcceptToMemoryPool: : BUG! PLEASE REPORT THIS! ConnectInputs failed against MANDATORY but not STANDARD flags %s", hash.ToString());
         }
@@ -1661,7 +1661,7 @@ bool AcceptableInputs(CTxMemPool& pool, CValidationState& state, const CTransact
         // This is done last to help prevent CPU exhaustion denial-of-service attacks.
         int flags = STANDARD_SCRIPT_VERIFY_FLAGS;
         if (fNewProtocolActive)
-            flags |= SCRIPT_VERIFY_CLEANSTACK | SCRIPT_VERIFY_CHECKLOCKTIMEVERIFY | SCRIPT_VERIFY_CHECKSEQUENCEVERIFY;
+            flags |= SCRIPT_VERIFY_CLEANSTACK | SCRIPT_VERIFY_MINIMALIF | SCRIPT_VERIFY_NULLFAIL | SCRIPT_VERIFY_CHECKLOCKTIMEVERIFY | SCRIPT_VERIFY_CHECKSEQUENCEVERIFY;
         if (!CheckInputs(tx, state, view, false, flags, true)) {
             return error("AcceptableInputs: : ConnectInputs failed %s", hash.ToString());
         }
@@ -1845,59 +1845,59 @@ int64_t GetBlockValue(int nHeight, bool fProofOfStake, uint64_t nCoinAge)
             return 250000 * COIN;
     }
 
-	int64_t nRewardCoinYear = 50 * CENT; // 50% interest
+    int64_t nRewardCoinYear = 50 * CENT; // 50% interest
 
-	int64_t nSubsidy = 0;
-	if (fProofOfStake)
-	{
-		if (nHeight > nHardForkBlock) // 1440 blocks per day (~525960 blocks per year)
-		{
-			if (nHeight < nHardForkBlock + 525960) // first year
-				nRewardCoinYear = 2.5 * CENT; // 2.5% interest
-			else if (nHeight < nHardForkBlock + 525960 * 2) // second year
-				nRewardCoinYear = 1.25 * CENT; // 1.25% interest
-			else if (nHeight < nHardForkBlock + 525960 * 3) // third year
-				nRewardCoinYear = 0.63 * CENT; // 0.63% interest
-			else if (nHeight < nHardForkBlock + 525960 * 4) // fourth year
-				nRewardCoinYear = 0.31 * CENT; // 0.31% interest
-			else if (nHeight < nHardForkBlock + 525960 * 5) // fifth year
-				nRewardCoinYear = 0.16 * CENT; // 0.16% interest
-			else if (nHeight < nHardForkBlock + 525960 * 6) // sixth year
-				nRewardCoinYear = 0.08 * CENT; // 0.08% interest
-			else if (nHeight < nHardForkBlock + 525960 * 7) // seventh year
-				nRewardCoinYear = 0.04 * CENT; // 0.04% interest
-			else // eighth year and beyond
-				nRewardCoinYear = 0.02 * CENT; // 0.02% interest
+    int64_t nSubsidy = 0;
+    if (fProofOfStake)
+    {
+        if (nHeight > nHardForkBlock) // 1440 blocks per day (~525960 blocks per year)
+        {
+            if (nHeight < nHardForkBlock + 525960) // first year
+                nRewardCoinYear = 2.5 * CENT; // 2.5% interest
+            else if (nHeight < nHardForkBlock + 525960 * 2) // second year
+                nRewardCoinYear = 1.25 * CENT; // 1.25% interest
+            else if (nHeight < nHardForkBlock + 525960 * 3) // third year
+                nRewardCoinYear = 0.63 * CENT; // 0.63% interest
+            else if (nHeight < nHardForkBlock + 525960 * 4) // fourth year
+                nRewardCoinYear = 0.31 * CENT; // 0.31% interest
+            else if (nHeight < nHardForkBlock + 525960 * 5) // fifth year
+                nRewardCoinYear = 0.16 * CENT; // 0.16% interest
+            else if (nHeight < nHardForkBlock + 525960 * 6) // sixth year
+                nRewardCoinYear = 0.08 * CENT; // 0.08% interest
+            else if (nHeight < nHardForkBlock + 525960 * 7) // seventh year
+                nRewardCoinYear = 0.04 * CENT; // 0.04% interest
+            else // eighth year and beyond
+                nRewardCoinYear = 0.02 * CENT; // 0.02% interest
 
-			if (nCoinAge == uint64_t(0))
-				nSubsidy = nRewardCoinYear / 500;
-			else
-				nSubsidy = nCoinAge * nRewardCoinYear / 365;
-		}
-		else if (nHeight > nLastOldPoSBlock+1) // Legacy wallet calculated PoS reward with height-1
-			nSubsidy = nCoinAge * nRewardCoinYear / 365;
-		else
-			nSubsidy = nCoinAge * nRewardCoinYear / 365 / COIN;
-	}
-	else
-	{
-		if (nHeight == 2)
-		{
-			nSubsidy = 1000000019 * COIN;
-		} else if (nHeight <= 11522 && nHeight > 2)
-		{
-			nSubsidy = 0.00390625 * COIN;
-		} else if (nHeight <= 11811 && nHeight > 11522)
-		{
-			nSubsidy = 65972222 * COIN;
-		} else if (nHeight > 11811)
-		{
-			nSubsidy = 1 * COIN;
-		} else {
-			nSubsidy = 0 * COIN;
-		}
-	}
-	return nSubsidy;
+            if (nCoinAge == uint64_t(0))
+                nSubsidy = nRewardCoinYear / 500;
+            else
+                nSubsidy = nCoinAge * nRewardCoinYear / 365;
+        }
+        else if (nHeight > nLastOldPoSBlock+1) // Legacy wallet calculated PoS reward with height-1
+            nSubsidy = nCoinAge * nRewardCoinYear / 365;
+        else
+            nSubsidy = nCoinAge * nRewardCoinYear / 365 / COIN;
+    }
+    else
+    {
+        if (nHeight == 2)
+        {
+            nSubsidy = 1000000019 * COIN;
+        } else if (nHeight <= 11522 && nHeight > 2)
+        {
+            nSubsidy = 0.00390625 * COIN;
+        } else if (nHeight <= 11811 && nHeight > 11522)
+        {
+            nSubsidy = 65972222 * COIN;
+        } else if (nHeight > 11811)
+        {
+            nSubsidy = 1 * COIN;
+        } else {
+            nSubsidy = 0 * COIN;
+        }
+    }
+    return nSubsidy;
 }
 
 int64_t GetMasternodePayment(int nHeight, int64_t blockValue, int nMasternodeCount, bool isZECAStake)
@@ -2853,7 +2853,7 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
             std::vector<CScriptCheck> vChecks;
             unsigned int flags = MANDATORY_SCRIPT_VERIFY_FLAGS | SCRIPT_VERIFY_DERSIG;
             if (fNewProtocolActive)
-                flags |= SCRIPT_VERIFY_CLEANSTACK | SCRIPT_VERIFY_CHECKLOCKTIMEVERIFY | SCRIPT_VERIFY_CHECKSEQUENCEVERIFY;
+                flags |= SCRIPT_VERIFY_CLEANSTACK | SCRIPT_VERIFY_MINIMALIF | SCRIPT_VERIFY_NULLFAIL | SCRIPT_VERIFY_CHECKLOCKTIMEVERIFY | SCRIPT_VERIFY_CHECKSEQUENCEVERIFY;
 
             if (!CheckInputs(tx, state, view, fScriptChecks, flags, false, nScriptCheckThreads ? &vChecks : NULL))
                 return false;
