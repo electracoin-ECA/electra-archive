@@ -30,7 +30,7 @@
 #endif
 
 #include "init.h"
-#include "masternodelist.h"
+//#include "masternodelist.h"
 #include "ui_interface.h"
 #include "util.h"
 
@@ -80,7 +80,7 @@ BitcoinGUI::BitcoinGUI(const NetworkStyle* networkStyle, QWidget* parent) : QMai
                                                                             appMenuBar(0),
                                                                             overviewAction(0),
                                                                             historyAction(0),
-                                                                            masternodeAction(0),
+                                                                            //masternodeAction(0),
                                                                             quitAction(0),
                                                                             sendCoinsAction(0),
                                                                             usedSendingAddressesAction(0),
@@ -364,21 +364,21 @@ void BitcoinGUI::createActions(const NetworkStyle* networkStyle)
 
 #ifdef ENABLE_WALLET
 
-    QSettings settings;
-    if (settings.value("fShowMasternodesTab").toBool()) {
-        masternodeAction = new QAction(QIcon(":/icons/masternodes"), tr("&Masternodes"), this);
-        masternodeAction->setStatusTip(tr("Browse masternodes"));
-        masternodeAction->setToolTip(masternodeAction->statusTip());
-        masternodeAction->setCheckable(true);
-#ifdef Q_OS_MAC
-        masternodeAction->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_6));
-#else
-        masternodeAction->setShortcut(QKeySequence(Qt::ALT + Qt::Key_6));
-#endif
-        tabGroup->addAction(masternodeAction);
-        connect(masternodeAction, SIGNAL(triggered()), this, SLOT(showNormalIfMinimized()));
-        connect(masternodeAction, SIGNAL(triggered()), this, SLOT(gotoMasternodePage()));
-    }
+//    QSettings settings;
+//    if (settings.value("fShowMasternodesTab").toBool()) {
+//        masternodeAction = new QAction(QIcon(":/icons/masternodes"), tr("&Masternodes"), this);
+//        masternodeAction->setStatusTip(tr("Browse masternodes"));
+//        masternodeAction->setToolTip(masternodeAction->statusTip());
+//        masternodeAction->setCheckable(true);
+//#ifdef Q_OS_MAC
+//        masternodeAction->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_6));
+//#else
+//        masternodeAction->setShortcut(QKeySequence(Qt::ALT + Qt::Key_6));
+//#endif
+//        tabGroup->addAction(masternodeAction);
+//        connect(masternodeAction, SIGNAL(triggered()), this, SLOT(showNormalIfMinimized()));
+//        connect(masternodeAction, SIGNAL(triggered()), this, SLOT(gotoMasternodePage()));
+//    }
 
     // These showNormalIfMinimized are needed because Send Coins and Receive Coins
     // can be triggered from the tray menu, and need to show the GUI to be useful.
@@ -576,10 +576,10 @@ void BitcoinGUI::createToolBars()
         toolbar->addAction(receiveCoinsAction);
         toolbar->addAction(historyAction);
 //      toolbar->addAction(privacyAction);
-        QSettings settings;
-        if (settings.value("fShowMasternodesTab").toBool()) {
-            toolbar->addAction(masternodeAction);
-        }
+//        QSettings settings;
+//        if (settings.value("fShowMasternodesTab").toBool()) {
+//            toolbar->addAction(masternodeAction);
+//        }
         toolbar->setMovable(false); // remove unused icon in upper left corner
         toolbar->setOrientation(Qt::Vertical);
         toolbar->setIconSize(QSize(40,40));
@@ -681,10 +681,10 @@ void BitcoinGUI::setWalletActionsEnabled(bool enabled)
     receiveCoinsAction->setEnabled(enabled);
     privacyAction->setEnabled(enabled);
     historyAction->setEnabled(enabled);
-    QSettings settings;
-    if (settings.value("fShowMasternodesTab").toBool()) {
-        masternodeAction->setEnabled(enabled);
-    }
+//    QSettings settings;
+//    if (settings.value("fShowMasternodesTab").toBool()) {
+//        masternodeAction->setEnabled(enabled);
+//    }
     encryptWalletAction->setEnabled(enabled);
     backupWalletAction->setEnabled(enabled);
     changePassphraseAction->setEnabled(enabled);
@@ -803,14 +803,14 @@ void BitcoinGUI::gotoHistoryPage()
     if (walletFrame) walletFrame->gotoHistoryPage();
 }
 
-void BitcoinGUI::gotoMasternodePage()
-{
-    QSettings settings;
-    if (settings.value("fShowMasternodesTab").toBool()) {
-        masternodeAction->setChecked(true);
-        if (walletFrame) walletFrame->gotoMasternodePage();
-    }
-}
+//void BitcoinGUI::gotoMasternodePage()
+//{
+//    QSettings settings;
+//    if (settings.value("fShowMasternodesTab").toBool()) {
+//        masternodeAction->setChecked(true);
+//        if (walletFrame) walletFrame->gotoMasternodePage();
+//    }
+//}
 
 void BitcoinGUI::gotoReceiveCoinsPage()
 {

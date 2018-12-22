@@ -21,7 +21,7 @@
 #include "util.h"
 
 #ifdef ENABLE_WALLET
-#include "masternodeconfig.h"
+//#include "masternodeconfig.h"
 #include "wallet.h"
 #include "walletdb.h"
 #endif
@@ -94,8 +94,8 @@ void OptionsModel::Init()
 
     nAnonymizeElectraAmount = settings.value("nAnonymizeElectraAmount").toLongLong();
 
-    if (!settings.contains("fShowMasternodesTab"))
-        settings.setValue("fShowMasternodesTab", masternodeConfig.getCount());
+//    if (!settings.contains("fShowMasternodesTab"))
+//        settings.setValue("fShowMasternodesTab", masternodeConfig.getCount());
 
     // These are shared with the core or have a command-line parameter
     // and we want command-line parameters to overwrite the GUI settings.
@@ -226,8 +226,8 @@ QVariant OptionsModel::data(const QModelIndex& index, int role) const
 #ifdef ENABLE_WALLET
         case SpendZeroConfChange:
             return settings.value("bSpendZeroConfChange");
-        case ShowMasternodesTab:
-            return settings.value("fShowMasternodesTab");
+//        case ShowMasternodesTab:
+//            return settings.value("fShowMasternodesTab");
 #endif
         case StakeSplitThreshold:
             if (pwalletMain)
@@ -328,12 +328,12 @@ bool OptionsModel::setData(const QModelIndex& index, const QVariant& value, int 
                 setRestartRequired(true);
             }
             break;
-        case ShowMasternodesTab:
-            if (settings.value("fShowMasternodesTab") != value) {
-                settings.setValue("fShowMasternodesTab", value);
-                setRestartRequired(true);
-            }
-            break;
+//        case ShowMasternodesTab:
+//            if (settings.value("fShowMasternodesTab") != value) {
+//                settings.setValue("fShowMasternodesTab", value);
+//                setRestartRequired(true);
+//            }
+//            break;
 #endif
         case StakeSplitThreshold:
             settings.setValue("nStakeSplitThreshold", value.toInt());

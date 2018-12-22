@@ -125,6 +125,7 @@ CoinControlDialog::CoinControlDialog(QWidget* parent, bool fMultisigEnabled) : Q
     connect(ui->pushButtonSelectAll, SIGNAL(clicked()), this, SLOT(buttonSelectAllClicked()));
 
     // Toggle lock state
+                                                          
     // connect(ui->pushButtonToggleLock, SIGNAL(clicked()), this, SLOT(buttonToggleLockClicked()));
 
     // change coin control first column label due Qt4 bug.
@@ -171,7 +172,7 @@ void CoinControlDialog::setModel(WalletModel* model)
 
     if (model && model->getOptionsModel() && model->getAddressTableModel()) {
         updateView();
-        updateLabelLocked();
+//        updateLabelLocked();
         CoinControlDialog::updateLabels(model, this);
         updateDialogLabels();
     }
@@ -237,7 +238,7 @@ void CoinControlDialog::buttonToggleLockClicked()
                 item->setDisabled(true);
                 item->setIcon(COLUMN_CHECKBOX, QIcon(":/icons/lock_closed"));
             }
-            updateLabelLocked();
+//            updateLabelLocked();
         }
         ui->treeWidget->setEnabled(true);
         CoinControlDialog::updateLabels(model, this);
@@ -321,7 +322,7 @@ void CoinControlDialog::lockCoin()
     model->lockCoin(outpt);
     contextMenuItem->setDisabled(true);
     contextMenuItem->setIcon(COLUMN_CHECKBOX, QIcon(":/icons/lock_closed"));
-    updateLabelLocked();
+//    updateLabelLocked();
 }
 
 // context menu action: unlock coin
@@ -331,7 +332,7 @@ void CoinControlDialog::unlockCoin()
     model->unlockCoin(outpt);
     contextMenuItem->setDisabled(false);
     contextMenuItem->setIcon(COLUMN_CHECKBOX, QIcon());
-    updateLabelLocked();
+//    updateLabelLocked();
 }
 
 // copy label "Quantity" to clipboard
@@ -486,16 +487,18 @@ QString CoinControlDialog::getPriorityLabel(double dPriority, double mempoolEsti
 }
 
 // shows count of locked unspent outputs
-void CoinControlDialog::updateLabelLocked()
-{
-    vector<COutPoint> vOutpts;
-    model->listLockedCoins(vOutpts);
-    if (vOutpts.size() > 0) {
-      //  ui->labelLocked->setText(tr("(%1 locked)").arg(vOutpts.size()));
-     //   ui->labelLocked->setVisible(true);
-    } // else
-      //  ui->labelLocked->setVisible(false);
-}
+
+//void CoinControlDialog::updateLabelLocked()
+//{
+//    vector<COutPoint> vOutpts;
+//    model->listLockedCoins(vOutpts);
+//    if (vOutpts.size() > 0) {
+//        ui->labelLocked->setText(tr("(%1 locked)").arg(vOutpts.size()));
+//        ui->labelLocked->setVisible(true);
+//    } else
+//        ui->labelLocked->setVisible(false);
+//}
+
 
 void CoinControlDialog::updateDialogLabels()
 {

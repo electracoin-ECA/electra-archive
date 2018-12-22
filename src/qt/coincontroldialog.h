@@ -125,7 +125,7 @@ private slots:
     void buttonBoxClicked(QAbstractButton*);
     void buttonSelectAllClicked();
     void buttonToggleLockClicked();
-    void updateLabelLocked();
+//    void updateLabelLocked();
 };
 
 #endif // BITCOIN_QT_COINCONTROLDIALOG_H
