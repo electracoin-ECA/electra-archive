@@ -246,10 +246,10 @@
                           </font>
                          </property>
                          <property name="toolTip">
-                          <string>Combined Balance (including unconfirmed and immature coins)</string>
+                          <string>Balance (including unconfirmed and immature coins)</string> <!--Combined-->
                          </property>
                          <property name="text">
-                          <string>Combined Balance</string>
+                          <string>Balance</string> <!--Combined-->
                          </property>
                         </widget>
                        </item>
@@ -674,6 +674,7 @@
                          </property>
                         </widget>
                        </item>
+                       <!--
                        <item row="4" column="0">
                         <widget class="QLabel" name="labelLockedBalanceText">
                          <property name="toolTip">
@@ -734,6 +735,7 @@
                          </property>
                         </widget>
                        </item>
+                       -->
                        <item row="5" column="0">
                         <widget class="QLabel" name="labelTotalText">
                          <property name="toolTip">
@@ -825,6 +827,7 @@
                     </layout>
                    </widget>
                   </item>
+                  <!--
                   <item>
                    <widget class="QFrame" name="frame_ZerocoinBalances">
                     <property name="frameShape">
@@ -1061,6 +1064,7 @@ Immature: confirmed, but less than 1 mint of the same denomination after it was 
                     </layout>
                    </widget>
                   </item>
+                  -->
                  </layout>
                 </widget>
                </item>
