@@ -30,7 +30,7 @@
 #endif
 
 #include "init.h"
-//#include "masternodelist.h"
+#include "masternodelist.h"
 #include "ui_interface.h"
 #include "util.h"
 
@@ -80,7 +80,7 @@ BitcoinGUI::BitcoinGUI(const NetworkStyle* networkStyle, QWidget* parent) : QMai
                                                                             appMenuBar(0),
                                                                             overviewAction(0),
                                                                             historyAction(0),
-                                                                            //masternodeAction(0),
+                                                                            masternodeAction(0),
                                                                             quitAction(0),
                                                                             sendCoinsAction(0),
                                                                             usedSendingAddressesAction(0),
