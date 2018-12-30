@@ -107,7 +107,7 @@ public slots:
     /** Open external (default) editor with Electra.conf */
     void showConfEditor();
     /** Open external (default) editor with masternode.conf */
-    void showMNConfEditor();
+    //void showMNConfEditor();
     /** Handle selection of peer in peers list */
     void peerSelected(const QItemSelection& selected, const QItemSelection& deselected);
     /** Handle updated peer information */

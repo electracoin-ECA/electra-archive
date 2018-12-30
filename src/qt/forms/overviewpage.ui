@@ -636,7 +636,7 @@
                           <cursorShape>IBeamCursor</cursorShape>
                          </property>
                          <property name="toolTip">
-                          <string>Staked or masternode rewards that has not yet matured</string>
+                          <string>Staked rewards that has not yet matured</string>
                          </property>
                          <property name="text">
                           <string notr="true">0.000 000 00 ECA</string>

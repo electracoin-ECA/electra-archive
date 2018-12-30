@@ -11,7 +11,7 @@
 #include "blockexplorer.h"
 #include "clientmodel.h"
 #include "guiutil.h"
-//#include "masternodeconfig.h"
+#include "masternodeconfig.h"
 #include "multisenddialog.h"
 #include "multisigdialog.h"
 #include "optionsmodel.h"
@@ -33,7 +33,7 @@
 #include <QLabel>
 #include <QProgressDialog>
 #include <QPushButton>
-//#include <QSettings>
+#include <QSettings>
 #include <QVBoxLayout>
 
 WalletView::WalletView(QWidget* parent) : QStackedWidget(parent),

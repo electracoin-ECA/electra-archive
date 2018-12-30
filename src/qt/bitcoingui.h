@@ -30,7 +30,7 @@ class SendCoinsRecipient;
 class UnitDisplayStatusBarControl;
 class WalletFrame;
 class WalletModel;
-//class MasternodeList;
+class MasternodeList;
 
 class CWallet;
 
