@@ -260,7 +260,7 @@ UniValue listunspent(const UniValue& params, bool fHelp)
         }
     }
 
-    int nWatchonlyConfig = 1;
+    int nWatchonlyConfig = 3;
     if(params.size() > 3) {
         nWatchonlyConfig = params[3].get_int();
         if (nWatchonlyConfig > 3 || nWatchonlyConfig < 1)
