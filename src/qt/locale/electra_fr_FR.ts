@@ -43,11 +43,11 @@
     </message>
     <message>
         <source>Choose the address to send coins to</source>
-        <translation>Choisir l'adresse à laquelle envoyer des jetons</translation>
+        <translation>Choisir l'adresse à laquelle envoyer des pièces</translation>
     </message>
     <message>
         <source>Choose the address to receive coins with</source>
-        <translation>Choisir l'adresse avec laquelle recevoir des jetons</translation>
+        <translation>Choisir l'adresse avec laquelle recevoir des pièces</translation>
     </message>
     <message>
         <source>C&amp;hoose</source>
@@ -63,11 +63,11 @@
     </message>
     <message>
         <source>These are your ELECTRA addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
-        <translation>Voici vos adresses ELECTRA pour envoyer des paiements.  Assurez-vous de toujours vérifier le montant et l'adresse de réception avant d'envoyer les jetons</translation>
+        <translation>Voici vos adresses ELECTRA pour envoyer des paiements.  Assurez-vous de toujours vérifier le montant et l'adresse de réception avant d'envoyer les pièces</translation>
     </message>
     <message>
         <source>These are your ELECTRA addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
-        <translation>Voici vos adresses ELECTRA pour les réceptions de vos paiments. Il est recommandé d'utiliser une nouvelle adresse de réception pour chaque transaction.</translation>
+        <translation>Voici vos adresses ELECTRA pour les réceptions de vos paiements. Il est recommandé d'utiliser une nouvelle adresse de réception pour chaque transaction.</translation>
     </message>
     <message>
         <source>&amp;Copy Address</source>
@@ -95,7 +95,7 @@
     </message>
     <message>
         <source>There was an error trying to save the address list to %1. Please try again.</source>
-        <translation>Un erreur s'est produite en essayant d'enregistrer la liste d'adresses dans %1. Veuillez réessayer.</translation>
+        <translation>Une erreur s'est produite en essayant d'enregistrer la liste d'adresses dans %1. Veuillez réessayer.</translation>
     </message>
 </context>
 <context>
@@ -133,7 +133,7 @@
     </message>
     <message>
         <source>Serves to disable the trivial sendmoney when OS account compromised. Provides no real security.</source>
-        <translation>Est utilisé pour désactiver l'envoi d'argent lorsque l'utilisateur OS est compromis. Ne fournit pas de vrai sécurité.</translation>
+        <translation>Est utilisé pour désactiver l'envoi d'argent lorsque l'utilisateur OS est compromis. Ne fournit pas de vraie sécurité.</translation>
     </message>
     <message>
         <source>For anonymization, automint, and staking only</source>
@@ -355,7 +355,7 @@
     </message>
     <message>
         <source>The entered address does not refer to a key.</source>
-        <translation>L'adresse renseignée ne correspond à aucune à une clé.</translation>
+        <translation>L'adresse renseignée ne correspond à aucune clé.</translation>
     </message>
     <message>
         <source>Wallet unlock was cancelled.</source>
@@ -363,7 +363,7 @@
     </message>
     <message>
         <source>Private key for the entered address is not available.</source>
-        <translation>La clé privé pour l'adresse entrée n'est pas valide.</translation>
+        <translation>La clé privée pour l'adresse entrée n'est pas valide.</translation>
     </message>
     <message>
         <source>Failed to decrypt.</source>
@@ -375,7 +375,7 @@
     </message>
     <message>
         <source>Data Not Valid.</source>
-        <translation>Les donnés ne sont pas valides.</translation>
+        <translation>Les données ne sont pas valides.</translation>
     </message>
     <message>
         <source>Please try again.</source>
@@ -450,7 +450,7 @@
     </message>
     <message>
         <source>Show information about Qt</source>
-        <translation>Afficher les information concernant Qt</translation>
+        <translation>Afficher les informations concernant Qt</translation>
     </message>
     <message>
         <source>&amp;Options...</source>
@@ -514,7 +514,7 @@
     </message>
     <message>
         <source>Show diagnostic information</source>
-        <translation>Afficher les informations de dignostique</translation>
+        <translation>Afficher les informations de diagnostic</translation>
     </message>
     <message>
         <source>&amp;Debug console</source>
@@ -558,7 +558,7 @@
     </message>
     <message>
         <source>Show automatically created wallet backups</source>
-        <translation>Montrer les sauvegardes de portefeuille créées automatiquements</translation>
+        <translation>Montrer les sauvegardes de portefeuille créées automatiquement</translation>
     </message>
     <message>
         <source>&amp;Sending addresses...</source>
@@ -674,7 +674,7 @@
     </message>
     <message>
         <source>Show information about ELECTRA Core</source>
-        <translation>Afficher les information concernant ELECTRA Core</translation>
+        <translation>Afficher les informations concernant ELECTRA Core</translation>
     </message>
     <message>
         <source>Modify configuration options for ELECTRA</source>
@@ -702,7 +702,7 @@
     </message>
     <message>
         <source>MultiSend Settings</source>
-        <translation>Paramètres des Envois-multiple </translation>
+        <translation>Paramètres des Envoi-multiples </translation>
     </message>
     <message>
         <source>Open Wallet &amp;Configuration File</source>
@@ -726,11 +726,11 @@
     </message>
     <message>
         <source>Block explorer window</source>
-        <translation>Fenêtre de Explorateur de Bloc</translation>
+        <translation>Fenêtre de l'Explorateur de Bloc</translation>
     </message>
     <message>
         <source>Show the ELECTRA Core help message to get a list with possible ELECTRA command-line options</source>
-        <translation>Afficher les message d'aide de ELECTRA Core pour avoir les options pour ligne de commande</translation>
+        <translation>Afficher les messages d'aide de ELECTRA Core pour avoir les options pour ligne de commande</translation>
     </message>
     <message>
         <source>ELECTRA Core client</source>
@@ -746,15 +746,15 @@
     </message>
     <message>
         <source>Importing blocks from disk...</source>
-        <translation>Importation des bloques depuis le disque</translation>
+        <translation>Importation des blocs depuis le disque</translation>
     </message>
     <message>
         <source>Reindexing blocks on disk...</source>
-        <translation>Ré-indexation des bloques sur le disque</translation>
+        <translation>Ré-indexation des blocs sur le disque</translation>
     </message>
     <message>
         <source>No block source available...</source>
-        <translation>Aucun source de bloc disponible</translation>
+        <translation>Aucune source de bloc disponible</translation>
     </message>
     <message>
         <source>Up to date</source>
@@ -766,7 +766,7 @@
     </message>
     <message>
         <source>Catching up...</source>
-        <translation>Rattraper...</translation>
+        <translation>Rattrapage...</translation>
     </message>
     <message>
         <source>Last received block was generated %1 ago.</source>
@@ -790,7 +790,7 @@
     </message>
     <message>
         <source>Sent transaction</source>
-        <translation>Transaction sortie</translation>
+        <translation>Transaction d'envoi</translation>
     </message>
     <message>
         <source>Incoming transaction</source>
@@ -815,7 +815,7 @@ Adresse : %4
     <message>
         <source>Staking is active
  MultiSend: %1</source>
-        <translation>Staking est actif
+        <translation>Le staking est actif
  MultiSend: %1</translation>
     </message>
     <message>
@@ -829,7 +829,7 @@ Adresse : %4
     <message>
         <source>Staking is not active
  MultiSend: %1</source>
-        <translation>Staking n'est pas actif
+        <translation>Le staking n'est pas actif
  MultiSend: %1</translation>
     </message>
     <message>
@@ -877,7 +877,7 @@ Adresse : %4
     </message>
     <message>
         <source>Not all transactions will be shown. To view all transactions you need to set txindex=1 in the configuration file (Electra.conf).</source>
-        <translation>Toutes les transaction ne seront pas affichés. Pour voir toutes les transactions, vous devez régler txindex=1 dans le fichier de configuration (Electra.conf).</translation>
+        <translation>Toutes les transactions ne seront pas affichées. Pour voir toutes les transactions, vous devez régler txindex=1 dans le fichier de configuration (Electra.conf).</translation>
     </message>
 </context>
 <context>
@@ -915,7 +915,7 @@ Adresse : %4
     </message>
     <message>
         <source>Coin Selection</source>
-        <translation>Coin de sélection</translation>
+        <translation>Sélection des pièces</translation>
     </message>
     <message>
         <source>Dust:</source>
@@ -1103,7 +1103,7 @@ Adresse : %4
     </message>
     <message>
         <source>Transactions with higher priority are more likely to get included into a block.</source>
-        <translation>Les transactions avec une priorité plus haute ont plus de chance d'être incluses dans un bloque.</translation>
+        <translation>Les transactions avec une priorité plus haute ont plus de chances d'être incluses dans un bloc.</translation>
     </message>
     <message>
         <source>This label turns red, if the priority is smaller than "medium".</source>
@@ -1170,7 +1170,7 @@ Adresse : %4
     </message>
     <message>
         <source>The entered address "%1" is already in the address book.</source>
-        <translation>L'adresse entrée "%1" est déjà dans la liste d'adresse</translation>
+        <translation>L'adresse entrée "%1" est déjà dans la liste d'adresses</translation>
     </message>
     <message>
         <source>Could not unlock wallet.</source>
@@ -1185,7 +1185,7 @@ Adresse : %4
     <name>FreespaceChecker</name>
     <message>
         <source>A new data directory will be created.</source>
-        <translation>Un nouvelle répertoire sera crée,</translation>
+        <translation>Un nouveau répertoire sera créé,</translation>
     </message>
     <message>
         <source>name</source>
@@ -1197,7 +1197,7 @@ Adresse : %4
     </message>
     <message>
         <source>Path already exists, and is not a directory.</source>
-        <translation>Chemin existe déjà, et n'est pas un répertoire.</translation>
+        <translation>Le chemin existe déjà, et n'est pas un répertoire.</translation>
     </message>
     <message>
         <source>Cannot create data directory here.</source>
@@ -1232,7 +1232,7 @@ Adresse : %4
     </message>
     <message>
         <source>command-line options</source>
-        <translation>options en ligne de commande </translation>
+        <translation>Options de commandes en ligne</translation>
     </message>
     <message>
         <source>UI Options:</source>
@@ -1248,7 +1248,7 @@ Adresse : %4
     </message>
     <message>
         <source>Start minimized</source>
-        <translation>Démarrer minimiser</translation>
+        <translation>Démarrer minimisé</translation>
     </message>
     <message>
         <source>Set SSL root certificates for payment request (default: -system-)</source>
@@ -1259,7 +1259,7 @@ Adresse : %4
     <name>Intro</name>
     <message>
         <source>Welcome</source>
-        <translation>Bienvenu</translation>
+        <translation>Bienvenue</translation>
     </message>
     <message>
         <source>Welcome to ELECTRA Core.</source>
@@ -1394,11 +1394,11 @@ Adresse : %4
     </message>
     <message>
         <source>Confirm missing masternodes start</source>
-        <translation>Confirmer le lancement de la masternode manquant</translation>
+        <translation>Confirmer le lancement du masternode manquant</translation>
     </message>
     <message>
         <source>Are you sure you want to start MISSING masternodes?</source>
-        <translation>Êtes-vous sûr de vouloir lancer MISSING masternodes?</translation>
+        <translation>Êtes-vous sûr de vouloir lancer le masternode manquant?</translation>
     </message>
 </context>
 <context>
@@ -1600,7 +1600,7 @@ Veuillez vérifier l'adresse et réessayer.</translation>
 Keep in mind, the wallet will rescan the blockchain to find transactions containing the new address.
 Please be patient after clicking import.</source>
         <translation>Utilisez ci-dessous pour importer rapidement une adresse par son échange. N'oubliez pas d'ajouter un label avant de cliquer sur Importer!
-Garder en tete que le portefeuille effectuera une nouvelle analyse de la blockchain pour trouver les transactions contenant la nouvelle adresse.
+Garder en tete que le portefeuille effectuera une nouvelle analyse de la blockchain pour trouver les transactions contenues dans la nouvelle adresse.
 S'il vous plaît soyez patient après avoir cliqué sur l'importation.</translation>
     </message>
     <message>
@@ -1613,7 +1613,7 @@ S'il vous plaît soyez patient après avoir cliqué sur l'importation.</translat
     </message>
     <message>
         <source>Coin Control</source>
-        <translation>Contrôle de pièce de monnaie</translation>
+        <translation>Contrôle des pièces</translation>
     </message>
     <message>
         <source>Quantity Selected:</source>
@@ -1669,7 +1669,7 @@ S'il vous plaît soyez patient après avoir cliqué sur l'importation.</translat
     </message>
     <message>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;DISABLED until transaction has been signed enough times.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;DÉSACTIVÉ jusqu'à ce que la transaction est recueillie suffisament de signatures.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt; </translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;DÉSACTIVÉ jusqu'à ce que la transaction ai recueilli suffisament de signatures.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt; </translation>
     </message>
     <message>
         <source>Co&amp;mmit</source>
@@ -1728,7 +1728,7 @@ S'il vous plaît soyez patient après avoir cliqué sur l'importation.</translat
     </message>
     <message>
         <source>Use 2 separate masternodes to mix funds up to 10000 ECA</source>
-        <translation>Utiliser 2 masternodes différentes pour mélanger les fonds jusqu'a 10000 ECA</translation>
+        <translation>Utiliser 2 masternodes différents pour mélanger les fonds jusqu'a 10000 ECA</translation>
     </message>
     <message>
         <source>Use 8 separate masternodes to mix funds up to 10000 ECA</source>
@@ -1740,19 +1740,19 @@ S'il vous plaît soyez patient après avoir cliqué sur l'importation.</translat
     </message>
     <message>
         <source>This option is the quickest and will cost about ~0.025 ECA to anonymize 10000 ECA</source>
-        <translation>Cette option est la plus rapide, et coutera ~0.025 ECA pour anonymiser 10000 ECA</translation>
+        <translation>Cette option est la plus rapide, et coûtera ~0.025 ECA pour anonymiser 10000 ECA</translation>
     </message>
     <message>
         <source>This option is moderately fast and will cost about 0.05 ECA to anonymize 10000 ECA</source>
-        <translation>Cette option est moyennement rapide, et coutera 0.05 ECA pour anonymiser 10000 ECA</translation>
+        <translation>Cette option est moyennement rapide, et coûtera 0.05 ECA pour anonymiser 10000 ECA</translation>
     </message>
     <message>
         <source>This is the slowest and most secure option. Using maximum anonymity will cost</source>
-        <translation>Il s'agit de l'option la plus lente est la plus sécurisé. Utiliser l'anonymat maximum coutera</translation>
+        <translation>Il s'agit de l'option la plus lente et la plus sécurisée. Utiliser l'anonymat maximum coûtera</translation>
     </message>
     <message>
         <source>0.1 ECA per 10000 ECA you anonymize.</source>
-        <translation>0.1 ECA par 10000 ECA vous anonymisez.</translation>
+        <translation>0.1 ECA pour anonymiser 10000 ECA.</translation>
     </message>
     <message>
         <source>Obfuscation Configuration</source>
@@ -1760,15 +1760,15 @@ S'il vous plaît soyez patient après avoir cliqué sur l'importation.</translat
     </message>
     <message>
         <source>Obfuscation was successfully set to basic (%1 and 2 rounds). You can change this at any time by opening ELECTRA's configuration screen.</source>
-        <translation>L'Obfuscation a été réglé avec succès à base (%1 et 2 tours). Vous pouvez changer ce paramètre à tout moment depuis l'écran de configuration ELECTRA.</translation>
+        <translation>L'Obfuscation a été réglée avec succès à base (%1 et 2 tours). Vous pouvez changer ce paramètre à tout moment depuis l'écran de configuration ELECTRA.</translation>
     </message>
     <message>
         <source>Obfuscation was successfully set to high (%1 and 8 rounds). You can change this at any time by opening ELECTRA's configuration screen.</source>
-        <translation>L'Obfuscation a été réglé avec succès à élevé (%1 et 8 tours). Vous pouvez changer ce paramètre à tout moment depuis l'écran de configuration ELECTRA.</translation>
+        <translation>L'Obfuscation a été réglée avec succès à élevé (%1 et 8 tours). Vous pouvez changer ce paramètre à tout moment depuis l'écran de configuration ELECTRA.</translation>
     </message>
     <message>
         <source>Obfuscation was successfully set to maximum (%1 and 16 rounds). You can change this at any time by opening ELECTRA's configuration screen.</source>
-        <translation>L'Obfuscation a été réglé avec succès à maximum (%1 et 16 tours). Vous pouvez changer ce paramètre à tout moment depuis l'écran de configuration ELECTRA.</translation>
+        <translation>L'Obfuscation a été réglée avec succès à maximum (%1 et 16 tours). Vous pouvez changer ce paramètre à tout moment depuis l'écran de configuration ELECTRA.</translation>
     </message>
 </context>
 <context>
@@ -1888,11 +1888,11 @@ https://www.transifex.com/electra-project/electra-project-translations</translat
     </message>
     <message>
         <source>Enable automatic minting of ECA units to zECA</source>
-        <translation>Activé l'auto-monnayage de ECA unités en zECA</translation>
+        <translation>Activer l'auto-monnayage des unités ECA en zECA</translation>
     </message>
     <message>
         <source>Enable zECA Automint</source>
-        <translation>Activé ZECA Auto-monnayage</translation>
+        <translation>Activer ZECA Auto-monnayage</translation>
     </message>
     <message>
         <source>Percentage of incoming ECA which get automatically converted to zECA via Zerocoin Protocol (min: 10%)</source>
@@ -1912,7 +1912,7 @@ https://www.transifex.com/electra-project/electra-project-translations</translat
     </message>
     <message>
         <source>Connect to the ELECTRA network through a SOCKS5 proxy.</source>
-        <translation>Se connetcer au réseau ELECTRA via un proxy SOCKS5.</translation>
+        <translation>Se connecter au réseau ELECTRA via un proxy SOCKS5.</translation>
     </message>
     <message>
         <source>Proxy &amp;IP:</source>
@@ -1940,11 +1940,11 @@ https://www.transifex.com/electra-project/electra-project-translations</translat
     </message>
     <message>
         <source>&amp;Minimize to the tray instead of the taskbar</source>
-        <translation>Minimiser vers la barre d'état au lieu de la barre de tâche</translation>
+        <translation>Minimiser vers la barre d'état au lieu de la barre des tâches</translation>
     </message>
     <message>
         <source>Minimize instead of exit the application when the window is closed. When this option is enabled, the application will be closed only after selecting Quit in the menu.</source>
-        <translation>Minimiser l'application putôt que de la quitter lorsque la fenêtre est fermée. Quant cette option est activée, l'application ne sera fermé qu'après avoir choisi la fonction Quitter dans le menu.</translation>
+        <translation>Minimiser l'application putôt que de la quitter lorsque la fenêtre est fermée. Quand cette option est activée, l'application ne sera fermée qu'après avoir choisi la fonction Quitter dans le menu.</translation>
     </message>
     <message>
         <source>M&amp;inimize on close</source>
@@ -1956,7 +1956,7 @@ https://www.transifex.com/electra-project/electra-project-translations</translat
     </message>
     <message>
         <source>User Interface &amp;language:</source>
-        <translation>Language de l'interface utilisateur:</translation>
+        <translation>Langue de l'interface utilisateur:</translation>
     </message>
     <message>
         <source>User Interface Theme:</source>
