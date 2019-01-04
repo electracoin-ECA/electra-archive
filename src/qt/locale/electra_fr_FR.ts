@@ -2083,7 +2083,7 @@ https://www.transifex.com/electra-project/electra-project-translations</translat
     </message>
     <message>
         <source>Staked or masternode rewards that has not yet matured</source>
-        <translation>Récompenses de Stake ou de Matsrenodes qui ne sont pas encore matures</translation>
+        <translation>Récompenses de Stake ou de Masternodes qui ne sont pas encore matures</translation>
     </message>
     <message>
         <source>Current locked balance in watch-only addresses</source>
@@ -2100,14 +2100,14 @@ https://www.transifex.com/electra-project/electra-project-translations</translat
     <message>
         <source>Mature: more than 20 confirmation and more than 1 mint of the same denomination after it was minted.
 These zECA are spendable.</source>
-        <translation>Maturité: plus de 20 confirmations et plus de 1 monnayer de la même dénomination après sa frappe.
+        <translation>Maturité: plus de 20 confirmations et plus de 1 monnayé de la même dénomination après sa frappe.
 Ces zECA sont dépensables.</translation>
     </message>
     <message>
         <source>Unconfirmed: less than 20 confirmations
 Immature: confirmed, but less than 1 mint of the same denomination after it was minted</source>
         <translation>Non confirmé: moins de 20 confirmations
-Immature: confirmé, mais moins de 1 monnayer de la même dénomination après sa frappe</translation>
+Immature: confirmé, mais moins de 1 monnayé de la même dénomination après sa frappe</translation>
     </message>
     <message>
         <source>The displayed information may be out of date. Your wallet automatically synchronizes with the ELECTRA network after a connection is established, but this process has not completed yet.</source>
@@ -2127,11 +2127,11 @@ Immature: confirmé, mais moins de 1 monnayer de la même dénomination après s
     </message>
     <message>
         <source>Unconfirmed transactions to watch-only addresses</source>
-        <translation>Transactions non confirmées vers des adresses témoins</translation>
+        <translation>Transactions non confirmées vers des adresses témoin</translation>
     </message>
     <message>
         <source>Staked or masternode rewards in watch-only addresses that has not yet matured</source>
-        <translation>Récompenses Stake ou Masternode dans des adresses témoins qui n'ont pas encore atteint leur maturité</translation>
+        <translation>Récompenses Stake ou Masternode dans des adresses témoin qui n'ont pas encore atteint leur maturité</translation>
     </message>
     <message>
         <source>Total:</source>
@@ -2139,7 +2139,7 @@ Immature: confirmé, mais moins de 1 monnayer de la même dénomination après s
     </message>
     <message>
         <source>Current total balance in watch-only addresses</source>
-        <translation>Solde courant total dans les adresses témoins</translation>
+        <translation>Solde courant total dans les adresses témoin</translation>
     </message>
     <message>
         <source>Watch-only:</source>
@@ -2147,7 +2147,7 @@ Immature: confirmé, mais moins de 1 monnayer de la même dénomination après s
     </message>
     <message>
         <source>Your current balance in watch-only addresses</source>
-        <translation>Votre solde courant in les adresses témoins</translation>
+        <translation>Votre solde courant dans les adresses témoin</translation>
     </message>
     <message>
         <source>Spendable:</source>
@@ -2155,7 +2155,7 @@ Immature: confirmé, mais moins de 1 monnayer de la même dénomination après s
     </message>
     <message>
         <source>Locked ECA or Masternode collaterals. These are excluded from zECA minting.</source>
-        <translation>ECA Verrouillé ou Masternode collatéraux. Ceux-ci sont exclus de la monnayage zECA.</translation>
+        <translation>ECA Verrouillé ou Masternode collatéraux. Ceux-ci sont exclus du monnayage zECA.</translation>
     </message>
     <message>
         <source>Locked:</source>
@@ -2182,7 +2182,7 @@ Immature: confirmé, mais moins de 1 monnayer de la même dénomination après s
 If AutoMint is enabled this percentage will settle around the configured AutoMint percentage (default = 10%).
 </source>
         <translation>Le pourcentage actuel de zECA.
-Si Auto-monnayage est activé, ce pourcentage sera réglé autour du pourcentage Auto-monnayage configuré (par défaut = 10%).</translation>
+Si l'auto-monnayage est activé, ce pourcentage sera réglé autour du pourcentage Auto-monnayage configuré (par défaut = 10%).</translation>
     </message>
     <message>
         <source>AutoMint is currently enabled and set to </source>
@@ -2227,7 +2227,7 @@ Pour activer Auto-monnayage, changez 'enablezeromint = 0' en 'enablezeromint = 1
     </message>
     <message>
         <source>URI cannot be parsed! This can be caused by an invalid ELECTRA address or malformed URI parameters.</source>
-        <translation>L'URI ne peut pas être analysée! Cela peut être dû à une adresse ELECTRA invalide ou à des paramètres URI incorrectes.</translation>
+        <translation>L'URI ne peut pas être analysée! Cela peut être dû à une adresse ELECTRA invalide ou à des paramètres URI incorrects.</translation>
     </message>
     <message>
         <source>Payment request file cannot be read! This can be caused by an invalid payment request file.</source>
@@ -2329,7 +2329,7 @@ Pour activer Auto-monnayage, changez 'enablezeromint = 0' en 'enablezeromint = 1
     </message>
     <message>
         <source>Available for minting are coins which are confirmed and not locked or Masternode collaterals.</source>
-        <translation>Disponible pour monnayage sont des pièces qui sont confirmées et non verrouillées ou collatéraux Masternode.</translation>
+        <translation>Disponible pour monnayage sont des pièces qui sont confirmées et non verrouillées ou Masternodes collatéraux .</translation>
     </message>
     <message>
         <source>Available for Minting:</source>
@@ -2361,7 +2361,7 @@ Pour activer Auto-monnayage, changez 'enablezeromint = 0' en 'enablezeromint = 1
     </message>
     <message>
         <source>Rescan the complete blockchain for  Zerocoin mints and their meta-data.</source>
-        <translation>Rebalayage la blockchain complète pour les Zerocoin Monnayer et leurs méta-données.</translation>
+        <translation>Rescan complet de la blockchain pour les Zerocoin Monnayer et leurs méta-données.</translation>
     </message>
     <message>
         <source>ReScan</source>
@@ -2369,7 +2369,7 @@ Pour activer Auto-monnayage, changez 'enablezeromint = 0' en 'enablezeromint = 1
     </message>
     <message>
         <source>Status and/or Mesages from the last Mint Action.</source>
-        <translation>Statut et / ou messages de dernière action Monnayage.</translation>
+        <translation>Statut et / ou messages de dernière action de Monnayage.</translation>
     </message>
     <message>
         <source>PRIVACY</source>
@@ -2413,7 +2413,7 @@ Pour activer Auto-monnayage, changez 'enablezeromint = 0' en 'enablezeromint = 1
 zECA are mature when they have more than 20 confirmations AND more than 2 mints of the same denomination after them were minted</source>
         <translation>ZECA disponible (mature et utilisable) pour les dépenses
 
-Les zECA sont matures lorsqu'elles ont plus de 20 confirmations ET plus de 2 monnayent de même dénomination après ils était monnayer</translation>
+Les zECA sont matures lorsqu'elles ont plus de 20 confirmations ET que plus de 2 monnayent de même dénomination après qu'ils étaient monnayés</translation>
     </message>
     <message>
         <source>0 zECA</source>
@@ -2437,7 +2437,7 @@ Les zECA sont matures lorsqu'elles ont plus de 20 confirmations ET plus de 2 mon
     </message>
     <message>
         <source>The ELECTRA address to send the payment to. Creates local payment to yourself when empty.</source>
-        <translation>L'adresse ELECTRA à laquelle nevoyer le paiement. Créé un paiement à vous même lorsque ce champs est vide.</translation>
+        <translation>L'adresse ELECTRA à laquelle envoyer le paiement. Crée un paiement à vous même lorsque ce champs est vide.</translation>
     </message>
     <message>
         <source>Choose previously used address</source>
@@ -2473,7 +2473,7 @@ Les zECA sont matures lorsqu'elles ont plus de 20 confirmations ET plus de 2 mon
     </message>
     <message>
         <source>If checked, the wallet tries to minimize the returning change instead of minimizing the number of spent denominations.</source>
-        <translation>Si coché, le portefeuille tente de mininiser la monnaie rendue au lieu de minimiser le nombre de dénominations dépensées.</translation>
+        <translation>Si coché, le portefeuille tente de minimiser la monnaie rendue au lieu de minimiser le nombre de dénominations dépensées.</translation>
     </message>
     <message>
         <source>Minimize Change</source>
@@ -2507,7 +2507,7 @@ Les zECA sont matures lorsqu'elles ont plus de 20 confirmations ET plus de 2 mon
         <source>Unconfirmed: less than 20 confirmations
 Immature: confirmed, but less than 1 mint of the same denomination after it was minted</source>
         <translation>Non confirmé: moins de 20 confirmations
-Immature: confirmé, mais moins de 1 monnayer de la même dénomination après sa frappe</translation>
+Immature: confirmé, mais moins de 1 monnayé de la même dénomination après sa frappe</translation>
     </message>
     <message>
         <source>Show the current status of automatic zECA minting.
@@ -2693,7 +2693,7 @@ Pour changer le pourcentage (pas de redémarrage requis):
     </message>
     <message>
         <source>Mint Status: Okay</source>
-        <translation>Auto-monnayage Statut: OK</translation>
+        <translation>Statut d'Auto-monnayage: OK</translation>
     </message>
     <message>
         <source>Copy quantity</source>
@@ -2706,7 +2706,7 @@ Pour changer le pourcentage (pas de redémarrage requis):
     <message>
         <source>Starting ResetMintZerocoin: rescanning complete blockchain, this will need up to 30 minutes depending on your hardware.
 Please be patient...</source>
-        <translation>Démarrage de ResetMonnayerZerocoin: réanalyser blockchain complète, cela prendra jusqu'à 30 minutes selon votre matériel.
+        <translation>Démarrage de ResetMonnayerZerocoin: rescan complet de la blockchain, cela prendra jusqu'à 30 minutes selon votre matériel.
 S'il vous plaît soyez patient ...</translation>
     </message>
     <message>
@@ -2865,7 +2865,7 @@ Maximum autorisé:</translation>
     </message>
     <message>
         <source>Invalid Send Amount</source>
-        <translation>Montant envoyé incorrecte</translation>
+        <translation>Montant envoyé incorrect</translation>
     </message>
     <message>
         <source>Confirm additional Fees</source>
@@ -2902,7 +2902,7 @@ Maximum autorisé:</translation>
     </message>
     <message>
         <source>Failed to fetch mint associated with serial hash</source>
-        <translation>Impossible d'extraire la monnayer associée au hachage série</translation>
+        <translation>Impossible d'extraire la monnayée associée au hachage série</translation>
     </message>
     <message>
         <source>Too much inputs (</source>
@@ -2912,7 +2912,7 @@ Maximum autorisé:</translation>
         <source>
 Either mint higher denominations (so fewer inputs are needed) or reduce the amount to spend.</source>
         <translation>
-Soit monnayer des dénominations plus élevées (moins d'intrants sont nécessaires), soit une réduction du montant à dépenser.</translation>
+Soit monnayer des dénominations plus élevées (moins d'entrées sont nécessaires), soit une réduction du montant à dépenser.</translation>
     </message>
     <message>
         <source>Spend Zerocoin failed with status = </source>
@@ -2959,7 +2959,7 @@ Soit monnayer des dénominations plus élevées (moins d'intrants sont nécessai
     </message>
     <message>
         <source>Enter a ELECTRA address (e.g. %1)</source>
-        <translation>Entrez uen adresse ELECTRA (par ex. %1)</translation>
+        <translation>Entrez une adresse ELECTRA (par ex. %1)</translation>
     </message>
     <message>
         <source>%1 d</source>
