@@ -4111,7 +4111,7 @@ Soit monnayer des dénominations plus élevées (moins d'entrées sont nécessai
     </message>
     <message>
         <source>Generated coins must mature %1 blocks before they can be spent. When you generated this block, it was broadcast to the network to be added to the block chain. If it fails to get into the chain, its state will change to "not accepted" and it won't be spendable. This may occasionally happen if another node generates a block within a few seconds of yours.</source>
-        <translation>Les pièces créées doit murir %1 blocs avant qu'elles ne puissent être dépensées. Lorsque vous générez ce bloc, il est diffusé sur le réseau afin d'être ajouté à la chaîne de blocs. Si cet ajout échoue, son statut sera modifié à "non accepté" et il ne sera pas dépensable. Ceci peut arriver occasionnellement lorsqu'un autre noeud du réseau génère un bloc quelques secondes avant le votre.</translation>
+        <translation>Les pièces générées doivent murir %1 blocs avant qu'elles ne puissent être dépensées. Lorsque vous générez ce bloc, il est diffusé sur le réseau afin d'être ajouté à la chaîne de blocs. Si cet ajout échoue, son statut sera modifié à "non accepté" et il ne sera pas dépensable. Ceci peut arriver occasionnellement lorsqu'un autre noeud du réseau génère un bloc quelques secondes avant le votre.</translation>
     </message>
     <message>
         <source>Amount</source>
@@ -4141,7 +4141,7 @@ Soit monnayer des dénominations plus élevées (moins d'entrées sont nécessai
     </message>
     <message>
         <source>Masternode Reward</source>
-        <translation>Récompense Matsernode</translation>
+        <translation>Récompense Masternode</translation>
     </message>
     <message>
         <source>Received from</source>
@@ -4213,7 +4213,7 @@ Soit monnayer des dénominations plus élevées (moins d'entrées sont nécessai
     </message>
     <message>
         <source>Date and time that the transaction was received.</source>
-        <translation>Date et heure a laquelle la transaction fut reçue</translation>
+        <translation>Date et heure a laquelle la transaction a été reçue</translation>
     </message>
     <message>
         <source>Type of transaction.</source>
@@ -4276,11 +4276,11 @@ Soit monnayer des dénominations plus élevées (moins d'entrées sont nécessai
     </message>
     <message>
         <source>Masternode Reward</source>
-        <translation>Récompense Matsernode</translation>
+        <translation>Récompense Masternode</translation>
     </message>
     <message>
         <source>Zerocoin Mint</source>
-        <translation>Zerocoin Monnayez</translation>
+        <translation>Zerocoin Monnayé</translation>
     </message>
     <message>
         <source>Enter address or label to search</source>
@@ -4462,7 +4462,7 @@ Soit monnayer des dénominations plus élevées (moins d'entrées sont nécessai
     </message>
     <message>
         <source>Error loading wallet.dat: Wallet requires newer version of ELECTRA Core</source>
-        <translation>Erreur de chargement du fichier wallet.dat: Le portefeuille nécessite une version plus récente du ELECTRA core</translation>
+        <translation>Erreur de chargement du fichier wallet.dat: Le portefeuille nécessite une version plus récente de ELECTRA core</translation>
     </message>
     <message>
         <source>Error opening block database</source>
@@ -4510,7 +4510,7 @@ Soit monnayer des dénominations plus élevées (moins d'entrées sont nécessai
     </message>
     <message>
         <source>Invalid amount for -mintxfee=&lt;amount&gt;: '%s'</source>
-        <translation>Invalid amount for -mintxfee=&lt;amount&gt;: '%s'</translation>
+        <translation>Montant invalide pour -mintxfee=&lt;amount&gt;: '%s'</translation>
     </message>
     <message>
         <source>This is a pre-release test build - use at your own risk - do not use for staking or merchant applications!</source>
@@ -4519,12 +4519,12 @@ Soit monnayer des dénominations plus élevées (moins d'entrées sont nécessai
     <message>
         <source> mints deleted
 </source>
-        <translation> Monnayes supprimées
+        <translation> Monnayés supprimés
 </translation>
     </message>
     <message>
         <source> mints updated, </source>
-        <translation>Monnayes actualisé
+        <translation>Monnayés actualisés
 , </translation>
     </message>
     <message>
@@ -4557,7 +4557,7 @@ Soit monnayer des dénominations plus élevées (moins d'entrées sont nécessai
     </message>
     <message>
         <source>Failed to create mint</source>
-        <translation>Impossible de créer la monnayer</translation>
+        <translation>Impossible de créer la monnayée</translation>
     </message>
     <message>
         <source>Limit size of signature cache to &lt;n&gt; entries (default: %u)</source>
@@ -4633,7 +4633,7 @@ Soit monnayer des dénominations plus élevées (moins d'entrées sont nécessai
     </message>
     <message>
         <source>Mint did not make it into blockchain</source>
-        <translation>Monnayés ne pas fait entre dans la blockchain</translation>
+        <translation>Monnayés ne sont pas entrés dans la blockchain</translation>
     </message>
     <message>
         <source>Missing input transaction information.</source>
@@ -4701,7 +4701,7 @@ Soit monnayer des dénominations plus élevées (moins d'entrées sont nécessai
     </message>
     <message>
         <source>Only accept block chain matching built-in checkpoints (default: %u)</source>
-        <translation>Accepter uniquement les points de contrôle conformes à la chaîne de blocs (par défaut: %u)</translation>
+        <translation>Accepter uniquement les points de contrôle conformes à la blockchain (par défaut: %u)</translation>
     </message>
     <message>
         <source>Only connect to nodes in network &lt;net&gt; (ipv4, ipv6 or onion)</source>
@@ -4721,7 +4721,7 @@ Soit monnayer des dénominations plus élevées (moins d'entrées sont nécessai
     </message>
     <message>
         <source>Print version and exit</source>
-        <translation>Imprimer la version est quitter</translation>
+        <translation>Imprimer la version et quitter</translation>
     </message>
     <message>
         <source>RPC server options:</source>
@@ -4729,7 +4729,7 @@ Soit monnayer des dénominations plus élevées (moins d'entrées sont nécessai
     </message>
     <message>
         <source>Rebuild block chain index from current blk000??.dat files</source>
-        <translation>Reconstruire l'index de la chaîne de blocs à partir des fichiers blk000 ??.dat courants</translation>
+        <translation>Reconstruire l'index de la blockchain à partir des fichiers blk000 ??.dat courants</translation>
     </message>
     <message>
         <source>Receive and display P2P network alerts (default: %u)</source>
@@ -4741,11 +4741,11 @@ Soit monnayer des dénominations plus élevées (moins d'entrées sont nécessai
     </message>
     <message>
         <source>Rescan the block chain for missing wallet transactions</source>
-        <translation>Rescanner la chaîne de blocs pour retrouver les transactions manquantes dans le portefeuille</translation>
+        <translation>Rescanner la blockchain pour retrouver les transactions manquantes dans le portefeuille</translation>
     </message>
     <message>
         <source>Rescanning...</source>
-        <translation>Rescanning...</translation>
+        <translation>Rescan en cours...</translation>
     </message>
     <message>
         <source>ResetMintZerocoin finished: </source>
@@ -4757,11 +4757,11 @@ Soit monnayer des dénominations plus élevées (moins d'entrées sont nécessai
     </message>
     <message>
         <source>Run in the background as a daemon and accept commands</source>
-        <translation>Exécuter en arrière-plan en tant que démon et accepter les commandes</translation>
+        <translation>Exécuter en arrière-plan en tant que daemon et accepter les commandes</translation>
     </message>
     <message>
         <source>Send transactions as zero-fee transactions if possible (default: %u)</source>
-        <translation>Envoyer des transaction sans frais si possible (défaut: %u)</translation>
+        <translation>Envoyer des transactions sans frais si possible (défaut: %u)</translation>
     </message>
     <message>
         <source>Session not complete!</source>
@@ -4773,11 +4773,11 @@ Soit monnayer des dénominations plus élevées (moins d'entrées sont nécessai
     </message>
     <message>
         <source>Set database cache size in megabytes (%d to %d, default: %d)</source>
-        <translation>Définir la taille duc ache de base de données en mégaoctets (%d à %d, défaut: %d)</translation>
+        <translation>Définir la taille du cache de base de données en mégaoctets (%d à %d, défaut: %d)</translation>
     </message>
     <message>
         <source>Set external address:port to get to this masternode (example: %s)</source>
-        <translation>Définir adresse:port pour accéder à ce masternode (exemple: %s)</translation>
+        <translation>Définir adresse: port pour accéder à ce masternode (exemple: %s)</translation>
     </message>
     <message>
         <source>Set key pool size to &lt;n&gt; (default: %u)</source>
@@ -4813,31 +4813,31 @@ Soit monnayer des dénominations plus élevées (moins d'entrées sont nécessai
     </message>
     <message>
         <source>Specify configuration file (default: %s)</source>
-        <translation>Spécifiez le fichier de configuration (par défaut: %s)</translation>
+        <translation>Spécifier le fichier de configuration (par défaut: %s)</translation>
     </message>
     <message>
         <source>Specify connection timeout in milliseconds (minimum: 1, default: %d)</source>
-        <translation>Spécifiez le délai d'attente de connexion en millisecondes (minimum: 1, par défaut: %d)</translation>
+        <translation>Spécifier le délai d'attente de connexion en millisecondes (minimum: 1, par défaut: %d)</translation>
     </message>
     <message>
         <source>Specify data directory</source>
-        <translation>Spécifiez le répertoire de données</translation>
+        <translation>Spécifier le répertoire de données</translation>
     </message>
     <message>
         <source>Specify masternode configuration file (default: %s)</source>
-        <translation>Spécifiez le fichier de configuration masternode (par défaut: %s)</translation>
+        <translation>Spécifier le fichier de configuration masternode (par défaut: %s)</translation>
     </message>
     <message>
         <source>Specify pid file (default: %s)</source>
-        <translation>Spécifiez le fichier pid (par défaut: %s)</translation>
+        <translation>Spécifier le fichier pid (par défaut: %s)</translation>
     </message>
     <message>
         <source>Specify wallet file (within data directory)</source>
-        <translation>Spécifiez le fichier du portefeuille (dans le répertoire de données)</translation>
+        <translation>Spécifier le fichier du portefeuille (dans le répertoire de données)</translation>
     </message>
     <message>
         <source>Specify your own public address</source>
-        <translation>Indiquez votre propre adresse publique</translation>
+        <translation>Indiquer votre propre adresse publique</translation>
     </message>
     <message>
         <source>Spend unconfirmed change when sending transactions (default: %u)</source>
@@ -4921,7 +4921,7 @@ Soit monnayer des dénominations plus élevées (moins d'entrées sont nécessai
     </message>
     <message>
         <source>Too many spends needed</source>
-        <translation>Trop de dépenses nécessaires</translation>
+        <translation>Trop de dépense nécessaire</translation>
     </message>
     <message>
         <source>Tor control port password (default: empty)</source>
@@ -4937,7 +4937,7 @@ Soit monnayer des dénominations plus élevées (moins d'entrées sont nécessai
     </message>
     <message>
         <source>Transaction Mint Started</source>
-        <translation>Monnayer de transaction démarrée</translation>
+        <translation>Monnayeur de transaction démarrée</translation>
     </message>
     <message>
         <source>Transaction amount too small</source>
@@ -4945,7 +4945,7 @@ Soit monnayer des dénominations plus élevées (moins d'entrées sont nécessai
     </message>
     <message>
         <source>Transaction amounts must be positive</source>
-        <translation>Le montant de la transaction doit être posiftif</translation>
+        <translation>Le montant de la transaction doit être positif</translation>
     </message>
     <message>
         <source>Transaction created successfully.</source>
@@ -4985,11 +4985,11 @@ Soit monnayer des dénominations plus élevées (moins d'entrées sont nécessai
     </message>
     <message>
         <source>Unable to find transaction containing mint</source>
-        <translation>Impossible de trouver la transaction contenant de la monnayez</translation>
+        <translation>Impossible de trouver la transaction contenant de la monnayée</translation>
     </message>
     <message>
         <source>Unable to sign spork message, wrong key?</source>
-        <translation>Impossible de signer le message spork, la mauvaise clé ?</translation>
+        <translation>Impossible de signer le message spork, mauvaise clé ?</translation>
     </message>
     <message>
         <source>Unable to start HTTP server. See debug log for details.</source>
@@ -5025,7 +5025,7 @@ Soit monnayer des dénominations plus élevées (moins d'entrées sont nécessai
     </message>
     <message>
         <source>Username for JSON-RPC connections</source>
-        <translation>Nom d'utilisateur pour les connections JSON-RPC</translation>
+        <translation>Nom d'utilisateur pour les connexions JSON-RPC</translation>
     </message>
     <message>
         <source>Value is below the smallest available denomination (= 1) of zECA</source>
@@ -5050,7 +5050,7 @@ Soit monnayer des dénominations plus élevées (moins d'entrées sont nécessai
     </message>
     <message>
         <source>Wallet is locked.</source>
-        <translation>Le portefeuille est vérouillé.</translation>
+        <translation>Le portefeuille est vérrouillé.</translation>
     </message>
     <message>
         <source>Wallet needed to be rewritten: restart ELECTRA Core to complete</source>
@@ -5094,7 +5094,7 @@ Soit monnayer des dénominations plus élevées (moins d'entrées sont nécessai
     </message>
     <message>
         <source>Your entries added successfully.</source>
-        <translation>Vos entrées ajoutées avec succès.</translation>
+        <translation>Vos entrées sont ajoutées avec succès.</translation>
     </message>
     <message>
         <source>Your transaction was accepted into the pool!</source>
