@@ -3113,7 +3113,7 @@ Soit monnayer des dénominations plus élevées (moins d'entrées sont nécessai
     </message>
     <message>
         <source>&amp;Network Traffic</source>
-        <translation>Traffic du réseau</translation>
+        <translation>Trafic du réseau</translation>
     </message>
     <message>
         <source>&amp;Clear</source>
@@ -3197,7 +3197,7 @@ Soit monnayer des dénominations plus élevées (moins d'entrées sont nécessai
     </message>
     <message>
         <source>Delete local Blockchain Folders</source>
-        <translation>Supprime le dossier local Blockchain</translation>
+        <translation>Supprime le dossier Blockchain local</translation>
     </message>
     <message>
         <source>Wallet In Use:</source>
@@ -3249,11 +3249,11 @@ Soit monnayer des dénominations plus élevées (moins d'entrées sont nécessai
     </message>
     <message>
         <source>Rescan blockchain files</source>
-        <translation>Réanalysez les fichiers blockchain</translation>
+        <translation>Rescanner les fichiers blockchain</translation>
     </message>
     <message>
         <source>Rescan the block chain for missing wallet transactions.</source>
-        <translation>Réanalysez la chaîne de blocs pour les transactions de portefeuille manquantes.</translation>
+        <translation>Rescanner la blockchain pour les transactions de portefeuille manquantes.</translation>
     </message>
     <message>
         <source>Recover transactions 1</source>
@@ -3277,7 +3277,7 @@ Soit monnayer des dénominations plus élevées (moins d'entrées sont nécessai
     </message>
     <message>
         <source>Rebuild block chain index from current blk000??.dat files.</source>
-        <translation>Reconstruire l'index de la chaîne de block à partir des fichiers courants blk000??.dat.</translation>
+        <translation>Reconstruire l'index de la blockchain à partir des fichiers courants blk000??.dat.</translation>
     </message>
     <message>
         <source>-resync:</source>
@@ -3361,11 +3361,11 @@ Soit monnayer des dénominations plus élevées (moins d'entrées sont nécessai
     </message>
     <message>
         <source>Confirm resync Blockchain</source>
-        <translation>Cornfirmer la resynchronisation Blockchain</translation>
+        <translation>Confirmer la resynchronisation Blockchain</translation>
     </message>
     <message>
         <source>Use up and down arrows to navigate history, and &lt;b&gt;Ctrl-L&lt;/b&gt; to clear screen.</source>
-        <translation>Utilisez les flèches bas et haut pour naviguer dans l'historique, et &lt;b&gt; Ctrl-L &lt;/b&gt; pour effacer l'écran.</translation>
+        <translation>Utilisez les flèches bas et haut pour naviguer dans l'historique, et &lt;b&gt; Ctrl-L &lt;/b&gt; pour vider l'écran.</translation>
     </message>
     <message>
         <source>Type &lt;b&gt;help&lt;/b&gt; for an overview of available commands.</source>
@@ -3424,7 +3424,7 @@ Soit monnayer des dénominations plus élevées (moins d'entrées sont nécessai
     <name>ReceiveCoinsDialog</name>
     <message>
         <source>Reuse one of the previously used receiving addresses.&lt;br&gt;Reusing addresses has security and privacy issues.&lt;br&gt;Do not use this unless re-generating a payment request made before.</source>
-        <translation>Réutilise une des adresses de réception précédement utilisées.&lt;br /&gt; Réutiliser des adresses posent des problèmes de sécurité etd e confidentialité. &lt;br /&gt; Ne réuilisez pas une adresse à moins que vous souhaitiez regénérer une demande de paiement antérieure.</translation>
+        <translation>Réutilise une des adresses de réception précédement utilisées.&lt;br /&gt; Réutiliser des adresses posent des problèmes de sécurité et de confidentialité. &lt;br /&gt; Ne réuilisez pas une adresse à moins que vous souhaitiez regénérer une demande de paiement antérieure.</translation>
     </message>
     <message>
         <source>R&amp;euse an existing receiving address (not recommended)</source>
@@ -3436,11 +3436,11 @@ Soit monnayer des dénominations plus élevées (moins d'entrées sont nécessai
     </message>
     <message>
         <source>An optional label to associate with the new receiving address.</source>
-        <translation>Un label Un optionnel à associer à la nouvelle adresse de réception.</translation>
+        <translation>Un label optionnel à associer à la nouvelle adresse de réception.</translation>
     </message>
     <message>
         <source>An optional message to attach to the payment request, which will be displayed when the request is opened. Note: The message will not be sent with the payment over the ELECTRA network.</source>
-        <translation>Un message optionnel à ajouter à la demande de paiement, lequel sera affiché lorsque la demande sera ouverte. Note: Le message ne sera pas renvoyé avec le paiement sur le réseaux ELECTRA.</translation>
+        <translation>Un message optionnel à ajouter à la demande de paiement, lequel sera affiché lorsque la demande sera ouverte. Note: Le message ne sera pas renvoyé avec le paiement sur le réseau ELECTRA.</translation>
     </message>
     <message>
         <source>RECEIVE</source>
@@ -3448,7 +3448,7 @@ Soit monnayer des dénominations plus élevées (moins d'entrées sont nécessai
     </message>
     <message>
         <source>An optional message to attach to the payment request, which will be displayed when the request is opened.&lt;br&gt;Note: The message will not be sent with the payment over the ELECTRA network.</source>
-        <translation>Un message optionnel à ajouter à la demande de paiement, lequel sera affiché lorsque la demande sera ouverte. &lt;br /&gt; Note: Le message ne sera pas renvoyé avec le paiement sur le réseaux ELECTRA.</translation>
+        <translation>Un message optionnel à ajouter à la demande de paiement, lequel sera affiché lorsque la demande sera ouverte. &lt;br /&gt; Note: Le message ne sera pas envoyé avec le paiement sur le réseau ELECTRA.</translation>
     </message>
     <message>
         <source>Use this form to request payments. All fields are &lt;b&gt;optional&lt;/b&gt;.</source>
@@ -3484,7 +3484,7 @@ Soit monnayer des dénominations plus élevées (moins d'entrées sont nécessai
     </message>
     <message>
         <source>Show the selected request (does the same as double clicking an entry)</source>
-        <translation>Montrer la demande sélectionnée (fait la même chose que le doublic clic sur une entrée)</translation>
+        <translation>Montrer la demande sélectionnée (fait la même chose que le double clic sur une entrée)</translation>
     </message>
     <message>
         <source>Show</source>
@@ -3837,7 +3837,7 @@ Soit monnayer des dénominations plus élevées (moins d'entrées sont nécessai
     </message>
     <message>
         <source>are added as transaction fee</source>
-        <translation>setont ajouté pour les frais de transaction</translation>
+        <translation>seront ajouté pour les frais de transaction</translation>
     </message>
     <message>
         <source>Total Amount = &lt;b&gt;%1&lt;/b&gt;&lt;br /&gt;= %2</source>
@@ -3940,7 +3940,7 @@ Soit monnayer des dénominations plus élevées (moins d'entrées sont nécessai
     </message>
     <message>
         <source>Remove this entry</source>
-        <translation>Supprimer cette entré</translation>
+        <translation>Supprimer cette entrée</translation>
     </message>
     <message>
         <source>&amp;Label:</source>
