@@ -40,6 +40,7 @@
 #include <QApplication>
 #include <QDateTime>
 #include <QDesktopWidget>
+#include <QDesktopServices>
 #include <QDragEnterEvent>
 #include <QIcon>
 #include <QListWidget>
@@ -311,6 +312,47 @@ void BitcoinGUI::createActions(const NetworkStyle* networkStyle)
     overviewAction->setStatusTip(tr("Show general overview of wallet"));
     overviewAction->setToolTip(overviewAction->statusTip());
     overviewAction->setCheckable(true);
+    facebookAction = new QAction(QIcon(":/icons/facebook"), tr("&Facebook"), this);
+    facebookAction->setStatusTip(tr("Electra Facebook"));
+    facebookAction->setToolTip(facebookAction->statusTip());
+    facebookAction->setCheckable(true);
+    twitterAction = new QAction(QIcon(":/icons/twitter"), tr("&Twitter"), this);
+    twitterAction->setStatusTip(tr("Electra Twitter"));
+    twitterAction->setToolTip(twitterAction->statusTip());
+    twitterAction->setCheckable(true);
+    discordAction = new QAction(QIcon(":/icons/discord"), tr("&Discord"), this);
+    discordAction->setStatusTip(tr("Electra Discord"));
+    discordAction->setToolTip(discordAction->statusTip());
+    discordAction->setCheckable(true);
+    youtubeAction = new QAction(QIcon(":/icons/youtube"), tr("&Youtube"), this);
+    youtubeAction->setStatusTip(tr("Electra Youtube"));
+    youtubeAction->setToolTip(youtubeAction->statusTip());
+    youtubeAction->setCheckable(true);
+    telegramAction = new QAction(QIcon(":/icons/telegram"), tr("&Telegram"), this);
+    telegramAction->setStatusTip(tr("Electra Telegram"));
+    telegramAction->setToolTip(telegramAction->statusTip());
+    telegramAction->setCheckable(true);
+    redditAction = new QAction(QIcon(":/icons/reddit"), tr("&Reddit"), this);
+    redditAction->setStatusTip(tr("Electra Reddit"));
+    redditAction->setToolTip(redditAction->statusTip());
+    redditAction->setCheckable(true);
+    electraNewsAction = new QAction(QIcon(":/icons/explorer"), tr("&Electra news"), this);
+    electraNewsAction->setStatusTip(tr("Check the last news of Electra project"));
+    electraNewsAction->setToolTip(electraNewsAction->statusTip());
+    electraNewsAction->setCheckable(true);
+    foundationNewsAction = new QAction(QIcon(":/icons/explorer"), tr("&Foundation news"), this);
+    foundationNewsAction->setStatusTip(tr("Check the last news of Electra foundation"));
+    foundationNewsAction->setToolTip(foundationNewsAction->statusTip());
+    foundationNewsAction->setCheckable(true);
+    exchangesAction = new QAction(QIcon(":/icons/explorer"), tr("&Exchanges"), this);
+    exchangesAction->setStatusTip(tr("Markets to buy and sell Electra Coin (ECA)"));
+    exchangesAction->setToolTip(exchangesAction->statusTip());
+    exchangesAction->setCheckable(true);
+    electraBlockExplorerAction = new QAction(QIcon(":/icons/explorer"), tr("&Electra block explorer"), this);
+    electraBlockExplorerAction->setStatusTip(tr("Electra blockchain explorer"));
+    electraBlockExplorerAction->setToolTip(electraBlockExplorerAction->statusTip());
+    electraBlockExplorerAction->setCheckable(true);
+  
 #ifdef Q_OS_MAC
     overviewAction->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_1));
 #else
@@ -392,6 +434,16 @@ void BitcoinGUI::createActions(const NetworkStyle* networkStyle)
     connect(privacyAction, SIGNAL(triggered()), this, SLOT(gotoPrivacyPage()));
     connect(historyAction, SIGNAL(triggered()), this, SLOT(showNormalIfMinimized()));
     connect(historyAction, SIGNAL(triggered()), this, SLOT(gotoHistoryPage()));
+    connect(facebookAction, SIGNAL(triggered()), this, SLOT(facebookActionClicked()));
+    connect(twitterAction, SIGNAL(triggered()), this, SLOT(twitterActionClicked()));
+    connect(discordAction, SIGNAL(triggered()), this, SLOT(discordActionClicked()));
+    connect(telegramAction, SIGNAL(triggered()), this, SLOT(telegramActionClicked()));
+    connect(youtubeAction, SIGNAL(triggered()), this, SLOT(youtubeActionClicked()));
+    connect(redditAction, SIGNAL(triggered()), this, SLOT(redditActionClicked()));
+    connect(electraNewsAction, SIGNAL(triggered()), this, SLOT(electraNewsActionClicked()));
+    connect(foundationNewsAction, SIGNAL(triggered()), this, SLOT(foundationNewsActionClicked()));
+    connect(exchangesAction, SIGNAL(triggered()), this, SLOT(exchangesActionClicked()));
+    connect(electraBlockExplorerAction, SIGNAL(triggered()), this, SLOT(electraBlockExplorerActionClicked()));
 #endif // ENABLE_WALLET
 
     quitAction = new QAction(QIcon(":/icons/quit"), tr("E&xit"), this);
@@ -558,6 +610,20 @@ void BitcoinGUI::createMenuBar()
     help->addSeparator();
     help->addAction(aboutAction);
     help->addAction(aboutQtAction);
+  
+  	
+	  QMenu* Links = appMenuBar->addMenu(tr("&Links"));
+		Links->addAction(facebookAction);
+		Links->addAction(twitterAction);
+		Links->addAction(discordAction);
+		Links->addAction(telegramAction);
+		Links->addAction(youtubeAction);
+		Links->addAction(redditAction);
+		Links->addAction(electraNewsAction);
+		Links->addAction(foundationNewsAction);
+		Links->addAction(exchangesAction);
+		Links->addAction(electraBlockExplorerAction);
+	
 }
 
 void BitcoinGUI::createToolBars()
@@ -780,6 +846,47 @@ void BitcoinGUI::showHelpMessageClicked()
     HelpMessageDialog* help = new HelpMessageDialog(this, false);
     help->setAttribute(Qt::WA_DeleteOnClose);
     help->show();
+}
+
+void BitcoinGUI::facebookActionClicked()
+{
+        QDesktopServices::openUrl(QUrl("https://www.facebook.com/Electracoineca"));
+}
+void BitcoinGUI::twitterActionClicked()
+{
+        QDesktopServices::openUrl(QUrl("https://twitter.com/ElectracoinECA"));
+}
+void BitcoinGUI::discordActionClicked()
+{
+        QDesktopServices::openUrl(QUrl("https://discordapp.com/invite/B8F7Jdv"));
+}
+void BitcoinGUI::telegramActionClicked()
+{
+        QDesktopServices::openUrl(QUrl("https://t.me/Electracoin"));
+}
+void BitcoinGUI::youtubeActionClicked()
+{
+        QDesktopServices::openUrl(QUrl("https://www.youtube.com/channel/UCJsNuZ3smLeQ4ldA5UBGNqA"));
+}
+void BitcoinGUI::redditActionClicked()
+{
+        QDesktopServices::openUrl(QUrl("https://www.reddit.com/r/Electra_Currency/"));
+}
+void BitcoinGUI::electraNewsActionClicked()
+{
+        QDesktopServices::openUrl(QUrl("https://www.electraproject.org/electracoin-news/"));
+}
+void BitcoinGUI::foundationNewsActionClicked()
+{
+        QDesktopServices::openUrl(QUrl("https://www.electraproject.org/foundation-news/"));
+}
+void BitcoinGUI::exchangesActionClicked()
+{
+        QDesktopServices::openUrl(QUrl("https://www.electraproject.org/where-can-i-buy-electracoin/"));
+}
+void BitcoinGUI::electraBlockExplorerActionClicked()
+{
+        QDesktopServices::openUrl(QUrl("https://www.electraexplorer.com/"));
 }
 
 #ifdef ENABLE_WALLET
