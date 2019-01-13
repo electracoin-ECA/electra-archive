@@ -312,7 +312,7 @@ void BitcoinGUI::createActions(const NetworkStyle* networkStyle)
     overviewAction->setStatusTip(tr("Show general overview of wallet"));
     overviewAction->setToolTip(overviewAction->statusTip());
     overviewAction->setCheckable(true);
-  	facebookAction = new QAction(QIcon(":/icons/facebook"), tr("&Facebook"), this);
+    facebookAction = new QAction(QIcon(":/icons/facebook"), tr("&Facebook"), this);
     facebookAction->setToolTip(tr("Electra Facebook"));
     twitterAction = new QAction(QIcon(":/icons/twitter"), tr("&Twitter"), this);
     twitterAction->setToolTip(tr("Electra Twitter"));
@@ -324,14 +324,14 @@ void BitcoinGUI::createActions(const NetworkStyle* networkStyle)
     telegramAction->setToolTip(tr("Electra Telegram"));
     redditAction = new QAction(QIcon(":/icons/reddit"), tr("&Reddit"), this);
     redditAction->setToolTip(tr("Electra Reddit"));
-	  electraNewsAction = new QAction(QIcon(":/icons/explorer"), tr("&Electra news"), this);
-	  electraNewsAction->setToolTip(tr("Electra News"));
-	  foundationNewsAction = new QAction(QIcon(":/icons/explorer"), tr("&Foundation news"), this);
-	  foundationNewsAction->setToolTip(tr("Foundation News"));
-	  exchangesAction = new QAction(QIcon(":/icons/explorer"), tr("&Exchanges"), this);
-	  exchangesAction->setToolTip(tr("Exchange List"));
-	  electraBlockExplorerAction = new QAction(QIcon(":/icons/explorer"), tr("&Electra block explorer"), this);
-	  electraBlockExplorerAction->setToolTip(tr("Electra block explorer"));
+    electraNewsAction = new QAction(QIcon(":/icons/explorer"), tr("&Electra news"), this);
+    electraNewsAction->setToolTip(tr("Electra News"));
+    foundationNewsAction = new QAction(QIcon(":/icons/explorer"), tr("&Foundation news"), this);
+    foundationNewsAction->setToolTip(tr("Foundation News"));
+    exchangesAction = new QAction(QIcon(":/icons/explorer"), tr("&Exchanges"), this);
+    exchangesAction->setToolTip(tr("Exchange List"));
+    electraBlockExplorerAction = new QAction(QIcon(":/icons/explorer"), tr("&Electra block explorer"), this);
+    electraBlockExplorerAction->setToolTip(tr("Electra block explorer"));
   
 #ifdef Q_OS_MAC
     overviewAction->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_1));
@@ -420,10 +420,10 @@ void BitcoinGUI::createActions(const NetworkStyle* networkStyle)
     connect(telegramAction, SIGNAL(triggered()), this, SLOT(telegramActionClicked()));
     connect(youtubeAction, SIGNAL(triggered()), this, SLOT(youtubeActionClicked()));
     connect(redditAction, SIGNAL(triggered()), this, SLOT(redditActionClicked()));
-	  connect(electraNewsAction, SIGNAL(triggered()), this, SLOT(electraNewsActionClicked()));
-	  connect(foundationNewsAction, SIGNAL(triggered()), this, SLOT(foundationNewsActionClicked()));
-	  connect(exchangesAction, SIGNAL(triggered()), this, SLOT(exchangesActionClicked()));
-	  connect(electraBlockExplorerAction, SIGNAL(triggered()), this, SLOT(electraBlockExplorerActionClicked()));
+    connect(electraNewsAction, SIGNAL(triggered()), this, SLOT(electraNewsActionClicked()));
+    connect(foundationNewsAction, SIGNAL(triggered()), this, SLOT(foundationNewsActionClicked()));
+    connect(exchangesAction, SIGNAL(triggered()), this, SLOT(exchangesActionClicked()));
+    connect(electraBlockExplorerAction, SIGNAL(triggered()), this, SLOT(electraBlockExplorerActionClicked()));
 #endif // ENABLE_WALLET
 
     quitAction = new QAction(QIcon(":/icons/quit"), tr("E&xit"), this);
