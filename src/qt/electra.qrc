@@ -60,11 +60,11 @@
         <file alias="onion">res/icons/onion.png</file>
         <file alias="explorer">res/icons/explorer.png</file>
         <file alias="facebook">res/icons/facebook.png</file>
-	    <file alias="discord">res/icons/discord.png</file>
-	    <file alias="telegram">res/icons/telegram.png</file>
-	    <file alias="reddit">res/icons/reddit.png</file>
-	    <file alias="youtube">res/icons/youtube.png</file>
-	    <file alias="twitter">res/icons/twitter.png</file>
+	<file alias="discord">res/icons/discord.png</file>
+	<file alias="telegram">res/icons/telegram.png</file>
+	<file alias="reddit">res/icons/reddit.png</file>
+	<file alias="youtube">res/icons/youtube.png</file>
+	<file alias="twitter">res/icons/twitter.png</file>
     </qresource>
     <qresource prefix="/css">
         <file alias="default">res/css/default.css</file>
