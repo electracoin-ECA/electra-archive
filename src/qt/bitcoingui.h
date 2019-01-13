@@ -137,10 +137,10 @@ private:
     QAction* telegramAction;
     QAction* youtubeAction;
     QAction* redditAction;
-	  QAction* electraNewsAction;
-	  QAction* foundationNewsAction;
-	  QAction* exchangesAction;
-	  QAction* electraBlockExplorerAction;
+    QAction* electraNewsAction;
+    QAction* foundationNewsAction;
+    QAction* exchangesAction;
+    QAction* electraBlockExplorerAction;
 
     QSystemTrayIcon* trayIcon;
     QMenu* trayIconMenu;
@@ -216,7 +216,7 @@ public slots:
     void electraNewsActionClicked();
     void foundationNewsActionClicked();
     void exchangesActionClicked();
-	  void electraBlockExplorerActionClicked();
+    void electraBlockExplorerActionClicked();
     
     /** Show incoming transaction notification for new transactions. */
     void incomingTransaction(const QString& date, int unit, const CAmount& amount, const QString& type, const QString& address);
