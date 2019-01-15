@@ -41,17 +41,17 @@ extern unsigned nMaxDatacarrierBytes;
  */
 static const uint32_t MANDATORY_SCRIPT_VERIFY_FLAGS =
     SCRIPT_VERIFY_P2SH | SCRIPT_VERIFY_STRICTENC |
-    SCRIPT_VERIFY_LOW_S;
+    SCRIPT_VERIFY_LOW_S | SCRIPT_VERIFY_DERSIG |
+    SCRIPT_VERIFY_NULLDUMMY | SCRIPT_VERIFY_SIGPUSHONLY |
+    SCRIPT_VERIFY_MINIMALDATA;
 
 /**
  * Standard script verification flags that standard transactions will comply
  * with. However scripts violating these flags may still be present in valid
  * blocks and we must accept those blocks.
  */
-static const uint32_t STANDARD_SCRIPT_VERIFY_FLAGS =
-    MANDATORY_SCRIPT_VERIFY_FLAGS | SCRIPT_VERIFY_DERSIG |
-    SCRIPT_VERIFY_NULLDUMMY | SCRIPT_VERIFY_SIGPUSHONLY |
-    SCRIPT_VERIFY_MINIMALDATA | SCRIPT_VERIFY_DISCOURAGE_UPGRADABLE_NOPS;
+static const uint32_t STANDARD_SCRIPT_VERIFY_FLAGS = 
+    MANDATORY_SCRIPT_VERIFY_FLAGS | SCRIPT_VERIFY_DISCOURAGE_UPGRADABLE_NOPS;
 
 /**
  * For convenience, standard but not mandatory verify flags.
