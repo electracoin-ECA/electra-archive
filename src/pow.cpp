@@ -42,7 +42,7 @@ unsigned int GetNextWorkRequired(const CBlockIndex* pindexLast, const CBlockHead
         return Params().ProofOfWorkLimit().GetCompact();
     }
 
-    if (pindexLast->nHeight >= Params().POS_START_BLOCK()) {
+    if (fProofOfStake) {
         uint256 bnTargetLimit = (~uint256(0) >> 20);
         int64_t nTargetSpacing = 60;
         int64_t nTargetTimespan = 60 * 10;
@@ -126,8 +126,8 @@ unsigned int GetNextWorkRequired(const CBlockIndex* pindexLast, const CBlockHead
 
 unsigned int GetLegacyNextWorkRequired(const CBlockIndex* pindexLast, const CBlockHeader* pblock, bool fProofOfStake)
 {
-    int64_t nTargetSpacing = 150;
-    int64_t nTargetSpacingOld = 300;
+    int64_t nTargetSpacing = 150; // 2.5 minutes
+    int64_t nTargetSpacingOld = 300; // 5 minutes
     int64_t nTargetTimespan = 15 * 60;
     int64_t nHardForkBlock = 112200;
 
@@ -192,8 +192,8 @@ bool CheckProofOfWork(uint256 hash, int nVersion, unsigned int nBits)
         return error("CheckProofOfWork() : nBits below minimum work");
 
     // Check proof of work matches claimed amount
-    if (nVersion >= Params().WALLET_UPGRADE_VERSION() && hash > bnTarget)
-        return error("CheckProofOfWork() : hash doesn't match nBits");
+    //if (nVersion >= Params().WALLET_UPGRADE_VERSION() && hash > bnTarget)
+        //return error("CheckProofOfWork() : hash doesn't match nBits");
 
     return true;
 }
