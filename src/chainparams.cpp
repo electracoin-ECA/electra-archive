@@ -138,7 +138,7 @@ public:
         /** Height or Time Based Activations **/
         nLastPOWBlock = 13815;
         nPOSStartBlock = 11811;
-        nMandatoryUpgradeBlock = 155956;
+        nMandatoryUpgradeBlock = 164200;
         nUpgradeBlockVersion = 8;                                   // Block headers must be this version after upgrade block
         nZerocoinStartHeight = 2100000000;                          // OFF
         //nZerocoinStartTime = 4000000000;
@@ -185,7 +185,7 @@ public:
         assert(genesis.hashMerkleRoot == uint256("0xa45c61b17857983dee346573eb46cae28171b98a2595115fea8bc5a9227467dd"));
         assert(hashGenesisBlock == uint256("0x00000f98da995de0ef1665c7d3338687923c1199230a44ecbdb5cec9306e4f4e"));
 
-        vSeeds.push_back(CDNSSeedData("1", "zentec.ddns.net"));
+        //vSeeds.push_back(CDNSSeedData("1", "zentec.ddns.net"));
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 33);
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 40);
