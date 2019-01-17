@@ -229,7 +229,12 @@ std::string BlockToString(CBlockIndex* pBlock)
     if (pBlock->nHeight == 0)
         Generated = OutVolume;
     else
-        Generated = GetBlockValue(pBlock->nHeight - 1, pBlock->pprev->IsProofOfStake(), uint64_t(0));
+    {
+        uint64_t nCoinAge;
+        if (pBlock->IsProofOfWork() || !GetCoinAge(block.vtx[1], block.nTime, pBlock->nHeight, nCoinAge))
+            nCoinAge = 0;
+        Generated = GetBlockValue(pBlock->nHeight, pBlock->IsProofOfStake(), nCoinAge);
+    }
 
     std::string BlockContentCells[] =
         {
