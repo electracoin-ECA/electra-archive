@@ -3012,11 +3012,11 @@ bool CWallet::CreateCoinStake(const CKeyStore& keystore, unsigned int nBits, int
             if (nTimeDiff > nStakeMaxAgeNew)
                 nTimeDiff = nStakeMaxAgeNew;
             uint256 bnCentSecond = uint256(stakeInput->GetValue()) * nTimeDiff;
-            LogPrintf("CreateCoinStake() : coin age nValueIn=%"PRId64" nTimeDiff=%d bnCentSecond=%s\n", stakeInput->GetValue(), nTimeDiff, bnCentSecond.ToString().c_str());
+            //LogPrintf("CreateCoinStake() : coin age nValueIn=%"PRId64" nTimeDiff=%d bnCentSecond=%s\n", stakeInput->GetValue(), nTimeDiff, bnCentSecond.ToString().c_str());
             uint256 bnCoinDay = bnCentSecond / COIN / (24 * 60 * 60);
             LogPrintf("CreateCoinStake() : coin age bnCoinDay=%s\n", bnCoinDay.ToString().c_str());
             nCoinAge = bnCoinDay.Get64();
-            LogPrintf("CreateCoinStake() : nCoinAge=%"PRId64"\n", nCoinAge);
+            //LogPrintf("CreateCoinStake() : nCoinAge=%"PRId64"\n", nCoinAge);
             nReward = GetBlockValue(chainActive.Height() + 1, true, nCoinAge);
             nCredit += nReward;
 
