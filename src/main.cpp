@@ -2899,7 +2899,7 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
     {
         nExpectedMint = GetBlockValue(pindex->nHeight, false, nCoinAge) + nFees;
     }
-    LogPrintf("ConnectBlock() : INFO : Block reward (actual=%s vs limit=%s)\n", FormatMoney(pindex->nMint), FormatMoney(nExpectedMint));
+    //LogPrintf("ConnectBlock() : INFO : Block reward (actual=%s vs limit=%s)\n", FormatMoney(pindex->nMint), FormatMoney(nExpectedMint));
 
     //Check that the block does not overmint
     if (!IsBlockValueValid(block, nExpectedMint, pindex->nMint)) {
