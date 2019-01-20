@@ -168,11 +168,11 @@ std::string CMasternodeSync::GetSyncStatus()
     case MASTERNODE_SYNC_SPORKS:
         return _("Synchronizing sporks...");
     case MASTERNODE_SYNC_LIST:
-        return _("Synchronizing masternodes...");
+        return _("                       ");//a blank space is left to keep the integrity of the display
     case MASTERNODE_SYNC_MNW:
-        return _("Synchronizing masternode winners...");
+        return _("                       ");//a blank space is left to keep the integrity of the display
     case MASTERNODE_SYNC_BUDGET:
-        return _("Synchronizing budgets...");
+        return _("                       ");//a blank space is left to keep the integrity of the display
     case MASTERNODE_SYNC_FAILED:
         return _("Synchronization failed");
     case MASTERNODE_SYNC_FINISHED:
