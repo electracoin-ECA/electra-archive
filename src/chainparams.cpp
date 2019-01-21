@@ -184,7 +184,14 @@ public:
 
         assert(genesis.hashMerkleRoot == uint256("0xa45c61b17857983dee346573eb46cae28171b98a2595115fea8bc5a9227467dd"));
         assert(hashGenesisBlock == uint256("0x00000f98da995de0ef1665c7d3338687923c1199230a44ecbdb5cec9306e4f4e"));
-
+        
+        vSeeds.push_back(CDNSSeedData("1", "79.137.39.240"));
+        vSeeds.push_back(CDNSSeedData("2", "51.38.115.250"));
+        vSeeds.push_back(CDNSSeedData("3", "54.38.53.207"));
+        vSeeds.push_back(CDNSSeedData("4", "178.128.111.9"));
+        vSeeds.push_back(CDNSSeedData("5", "159.89.168.255"));
+        vSeeds.push_back(CDNSSeedData("6", "159.89.171.67"));
+  
         //vSeeds.push_back(CDNSSeedData("1", "zentec.ddns.net"));
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 33);
