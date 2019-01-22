@@ -142,7 +142,7 @@ void CMasternodeSync::GetNextAsset()
         ClearFulfilledRequest();
         RequestedMasternodeAssets = MASTERNODE_SYNC_SPORKS;
         break;
-    case (MASTERNODE_SYNC_SPORKS):
+    /*case (MASTERNODE_SYNC_SPORKS):
         RequestedMasternodeAssets = MASTERNODE_SYNC_LIST;
         break;
     case (MASTERNODE_SYNC_LIST):
@@ -150,8 +150,8 @@ void CMasternodeSync::GetNextAsset()
         break;
     case (MASTERNODE_SYNC_MNW):
         RequestedMasternodeAssets = MASTERNODE_SYNC_BUDGET;
-        break;
-    case (MASTERNODE_SYNC_BUDGET):
+        break;*/
+    case (MASTERNODE_SYNC_SPORKS):
         LogPrintf("CMasternodeSync::GetNextAsset - Sync has finished\n");
         RequestedMasternodeAssets = MASTERNODE_SYNC_FINISHED;
         break;
@@ -167,12 +167,12 @@ std::string CMasternodeSync::GetSyncStatus()
         return _("Synchronization pending...");
     case MASTERNODE_SYNC_SPORKS:
         return _("Synchronizing sporks...");
-    case MASTERNODE_SYNC_LIST:
+    /*case MASTERNODE_SYNC_LIST:
         return _("Synchronizing masternodes...");
     case MASTERNODE_SYNC_MNW:
         return _("Synchronizing masternode winners...");
     case MASTERNODE_SYNC_BUDGET:
-        return _("Synchronizing budgets...");
+        return _("Synchronizing budgets...");*/
     case MASTERNODE_SYNC_FAILED:
         return _("Synchronization failed");
     case MASTERNODE_SYNC_FINISHED:

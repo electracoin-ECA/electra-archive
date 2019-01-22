@@ -16,12 +16,12 @@ BitcoinUnits::BitcoinUnits(QObject* parent) : QAbstractListModel(parent),
 {
 }
 
-QList<BitcoinUnits::Unit> BitcoinUnits::availableUnits()
+QList<BitcoinUnits::Unit> BitcoinUnits::availableUnits() //disable the unit choice to avoid confusion
 {
     QList<BitcoinUnits::Unit> unitlist;
     unitlist.append(ECA);
-    unitlist.append(mECA);
-    unitlist.append(uECA);
+    //unitlist.append(mECA); 
+    //unitlist.append(uECA);
     return unitlist;
 }
 
