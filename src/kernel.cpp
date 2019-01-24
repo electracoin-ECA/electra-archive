@@ -378,8 +378,11 @@ bool CheckProofOfStake(const CBlock block, uint256& hashProofOfStake, std::uniqu
         }
         else
         {
-            if (!VerifyScript(txin.scriptSig, txPrev.vout[txin.prevout.n].scriptPubKey, STANDARD_SCRIPT_VERIFY_FLAGS & ~SCRIPT_VERIFY_STRICTENC & ~SCRIPT_VERIFY_LOW_S & ~SCRIPT_VERIFY_DERSIG, TransactionSignatureChecker(&tx, 0)))
-                return error("CheckProofOfStake() : VerifySignature failed on coinstake %s", tx.GetHash().ToString().c_str());
+            ScriptError serror = SCRIPT_ERR_OK;
+            if (!VerifyScript(txin.scriptSig, txPrev.vout[txin.prevout.n].scriptPubKey, SCRIPT_VERIFY_P2SH, TransactionSignatureChecker(&tx, 0), &serror))
+            {
+                return error("CheckProofOfStake() : VerifySignature failed on coinstake %s, error %s", tx.GetHash().ToString().c_str(), ScriptErrorString(serror));
+            }
         }
 
         CEcaStake* ecaInput = new CEcaStake();
