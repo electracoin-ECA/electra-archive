@@ -382,8 +382,6 @@ bool CheckProofOfStake(const CBlock block, uint256& hashProofOfStake, std::uniqu
                 return error("CheckProofOfStake() : VerifySignature failed on coinstake %s", tx.GetHash().ToString().c_str());
         }
 
-
-
         CEcaStake* ecaInput = new CEcaStake();
         ecaInput->SetInput(txPrev, txin.prevout.n);
         stake = std::unique_ptr<CStakeInput>(ecaInput);
