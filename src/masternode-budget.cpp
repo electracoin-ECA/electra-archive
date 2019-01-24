@@ -497,7 +497,7 @@ void CBudgetManager::CheckAndRemove()
         }
 
         if (pfinalizedBudget->fValid) {
-            pfinalizedBudget->AutoCheck();
+            pfinalizedBudget->CheckAndVote();
             tmpMapFinalizedBudgets.insert(make_pair(pfinalizedBudget->GetHash(), *pfinalizedBudget));
         }
 
