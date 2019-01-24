@@ -46,7 +46,7 @@ using namespace boost;
 #define SPORK_16_ZEROCOIN_MAINTENANCE_MODE 10015
 
 #define SPORK_2_SWIFTTX_DEFAULT 4070908800                        //OFF - to be reenabled
-#define SPORK_3_SWIFTTX_BLOCK_FILTERING_DEFAULT 4070908800        //OFF - to be reenabled
+#define SPORK_3_SWIFTTX_BLOCK_FILTERING_DEFAULT 978307200         //2001-1-1
 #define SPORK_5_MAX_VALUE_DEFAULT 1000                            //1000 ECA
 #define SPORK_7_MASTERNODE_SCANNING_DEFAULT 4070908800            //OFF - to be reenabled
 #define SPORK_8_MASTERNODE_PAYMENT_ENFORCEMENT_DEFAULT 4070908800 //OFF - to be reenabled
