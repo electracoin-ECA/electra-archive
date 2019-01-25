@@ -30,7 +30,7 @@ class SendCoinsRecipient;
 class UnitDisplayStatusBarControl;
 class WalletFrame;
 class WalletModel;
-//class MasternodeList;
+class MasternodeList;
 
 class CWallet;
 
@@ -124,12 +124,23 @@ private:
     QAction* openPeersAction;
     QAction* openRepairAction;
     QAction* openConfEditorAction;
-    QAction* openMNConfEditorAction;
+    //QAction* openMNConfEditorAction;
     QAction* showBackupsAction;
     QAction* openAction;
     QAction* openBlockExplorerAction;
     QAction* showHelpMessageAction;
     QAction* multiSendAction;
+    
+    QAction* facebookAction;
+    QAction* twitterAction;
+    QAction* discordAction;
+    QAction* telegramAction;
+    QAction* youtubeAction;
+    QAction* redditAction;
+    QAction* electraNewsAction;
+    QAction* foundationNewsAction;
+    QAction* exchangesAction;
+    QAction* electraBlockExplorerAction;
 
     QSystemTrayIcon* trayIcon;
     QMenu* trayIconMenu;
@@ -195,6 +206,18 @@ public slots:
 
     bool handlePaymentRequest(const SendCoinsRecipient& recipient);
 
+  /** Links menu */
+    void facebookActionClicked();
+    void twitterActionClicked();
+    void discordActionClicked();
+    void telegramActionClicked();
+    void youtubeActionClicked();
+    void redditActionClicked();
+    void electraNewsActionClicked();
+    void foundationNewsActionClicked();
+    void exchangesActionClicked();
+    void electraBlockExplorerActionClicked();
+    
     /** Show incoming transaction notification for new transactions. */
     void incomingTransaction(const QString& date, int unit, const CAmount& amount, const QString& type, const QString& address);
 #endif // ENABLE_WALLET

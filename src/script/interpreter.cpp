@@ -1,15 +1,16 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
-// Copyright (c) 2009-2014 The Bitcoin developers
+// Copyright (c) 2009-2016 The Bitcoin Core developers
+// Copyright (c) 2017-2018 The Bitcoin developers
 // Copyright (c) 2017 The PIVX developers
 // Copyright (c) 2018 The Electra developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 #include "interpreter.h"
 
-#include "primitives/transaction.h"
 #include "crypto/ripemd160.h"
 #include "crypto/sha1.h"
 #include "crypto/sha256.h"
+#include "primitives/transaction.h"
 #include "pubkey.h"
 #include "script/script.h"
 #include "uint256.h"
@@ -299,9 +300,8 @@ bool EvalScript(vector<vector<unsigned char> >& stack, const CScript& script, un
                     return set_error(serror, SCRIPT_ERR_MINIMALDATA);
                 }
                 stack.push_back(vchPushValue);
-            } else if (fExec || (OP_IF <= opcode && opcode <= OP_ENDIF))
-            switch (opcode)
-            {
+            } else if (fExec || (OP_IF <= opcode && opcode <= OP_ENDIF)) {
+            switch (opcode) {
                 //
                 // Push value
                 //
@@ -1091,6 +1091,7 @@ bool EvalScript(vector<vector<unsigned char> >& stack, const CScript& script, un
 
                 default:
                     return set_error(serror, SCRIPT_ERR_BAD_OPCODE);
+                }
             }
 
             // Size limits
@@ -1361,7 +1362,6 @@ bool VerifyScript(const CScript& scriptSig, const CScript& scriptPubKey, unsigne
         return false;
     if (stack.empty())
         return set_error(serror, SCRIPT_ERR_EVAL_FALSE);
-
     if (CastToBool(stack.back()) == false)
         return set_error(serror, SCRIPT_ERR_EVAL_FALSE);
 
@@ -1372,24 +1372,37 @@ bool VerifyScript(const CScript& scriptSig, const CScript& scriptPubKey, unsigne
         if (!scriptSig.IsPushOnly())
             return set_error(serror, SCRIPT_ERR_SIG_PUSHONLY);
 
-        // stackCopy cannot be empty here, because if it was the
+        // Restore stack.
+        swap(stack, stackCopy);
+
+        // stack cannot be empty here, because if it was the P2SH  HASH <> EQUAL
         // P2SH  HASH <> EQUAL  scriptPubKey would be evaluated with
         // an empty stack and the EvalScript above would return false.
-        assert(!stackCopy.empty());
+        assert(!stack.empty());
 
-        const valtype& pubKeySerialized = stackCopy.back();
+        const valtype& pubKeySerialized = stack.back();
         CScript pubKey2(pubKeySerialized.begin(), pubKeySerialized.end());
-        popstack(stackCopy);
+        popstack(stack);
 
-        if (!EvalScript(stackCopy, pubKey2, flags, checker, serror))
+        if (!EvalScript(stack, pubKey2, flags, checker, serror))
             // serror is set
             return false;
-        if (stackCopy.empty())
+        if (stack.empty())
             return set_error(serror, SCRIPT_ERR_EVAL_FALSE);
-        if (!CastToBool(stackCopy.back()))
+        if (!CastToBool(stack.back()))
             return set_error(serror, SCRIPT_ERR_EVAL_FALSE);
-        else
-            return set_success(serror);
+    }
+    
+    // The CLEANSTACK check is only performed after potential P2SH evaluation,
+    // as the non-P2SH evaluation of a P2SH script will obviously not result in
+    // a clean stack (the P2SH inputs remain). The same holds for witness evaluation.
+    if ((flags & SCRIPT_VERIFY_CLEANSTACK) != 0) {
+        // Disallow CLEANSTACK without P2SH, as otherwise a switch CLEANSTACK->P2SH+CLEANSTACK
+        // would be possible, which is not a softfork (and P2SH should be one).
+        assert((flags & SCRIPT_VERIFY_P2SH) != 0);
+        if (stack.size() != 1) {
+            return set_error(serror, SCRIPT_ERR_CLEANSTACK);
+        }
     }
 
     return set_success(serror);

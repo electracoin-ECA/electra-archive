@@ -233,7 +233,7 @@ public:
         nTime = block.nTime;
         nBits = block.nBits;
         nNonce = block.nNonce;
-        if(block.nVersion > 8)
+        if(block.nVersion > 9)
             nAccumulatorCheckpoint = block.nAccumulatorCheckpoint;
 
         //Proof of Stake
@@ -478,7 +478,7 @@ public:
         READWRITE(nTime);
         READWRITE(nBits);
         READWRITE(nNonce);
-        if(this->nVersion > 8) {
+        if(this->nVersion > 9) {
             READWRITE(nAccumulatorCheckpoint);
             READWRITE(mapZerocoinSupply);
             READWRITE(vMintDenominationsInBlock);

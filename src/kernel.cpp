@@ -371,8 +371,22 @@ bool CheckProofOfStake(const CBlock block, uint256& hashProofOfStake, std::uniqu
             return error("CheckProofOfStake() : INFO: read txPrev failed");
 
         //verify signature and script
-        if (block.nVersion >= Params().WALLET_UPGRADE_VERSION() && !VerifyScript(txin.scriptSig, txPrev.vout[txin.prevout.n].scriptPubKey, STANDARD_SCRIPT_VERIFY_FLAGS, TransactionSignatureChecker(&tx, 0)))
-            return error("CheckProofOfStake() : VerifySignature failed on coinstake %s", tx.GetHash().ToString().c_str());
+        // ScriptError serror = SCRIPT_ERR_OK;
+        if (block.nVersion >= Params().WALLET_UPGRADE_VERSION())
+        {
+            ScriptError serror = SCRIPT_ERR_OK;
+            if (!VerifyScript(txin.scriptSig, txPrev.vout[txin.prevout.n].scriptPubKey, STANDARD_SCRIPT_VERIFY_FLAGS, TransactionSignatureChecker(&tx, 0), &serror))
+            {
+                return error("CheckProofOfStake() : VerifySignature failed on coinstake %s, %s", tx.GetHash().ToString().c_str(), ScriptErrorString(serror));
+            }
+        }
+         // else
+        // {
+            // if (!VerifyScript(txin.scriptSig, txPrev.vout[txin.prevout.n].scriptPubKey, SCRIPT_VERIFY_P2SH, TransactionSignatureChecker(&tx, 0), &serror))
+            // {
+                // return error("CheckProofOfStake() : VerifySignature failed on coinstake %s, %s", tx.GetHash().ToString().c_str(), ScriptErrorString(serror));
+            // }
+        // }
 
         CEcaStake* ecaInput = new CEcaStake();
         ecaInput->SetInput(txPrev, txin.prevout.n);

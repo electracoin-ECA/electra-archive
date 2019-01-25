@@ -8,7 +8,7 @@
 
 #include "amount.h"
 #include "askpassphrasedialog.h"
-//#include "masternodelist.h"
+#include "masternodelist.h"
 
 #include <QStackedWidget>
 #include <ui_interface.h>

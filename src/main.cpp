@@ -2,6 +2,9 @@
 // Copyright (c) 2009-2014 The Bitcoin developers
 // Copyright (c) 2014-2015 The Dash developers
 // Copyright (c) 2015-2018 The PIVX developers
+// Copyright (c) 2017-2019 The Phore Developers
+// Copyright (c) 2017-2018 The NavCoin Core developers
+// Copyright (c) 2018-2019 The Myce developers
 // Copyright (c) 2018 The Electra developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
@@ -65,6 +68,13 @@ CCriticalSection cs_main;
 BlockMap mapBlockIndex;
 map<uint256, uint256> mapProofOfStake;
 set<pair<COutPoint, unsigned int> > setStakeSeen;
+// maps any spent outputs in the past maxreorgdepth blocks to the height it was spent
+// this means for incoming blocks, we can check that their stake output was not spent before
+// the incoming block tried to use it as a staking input. We can also prevent block spam
+// attacks because then we can check that either the staking input is available in the current
+// active chain, or the staking input was spent in the past 100 blocks after the height
+// of the incoming block.
+map<COutPoint, int> mapStakeSpent;
 map<unsigned int, unsigned int> mapHashedBlocks;
 CChain chainActive;
 CBlockIndex* pindexBestHeader = NULL;
@@ -205,7 +215,90 @@ struct CBlockReject {
     string strRejectReason;
     uint256 hashBlock;
 };
+   
+class CNodeHeaders
+{
+public:
+    CNodeHeaders():
+        maxSize(0),
+        maxAvg(0)
+    {
+        maxSize = GetArg("-headerspamfiltermaxsize", DEFAULT_HEADER_SPAM_FILTER_MAX_SIZE);
+        maxAvg = GetArg("-headerspamfiltermaxavg", DEFAULT_HEADER_SPAM_FILTER_MAX_AVG);
+    }
 
+    bool addHeaders(int nBegin, int nEnd)
+    {
+
+        if (nBegin > 0 && nEnd > 0 && maxSize && maxAvg)
+        {
+
+            for(int point = nBegin; point<= nEnd; point++)
+            {
+                addPoint(point);
+            }
+
+            return true;
+        }
+
+        return false;
+    }
+
+    bool updateState(CValidationState& state, bool ret)
+    {
+        // No headers
+        size_t size = points.size();
+        if (size == 0)
+            return ret;
+
+        // Compute the number of the received headers
+        size_t nHeaders = 0;
+        for (auto point : points)
+        {
+            nHeaders += point.second;
+        }
+
+        // Compute the average value per height
+        double nAvgValue = (double)nHeaders / size;
+
+        // Ban the node if try to spam
+        bool banNode = (nAvgValue >= 1.5 * maxAvg && size >= maxAvg) ||
+                (nAvgValue >= maxAvg && nHeaders >= maxSize) ||
+                (nHeaders >= maxSize * 3);
+        if (banNode)
+        {
+            // Clear the points and ban the node
+            points.clear();
+            return state.DoS(100, false, REJECT_INVALID, "header-spam", false);
+        }
+
+        return ret;
+    }
+
+private:
+    void addPoint(int height)
+    {
+        // Erace the last element in the list
+        if (points.size() == maxSize)
+        {
+            points.erase(points.begin());
+        }
+
+        // Add the point to the list
+        int occurrence = 0;
+        auto mi = points.find(height);
+        if (mi != points.end())
+            occurrence = (*mi).second;
+        occurrence++;
+        points[height] = occurrence;
+    }
+
+private:
+    std::map<int,int> points;
+    size_t maxSize;
+    size_t maxAvg;
+};
+    
 /**
  * Maintain validation-specific state about nodes, protected by cs_main, instead
  * by CNode's own locks. This simplifies asynchronous operation, where
@@ -240,6 +333,8 @@ struct CNodeState {
     //! Whether we consider this a preferred download peer.
     bool fPreferredDownload;
 
+    CNodeHeaders headers;
+    
     CNodeState()
     {
         fCurrentlyConnected = false;
@@ -1445,15 +1540,9 @@ bool AcceptToMemoryPool(CTxMemPool& pool, CValidationState& state, const CTransa
                 hash.ToString(),
                 nFees, ::minRelayTxFee.GetFee(nSize) * 10000);
 
-
-        bool fNewProtocolActive = chainActive.Height() >= Params().WALLET_UPGRADE_BLOCK();
-
         // Check against previous transactions
         // This is done last to help prevent CPU exhaustion denial-of-service attacks.
-        int flags = STANDARD_SCRIPT_VERIFY_FLAGS;
-        if (fNewProtocolActive)
-            flags |= SCRIPT_VERIFY_CLEANSTACK | SCRIPT_VERIFY_MINIMALIF | SCRIPT_VERIFY_NULLFAIL | SCRIPT_VERIFY_CHECKLOCKTIMEVERIFY | SCRIPT_VERIFY_CHECKSEQUENCEVERIFY;
-        if (!CheckInputs(tx, state, view, true, flags, true)) {
+        if (!CheckInputs(tx, state, view, true, STANDARD_SCRIPT_VERIFY_FLAGS, true)) {
             return error("AcceptToMemoryPool: : ConnectInputs failed %s", hash.ToString());
         }
 
@@ -1466,10 +1555,7 @@ bool AcceptToMemoryPool(CTxMemPool& pool, CValidationState& state, const CTransa
         // There is a similar check in CreateNewBlock() to prevent creating
         // invalid blocks, however allowing such transactions into the mempool
         // can be exploited as a DoS attack.
-        flags = MANDATORY_SCRIPT_VERIFY_FLAGS;
-        if (fNewProtocolActive)
-            flags |= SCRIPT_VERIFY_CLEANSTACK | SCRIPT_VERIFY_MINIMALIF | SCRIPT_VERIFY_NULLFAIL | SCRIPT_VERIFY_CHECKLOCKTIMEVERIFY | SCRIPT_VERIFY_CHECKSEQUENCEVERIFY;
-        if (!CheckInputs(tx, state, view, true, flags, true)) {
+        if (!CheckInputs(tx, state, view, true, MANDATORY_SCRIPT_VERIFY_FLAGS, true)) {
             return error("AcceptToMemoryPool: : BUG! PLEASE REPORT THIS! ConnectInputs failed against MANDATORY but not STANDARD flags %s", hash.ToString());
         }
 
@@ -1654,15 +1740,10 @@ bool AcceptableInputs(CTxMemPool& pool, CValidationState& state, const CTransact
             return error("AcceptableInputs: : insane fees %s, %d > %d",
                 hash.ToString(),
                 nFees, ::minRelayTxFee.GetFee(nSize) * 10000);
-
-        bool fNewProtocolActive = chainActive.Height() >= Params().WALLET_UPGRADE_BLOCK();
-
+        
         // Check against previous transactions
         // This is done last to help prevent CPU exhaustion denial-of-service attacks.
-        int flags = STANDARD_SCRIPT_VERIFY_FLAGS;
-        if (fNewProtocolActive)
-            flags |= SCRIPT_VERIFY_CLEANSTACK | SCRIPT_VERIFY_MINIMALIF | SCRIPT_VERIFY_NULLFAIL | SCRIPT_VERIFY_CHECKLOCKTIMEVERIFY | SCRIPT_VERIFY_CHECKSEQUENCEVERIFY;
-        if (!CheckInputs(tx, state, view, false, flags, true)) {
+        if (!CheckInputs(tx, state, view, false, STANDARD_SCRIPT_VERIFY_FLAGS, true)) {
             return error("AcceptableInputs: : ConnectInputs failed %s", hash.ToString());
         }
 
@@ -2075,14 +2156,11 @@ void UpdateCoins(const CTransaction& tx, CValidationState& state, CCoinsViewCach
 bool CScriptCheck::operator()()
 {
     const CScript& scriptSig = ptxTo->vin[nIn].scriptSig;
-    if (chainActive.Height() >= Params().WALLET_UPGRADE_BLOCK() && !VerifyScript(scriptSig, scriptPubKey, nFlags, CachingTransactionSignatureChecker(ptxTo, nIn, cacheStore), &error)) {
+    if (!VerifyScript(scriptSig, scriptPubKey, nFlags, CachingTransactionSignatureChecker(ptxTo, nIn, cacheStore), &error)) {
         return ::error("CScriptCheck(): %s:%d VerifySignature failed: %s", ptxTo->GetHash().ToString(), nIn, ScriptErrorString(error));
     }
     return true;
 }
-
-CBitcoinAddress addressExp1("DQZzqnSR6PXxagep1byLiRg9ZurCZ5KieQ");
-CBitcoinAddress addressExp2("DTQYdnNqKuEHXyNeeYhPQGGGdqHbXYwjpj");
 
 map<COutPoint, COutPoint> mapInvalidOutPoints;
 map<CBigNum, CAmount> mapInvalidSerials;
@@ -2370,6 +2448,9 @@ bool DisconnectBlock(CBlock& block, CValidationState& state, CBlockIndex* pindex
                 if (coins->vout.size() < out.n + 1)
                     coins->vout.resize(out.n + 1);
                 coins->vout[out.n] = undo.txout;
+                
+                // erase the spent input
+                mapStakeSpent.erase(out);
             }
         }
     }
@@ -2708,12 +2789,6 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
 
     bool fScriptChecks = pindex->nHeight >= Checkpoints::GetTotalBlocksEstimate();
 
-    // If scripts won't be checked anyways, don't bother seeing if new protocol is active
-    bool fNewProtocolActive = false;
-    if (fScriptChecks && pindex->pprev) {
-        fNewProtocolActive = pindex->pprev->nHeight >= Params().WALLET_UPGRADE_BLOCK();
-    }
-
     // Do not allow blocks that contain transactions which 'overwrite' older transactions,
     // unless those are already completely spent.
     // If such overwrites are allowed, coinbases and transactions depending upon those
@@ -2850,12 +2925,8 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
                 nFees += view.GetValueIn(tx) - tx.GetValueOut();
             nValueIn += view.GetValueIn(tx);
 
-            std::vector<CScriptCheck> vChecks;
-            unsigned int flags = MANDATORY_SCRIPT_VERIFY_FLAGS | SCRIPT_VERIFY_DERSIG;
-            if (fNewProtocolActive)
-                flags |= SCRIPT_VERIFY_CLEANSTACK | SCRIPT_VERIFY_MINIMALIF | SCRIPT_VERIFY_NULLFAIL | SCRIPT_VERIFY_CHECKLOCKTIMEVERIFY | SCRIPT_VERIFY_CHECKSEQUENCEVERIFY;
-
-            if (!CheckInputs(tx, state, view, fScriptChecks, flags, false, nScriptCheckThreads ? &vChecks : NULL))
+            std::vector<CScriptCheck> vChecks;            
+            if (!CheckInputs(tx, state, view, fScriptChecks, MANDATORY_SCRIPT_VERIFY_FLAGS, false, nScriptCheckThreads ? &vChecks : NULL))
                 return false;
             control.Add(vChecks);
         }
@@ -2923,7 +2994,7 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
     {
         nExpectedMint = GetBlockValue(pindex->nHeight, false, nCoinAge) + nFees;
     }
-    LogPrintf("ConnectBlock() : INFO : Block reward (actual=%s vs limit=%s)\n", FormatMoney(pindex->nMint), FormatMoney(nExpectedMint));
+    //LogPrintf("ConnectBlock() : INFO : Block reward (actual=%s vs limit=%s)\n", FormatMoney(pindex->nMint), FormatMoney(nExpectedMint));
 
     //Check that the block does not overmint
     if (!IsBlockValueValid(block, nExpectedMint, pindex->nMint)) {
@@ -3003,7 +3074,29 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
     if (fTxIndex)
         if (!pblocktree->WriteTxIndex(vPos))
             return state.Abort("Failed to write transaction index");
+    
+    // add new entries
+    for (const CTransaction tx: block.vtx) {
+        if (tx.IsCoinBase() || tx.IsZerocoinSpend())
+            continue;
+        for (const CTxIn in: tx.vin) {
+            LogPrint("map", "mapStakeSpent: Insert %s | %u\n", in.prevout.ToString(), pindex->nHeight);
+            mapStakeSpent.insert(std::make_pair(in.prevout, pindex->nHeight));
+        }
+    }
 
+
+    // delete old entries
+    for (auto it = mapStakeSpent.begin(); it != mapStakeSpent.end();) {
+        if (it->second < pindex->nHeight - Params().MaxReorganizationDepth()) {
+            LogPrint("map", "mapStakeSpent: Erase %s | %u\n", it->first.ToString(), it->second);
+            it = mapStakeSpent.erase(it);
+        }
+        else {
+            it++;
+        }
+    }
+    
     // add this block to the view's block chain
     view.SetBestBlock(pindex->GetBlockHash());
 
@@ -3849,7 +3942,7 @@ bool CheckBlockHeader(const CBlockHeader& block, CValidationState& state, bool f
                 return state.DoS(50, error("CheckBlockHeader() : block version must be below %d before upgrade block", Params().WALLET_UPGRADE_VERSION()), REJECT_INVALID, "block-version");
         }
 
-        // Version 9 header must be used after Params().Zerocoin_StartHeight(). And never before.
+        // Version 10 header must be used after Params().Zerocoin_StartHeight(). And never before.
         if (mapBlockIndex.at(block.hashPrevBlock)->nHeight+1 >= Params().Zerocoin_StartHeight())
         {
             if(block.nVersion < Params().Zerocoin_HeaderVersion())
@@ -4117,7 +4210,7 @@ bool ContextualCheckBlock(const CBlock& block, CValidationState& state, CBlockIn
     return true;
 }
 
-bool AcceptBlockHeader(const CBlock& block, CValidationState& state, CBlockIndex** ppindex)
+bool AcceptBlockHeader(const CBlockHeader& block, CValidationState& state, CBlockIndex** ppindex)
 {
     AssertLockHeld(cs_main);
     // Check for duplicate
@@ -4132,7 +4225,7 @@ bool AcceptBlockHeader(const CBlock& block, CValidationState& state, CBlockIndex
         if (ppindex)
             *ppindex = pindex;
         if (pindex->nStatus & BLOCK_FAILED_MASK)
-            return state.Invalid(error("%s : block is marked invalid", __func__), 0, "duplicate");
+            return state.Invalid(error("%s : block %s is marked invalid", __func__, hash.ToString()), 0, "duplicate");
         return true;
     }
 
@@ -4159,7 +4252,6 @@ bool AcceptBlockHeader(const CBlock& block, CValidationState& state, CBlockIndex
                     return true;
                 }
             }
-
             return state.DoS(100, error("%s : prev block height=%d hash=%s is invalid, unable to add block %s", __func__, pindexPrev->nHeight, block.hashPrevBlock.GetHex(), block.GetHash().GetHex()),
                              REJECT_INVALID, "bad-prevblk");
         }
@@ -4272,6 +4364,54 @@ bool AcceptBlock(CBlock& block, CValidationState& state, CBlockIndex** ppindex, 
 
     int nHeight = pindex->nHeight;
 
+    if (block.IsProofOfStake()) {
+        LOCK(cs_main);
+
+        CCoinsViewCache coins(pcoinsTip);
+
+        if (!coins.HaveInputs(block.vtx[1])) {
+            // the inputs are spent at the chain tip so we should look at the recently spent outputs
+
+            for (CTxIn in : block.vtx[1].vin) {
+                auto it = mapStakeSpent.find(in.prevout);
+                if (it == mapStakeSpent.end()) {
+                    return false;
+                }
+                if (it->second <= pindexPrev->nHeight) {
+                    return false;
+                }
+            }
+        }
+
+        // if this is on a fork
+        if (!chainActive.Contains(pindexPrev) && pindexPrev != NULL) {
+            // start at the block we're adding on to
+            CBlockIndex *last = pindexPrev;
+
+            // while that block is not on the main chain
+            while (!chainActive.Contains(last) && pindexPrev != NULL) {
+                CBlock bl;
+                ReadBlockFromDisk(bl, last);
+                // loop through every spent input from said block
+                for (CTransaction t : bl.vtx) {
+                    for (CTxIn in: t.vin) {
+                        // loop through every spent input in the staking transaction of the new block
+                        for (CTxIn stakeIn : block.vtx[1].vin) {
+                            // if they spend the same input
+                            if (stakeIn.prevout == in.prevout) {
+                                // reject the block
+                                return false;
+                            }
+                        }
+                    }
+                }
+
+                // go to the parent block
+                last = pindexPrev->pprev;
+            }
+        }
+    }
+    
     // Write block to history file
     try {
         unsigned int nBlockSize = ::GetSerializeSize(block, SER_DISK, CLIENT_VERSION);
@@ -5918,7 +6058,7 @@ bool static ProcessMessage(CNode* pfrom, string strCommand, CDataStream& vRecv, 
 
     else if (strCommand == "headers" && Params().HeadersFirstSyncingActive() && !fImporting && !fReindex) // Ignore headers received while importing
     {
-        std::vector<CBlockHeader> headers;
+        std::vector<CBlock> headers;
 
         // Bypass the normal CBlock deserialization, as we don't want to risk deserializing 2000 full blocks.
         unsigned int nCount = ReadCompactSize(vRecv);
@@ -5939,28 +6079,65 @@ bool static ProcessMessage(CNode* pfrom, string strCommand, CDataStream& vRecv, 
             // Nothing interesting. Stop asking this peers for more headers.
             return true;
         }
-        CBlockIndex* pindexLast = NULL;
-        BOOST_FOREACH (const CBlockHeader& header, headers) {
+
+        bool ret = true;
+        bool bFirst = true;
+        string strError = "";
+
+        int nFirst = 0;
+        int nLast = 0;
+
+        CBlockIndex *pindexLast = NULL;
+
+        BOOST_FOREACH(const CBlock& header, headers) {
             CValidationState state;
             if (pindexLast != NULL && header.hashPrevBlock != pindexLast->GetBlockHash()) {
                 Misbehaving(pfrom->GetId(), 20);
-                return error("non-continuous headers sequence");
+                ret = false;
+                strError = "non-continuous headers sequence";
+                break;
             }
 
-            /*TODO: this has a CBlock cast on it so that it will compile. There should be a solution for this
-             * before headers are reimplemented on mainnet
-             */
-            if (!AcceptBlockHeader((CBlock)header, state, &pindexLast)) {
+            CBlockHeader pblockheader = CBlockHeader(header);
+            if (!AcceptBlockHeader(pblockheader, state, &pindexLast)) {
                 int nDoS;
                 if (state.IsInvalid(nDoS)) {
                     if (nDoS > 0)
                         Misbehaving(pfrom->GetId(), nDoS);
-                    std::string strError = "invalid header received " + header.GetHash().ToString();
-                    return error(strError.c_str());
+                    ret = false;
+                    strError = "invalid header received " + header.GetHash().ToString();
+                    break;
+                }
+            }
+            if (pindexLast) {
+                nLast = pindexLast->nHeight;
+                if (bFirst){
+                    nFirst = pindexLast->nHeight;
+                    bFirst = false;
                 }
             }
         }
 
+        if (GetBoolArg("-headerspamfilter", DEFAULT_HEADER_SPAM_FILTER))
+        {
+            LOCK(cs_main);
+            CValidationState state;
+            CNodeState *nodestate = State(pfrom->GetId());
+            nodestate->headers.addHeaders(nFirst, nLast);
+            int nDoS;
+            ret = nodestate->headers.updateState(state, ret);
+            if (state.IsInvalid(nDoS)) {
+                if (nDoS > 0)
+                    Misbehaving(pfrom->GetId(), nDoS);
+                ret = false;
+                strError = strError!="" ? strError + " / ": "";
+                strError = "header spam protection";
+            }
+        }
+
+        if (!ret)
+            return error(strError.c_str());
+        
         if (pindexLast)
             UpdateBlockAvailability(pfrom->GetId(), pindexLast->GetBlockHash());
 

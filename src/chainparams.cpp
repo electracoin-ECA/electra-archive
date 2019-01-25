@@ -62,11 +62,12 @@ static Checkpoints::MapCheckpoints mapCheckpoints =
     (15160, uint256("e31d9b1163cb7193f35c5716dfc22e86fdabb7206b3c5a27967c8f3a83892633"))
     (128926, uint256("79aa1982dcee614dadb2857a3491c1c900bd715af45cdb4f9779872280161be5"))
     (146500, uint256("540485ed391d8fb089eeb28ce9e4b61425b9f95d831855944f98b995e4407cec"))
-    (148000, uint256("e51e81dd77a36b5d5db7e273463fc034360d779076d8a31ebfb8dd3d5ebd7a3d"));
+    (148000, uint256("e51e81dd77a36b5d5db7e273463fc034360d779076d8a31ebfb8dd3d5ebd7a3d"))
+    (164000, uint256("23f70286427e411bf633cef753efbe27eb066edcc15bbbb230d4f953023f3c1e"));
 static const Checkpoints::CCheckpointData data = {
     &mapCheckpoints,
-    1544823071, // * UNIX timestamp of last checkpoint block
-    438251,     // * total number of transactions between genesis and last checkpoint
+    1547577181, // * UNIX timestamp of last checkpoint block
+    474030,     // * total number of transactions between genesis and last checkpoint
                 //   (the tx=... number in the SetBestChain debug.log lines)
     4000        // * estimated number of transactions per day after checkpoint
 };
@@ -121,7 +122,7 @@ public:
         pchMessageStart[1] = 0xf1;
         pchMessageStart[2] = 0xa2;
         pchMessageStart[3] = 0xb5;
-        vAlertPubKey = ParseHex("0358d5fb8000c49d38aaab6dc5d0c0a0322eff3090eff026963eb819dc3dec8439");
+        vAlertPubKey = ParseHex("04bfdfdfa55aa9803e843da4917311d13c2d884e29c728de7c91f2ee00e7fc84e822987bb158b61cd4077ef8fca9ef63e7f9ab06b84d49b11d21ff1c1bd8a3ccb9");
         nDefaultPort = 5817;
         bnProofOfWorkLimit = ~uint256(0) >> 20;
         nMaxReorganizationDepth = 100;
@@ -129,7 +130,7 @@ public:
         nRejectBlockOutdatedMajority = 10260; // 95%
         nToCheckBlockUpgradeMajority = 10800; // Approximate expected amount of blocks in 7 days (1440*7.5)
         nMinerThreads = 0;
-        nTargetTimespan = 24 * 60 * 60; // 1 day
+        //nTargetTimespan = 24 * 60 * 60; // 1 day
         nTargetSpacing = 1 * 60;  // 1 minute
         nMaturity = 10;
         nMasternodeCountDrift = 20;
@@ -138,7 +139,7 @@ public:
         /** Height or Time Based Activations **/
         nLastPOWBlock = 13815;
         nPOSStartBlock = 11811;
-        nMandatoryUpgradeBlock = 148500;
+        nMandatoryUpgradeBlock = 167100;
         nUpgradeBlockVersion = 8;                                   // Block headers must be this version after upgrade block
         nZerocoinStartHeight = 2100000000;                          // OFF
         //nZerocoinStartTime = 4000000000;
@@ -184,8 +185,15 @@ public:
 
         assert(genesis.hashMerkleRoot == uint256("0xa45c61b17857983dee346573eb46cae28171b98a2595115fea8bc5a9227467dd"));
         assert(hashGenesisBlock == uint256("0x00000f98da995de0ef1665c7d3338687923c1199230a44ecbdb5cec9306e4f4e"));
-
-        vSeeds.push_back(CDNSSeedData("1", "zentec.ddns.net"));
+        
+        vSeeds.push_back(CDNSSeedData("1", "79.137.39.240"));
+        vSeeds.push_back(CDNSSeedData("2", "51.38.115.250"));
+        vSeeds.push_back(CDNSSeedData("3", "54.38.53.207"));
+        vSeeds.push_back(CDNSSeedData("4", "178.128.111.9"));
+        vSeeds.push_back(CDNSSeedData("5", "159.89.168.255"));
+        vSeeds.push_back(CDNSSeedData("6", "159.89.171.67"));
+  
+        //vSeeds.push_back(CDNSSeedData("1", "zentec.ddns.net"));
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 33);
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 40);
@@ -206,8 +214,8 @@ public:
         fHeadersFirstSyncingActive = true;
 
         nPoolMaxTransactions = 3;
-        strSporkKey = "0358d5fb8000c49d38aaab6dc5d0c0a0322eff3090eff026963eb819dc3dec8439";
-        strSporkKeyOld = "046f78dcf911fbd61910136f7f0f8d90578f68d0b3ac973b5040fb7afb501b5939f39b108b0569dca71488f5bbf498d92e4d1194f6f941307ffd95f75e76869f0e";
+        strSporkKey = "04bfdfdfa55aa9803e843da4917311d13c2d884e29c728de7c91f2ee00e7fc84e822987bb158b61cd4077ef8fca9ef63e7f9ab06b84d49b11d21ff1c1bd8a3ccb9";
+        strSporkKeyOld = "04bfdfdfa55aa9803e843da4917311d13c2d884e29c728de7c91f2ee00e7fc84e822987bb158b61cd4077ef8fca9ef63e7f9ab06b84d49b11d21ff1c1bd8a3ccb9";
         strObfuscationPoolDummyAddress = "Ebsz2mBcw5hb1vqnBx7TP6CSaWt8sqTiz5";
         nStartMasternodePayments = 1403728576; //Wed, 25 Jun 2014 20:36:16 GMT
 
@@ -250,14 +258,14 @@ public:
         pchMessageStart[1] = 0xe3;
         pchMessageStart[2] = 0xe2;
         pchMessageStart[3] = 0xe1;
-        vAlertPubKey = ParseHex("0358d5fb8000c49d38aaab6dc5d0c0a0322eff3090eff026963eb819dc3dec8439");
+        vAlertPubKey = ParseHex("04bfdfdfa55aa9803e843da4917311d13c2d884e29c728de7c91f2ee00e7fc84e822987bb158b61cd4077ef8fca9ef63e7f9ab06b84d49b11d21ff1c1bd8a3ccb9");
         nDefaultPort = 15817;
         bnProofOfWorkLimit = ~uint256(0) >> 16;
         nEnforceBlockUpgradeMajority = 4320; // 75%
         nRejectBlockOutdatedMajority = 5472; // 95%
         nToCheckBlockUpgradeMajority = 5760; // 4 days
         nMinerThreads = 0;
-        nTargetTimespan = 24 * 60 * 60; // 1 day
+        //nTargetTimespan = 24 * 60 * 60; // 1 day
         nTargetSpacing = 45;  // 45 seconds
         nLastPOWBlock = 200;
         nMaturity = 10;
@@ -304,8 +312,8 @@ public:
         fTestnetToBeDeprecatedFieldRPC = true;
 
         nPoolMaxTransactions = 2;
-        strSporkKey = "04A8B319388C0F8588D238B9941DC26B26D3F9465266B368A051C5C100F79306A557780101FE2192FE170D7E6DEFDCBEE4C8D533396389C0DAFFDBC842B002243C";
-        strSporkKeyOld = "04348C2F50F90267E64FACC65BFDC9D0EB147D090872FB97ABAE92E9A36E6CA60983E28E741F8E7277B11A7479B626AC115BA31463AC48178A5075C5A9319D4A38";
+        strSporkKey = "04bfdfdfa55aa9803e843da4917311d13c2d884e29c728de7c91f2ee00e7fc84e822987bb158b61cd4077ef8fca9ef63e7f9ab06b84d49b11d21ff1c1bd8a3ccb9";
+        strSporkKeyOld = "04bfdfdfa55aa9803e843da4917311d13c2d884e29c728de7c91f2ee00e7fc84e822987bb158b61cd4077ef8fca9ef63e7f9ab06b84d49b11d21ff1c1bd8a3ccb9";
         strObfuscationPoolDummyAddress = "eNdw2pzf2rirEmCfYGgUQdxJSo7ue6JyLK";
         nStartMasternodePayments = 1420837558; //Fri, 09 Jan 2015 21:05:58 GMT
         nBudget_Fee_Confirmations = 3; // Number of confirmations for the finalization fee. We have to make this very short
@@ -337,7 +345,7 @@ public:
         nRejectBlockOutdatedMajority = 950;
         nToCheckBlockUpgradeMajority = 1000;
         nMinerThreads = 1;
-        nTargetTimespan = 24 * 60 * 60; // 1 day
+        //nTargetTimespan = 24 * 60 * 60; // 1 day
         nTargetSpacing = 45;            // 45 seconds
         bnProofOfWorkLimit = ~uint256(0) >> 1;
         genesis.nTime = 1454124731;
