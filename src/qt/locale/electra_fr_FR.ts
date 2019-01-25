@@ -43,11 +43,11 @@
     </message>
     <message>
         <source>Choose the address to send coins to</source>
-        <translation>Choisir l'adresse à laquelle envoyer des jetons</translation>
+        <translation>Choisir l'adresse à laquelle envoyer des pièces</translation>
     </message>
     <message>
         <source>Choose the address to receive coins with</source>
-        <translation>Choisir l'adresse avec laquelle recevoir des jetons</translation>
+        <translation>Choisir l'adresse avec laquelle recevoir des pièces</translation>
     </message>
     <message>
         <source>C&amp;hoose</source>
@@ -63,11 +63,11 @@
     </message>
     <message>
         <source>These are your ELECTRA addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
-        <translation>Voici vos adresses ELECTRA pour envoyer des paiements.  Assurez-vous de toujours vérifier le montant et l'adresse de réception avant d'envoyer les jetons</translation>
+        <translation>Voici vos adresses ELECTRA pour envoyer des paiements.  Assurez-vous de toujours vérifier le montant et l'adresse de réception avant d'envoyer les pièces</translation>
     </message>
     <message>
         <source>These are your ELECTRA addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
-        <translation>Voici vos adresses ELECTRA pour les réceptions de vos paiments. Il est recommandé d'utiliser une nouvelle adresse de réception pour chaque transaction.</translation>
+        <translation>Voici vos adresses ELECTRA pour les réceptions de vos paiements. Il est recommandé d'utiliser une nouvelle adresse de réception pour chaque transaction.</translation>
     </message>
     <message>
         <source>&amp;Copy Address</source>
@@ -95,7 +95,7 @@
     </message>
     <message>
         <source>There was an error trying to save the address list to %1. Please try again.</source>
-        <translation>Un erreur s'est produite en essayant d'enregistrer la liste d'adresses dans %1. Veuillez réessayer.</translation>
+        <translation>Une erreur s'est produite en essayant d'enregistrer la liste d'adresses dans %1. Veuillez réessayer.</translation>
     </message>
 </context>
 <context>
@@ -133,7 +133,7 @@
     </message>
     <message>
         <source>Serves to disable the trivial sendmoney when OS account compromised. Provides no real security.</source>
-        <translation>Est utilisé pour désactiver l'envoi d'argent lorsque l'utilisateur OS est compromis. Ne fournit pas de vrai sécurité.</translation>
+        <translation>Est utilisé pour désactiver l'envoi d'argent lorsque l'utilisateur OS est compromis. Ne fournit pas de vraie sécurité.</translation>
     </message>
     <message>
         <source>For anonymization, automint, and staking only</source>
@@ -355,7 +355,7 @@
     </message>
     <message>
         <source>The entered address does not refer to a key.</source>
-        <translation>L'adresse renseignée ne correspond à aucune à une clé.</translation>
+        <translation>L'adresse renseignée ne correspond à aucune clé.</translation>
     </message>
     <message>
         <source>Wallet unlock was cancelled.</source>
@@ -363,7 +363,7 @@
     </message>
     <message>
         <source>Private key for the entered address is not available.</source>
-        <translation>La clé privé pour l'adresse entrée n'est pas valide.</translation>
+        <translation>La clé privée pour l'adresse entrée n'est pas valide.</translation>
     </message>
     <message>
         <source>Failed to decrypt.</source>
@@ -375,7 +375,7 @@
     </message>
     <message>
         <source>Data Not Valid.</source>
-        <translation>Les donnés ne sont pas valides.</translation>
+        <translation>Les données ne sont pas valides.</translation>
     </message>
     <message>
         <source>Please try again.</source>
@@ -450,7 +450,7 @@
     </message>
     <message>
         <source>Show information about Qt</source>
-        <translation>Afficher les information concernant Qt</translation>
+        <translation>Afficher les informations concernant Qt</translation>
     </message>
     <message>
         <source>&amp;Options...</source>
@@ -514,7 +514,7 @@
     </message>
     <message>
         <source>Show diagnostic information</source>
-        <translation>Afficher les informations de dignostique</translation>
+        <translation>Afficher les informations de diagnostic</translation>
     </message>
     <message>
         <source>&amp;Debug console</source>
@@ -558,7 +558,7 @@
     </message>
     <message>
         <source>Show automatically created wallet backups</source>
-        <translation>Montrer les sauvegardes de portefeuille créées automatiquements</translation>
+        <translation>Montrer les sauvegardes de portefeuille créées automatiquement</translation>
     </message>
     <message>
         <source>&amp;Sending addresses...</source>
@@ -674,7 +674,7 @@
     </message>
     <message>
         <source>Show information about ELECTRA Core</source>
-        <translation>Afficher les information concernant ELECTRA Core</translation>
+        <translation>Afficher les informations concernant ELECTRA Core</translation>
     </message>
     <message>
         <source>Modify configuration options for ELECTRA</source>
@@ -702,7 +702,7 @@
     </message>
     <message>
         <source>MultiSend Settings</source>
-        <translation>Paramètres des Envois-multiple </translation>
+        <translation>Paramètres des Envoi-multiples </translation>
     </message>
     <message>
         <source>Open Wallet &amp;Configuration File</source>
@@ -726,11 +726,11 @@
     </message>
     <message>
         <source>Block explorer window</source>
-        <translation>Fenêtre de Explorateur de Bloc</translation>
+        <translation>Fenêtre de l'Explorateur de Bloc</translation>
     </message>
     <message>
         <source>Show the ELECTRA Core help message to get a list with possible ELECTRA command-line options</source>
-        <translation>Afficher les message d'aide de ELECTRA Core pour avoir les options pour ligne de commande</translation>
+        <translation>Afficher les messages d'aide de ELECTRA Core pour avoir les options pour ligne de commande</translation>
     </message>
     <message>
         <source>ELECTRA Core client</source>
@@ -746,15 +746,15 @@
     </message>
     <message>
         <source>Importing blocks from disk...</source>
-        <translation>Importation des bloques depuis le disque</translation>
+        <translation>Importation des blocs depuis le disque</translation>
     </message>
     <message>
         <source>Reindexing blocks on disk...</source>
-        <translation>Ré-indexation des bloques sur le disque</translation>
+        <translation>Ré-indexation des blocs sur le disque</translation>
     </message>
     <message>
         <source>No block source available...</source>
-        <translation>Aucun source de bloc disponible</translation>
+        <translation>Aucune source de bloc disponible</translation>
     </message>
     <message>
         <source>Up to date</source>
@@ -766,7 +766,7 @@
     </message>
     <message>
         <source>Catching up...</source>
-        <translation>Rattraper...</translation>
+        <translation>Rattrapage...</translation>
     </message>
     <message>
         <source>Last received block was generated %1 ago.</source>
@@ -790,7 +790,7 @@
     </message>
     <message>
         <source>Sent transaction</source>
-        <translation>Transaction sortie</translation>
+        <translation>Transaction d'envoi</translation>
     </message>
     <message>
         <source>Incoming transaction</source>
@@ -815,7 +815,7 @@ Adresse : %4
     <message>
         <source>Staking is active
  MultiSend: %1</source>
-        <translation>Staking est actif
+        <translation>Le staking est actif
  MultiSend: %1</translation>
     </message>
     <message>
@@ -829,7 +829,7 @@ Adresse : %4
     <message>
         <source>Staking is not active
  MultiSend: %1</source>
-        <translation>Staking n'est pas actif
+        <translation>Le staking n'est pas actif
  MultiSend: %1</translation>
     </message>
     <message>
@@ -877,7 +877,7 @@ Adresse : %4
     </message>
     <message>
         <source>Not all transactions will be shown. To view all transactions you need to set txindex=1 in the configuration file (Electra.conf).</source>
-        <translation>Toutes les transaction ne seront pas affichés. Pour voir toutes les transactions, vous devez régler txindex=1 dans le fichier de configuration (Electra.conf).</translation>
+        <translation>Toutes les transactions ne seront pas affichées. Pour voir toutes les transactions, vous devez régler txindex=1 dans le fichier de configuration (Electra.conf).</translation>
     </message>
 </context>
 <context>
@@ -915,7 +915,7 @@ Adresse : %4
     </message>
     <message>
         <source>Coin Selection</source>
-        <translation>Coin de sélection</translation>
+        <translation>Sélection des pièces</translation>
     </message>
     <message>
         <source>Dust:</source>
@@ -1103,7 +1103,7 @@ Adresse : %4
     </message>
     <message>
         <source>Transactions with higher priority are more likely to get included into a block.</source>
-        <translation>Les transactions avec une priorité plus haute ont plus de chance d'être incluses dans un bloque.</translation>
+        <translation>Les transactions avec une priorité plus haute ont plus de chances d'être incluses dans un bloc.</translation>
     </message>
     <message>
         <source>This label turns red, if the priority is smaller than "medium".</source>
@@ -1170,7 +1170,7 @@ Adresse : %4
     </message>
     <message>
         <source>The entered address "%1" is already in the address book.</source>
-        <translation>L'adresse entrée "%1" est déjà dans la liste d'adresse</translation>
+        <translation>L'adresse entrée "%1" est déjà dans la liste d'adresses</translation>
     </message>
     <message>
         <source>Could not unlock wallet.</source>
@@ -1185,7 +1185,7 @@ Adresse : %4
     <name>FreespaceChecker</name>
     <message>
         <source>A new data directory will be created.</source>
-        <translation>Un nouvelle répertoire sera crée,</translation>
+        <translation>Un nouveau répertoire sera créé,</translation>
     </message>
     <message>
         <source>name</source>
@@ -1197,7 +1197,7 @@ Adresse : %4
     </message>
     <message>
         <source>Path already exists, and is not a directory.</source>
-        <translation>Chemin existe déjà, et n'est pas un répertoire.</translation>
+        <translation>Le chemin existe déjà, et n'est pas un répertoire.</translation>
     </message>
     <message>
         <source>Cannot create data directory here.</source>
@@ -1232,7 +1232,7 @@ Adresse : %4
     </message>
     <message>
         <source>command-line options</source>
-        <translation>options en ligne de commande </translation>
+        <translation>Options de commandes en ligne</translation>
     </message>
     <message>
         <source>UI Options:</source>
@@ -1248,7 +1248,7 @@ Adresse : %4
     </message>
     <message>
         <source>Start minimized</source>
-        <translation>Démarrer minimiser</translation>
+        <translation>Démarrer minimisé</translation>
     </message>
     <message>
         <source>Set SSL root certificates for payment request (default: -system-)</source>
@@ -1259,7 +1259,7 @@ Adresse : %4
     <name>Intro</name>
     <message>
         <source>Welcome</source>
-        <translation>Bienvenu</translation>
+        <translation>Bienvenue</translation>
     </message>
     <message>
         <source>Welcome to ELECTRA Core.</source>
@@ -1394,11 +1394,11 @@ Adresse : %4
     </message>
     <message>
         <source>Confirm missing masternodes start</source>
-        <translation>Confirmer le lancement de la masternode manquant</translation>
+        <translation>Confirmer le lancement du masternode manquant</translation>
     </message>
     <message>
         <source>Are you sure you want to start MISSING masternodes?</source>
-        <translation>Êtes-vous sûr de vouloir lancer MISSING masternodes?</translation>
+        <translation>Êtes-vous sûr de vouloir lancer le masternode manquant?</translation>
     </message>
 </context>
 <context>
@@ -1600,7 +1600,7 @@ Veuillez vérifier l'adresse et réessayer.</translation>
 Keep in mind, the wallet will rescan the blockchain to find transactions containing the new address.
 Please be patient after clicking import.</source>
         <translation>Utilisez ci-dessous pour importer rapidement une adresse par son échange. N'oubliez pas d'ajouter un label avant de cliquer sur Importer!
-Garder en tete que le portefeuille effectuera une nouvelle analyse de la blockchain pour trouver les transactions contenant la nouvelle adresse.
+Garder en tete que le portefeuille effectuera une nouvelle analyse de la blockchain pour trouver les transactions contenues dans la nouvelle adresse.
 S'il vous plaît soyez patient après avoir cliqué sur l'importation.</translation>
     </message>
     <message>
@@ -1613,7 +1613,7 @@ S'il vous plaît soyez patient après avoir cliqué sur l'importation.</translat
     </message>
     <message>
         <source>Coin Control</source>
-        <translation>Contrôle de pièce de monnaie</translation>
+        <translation>Contrôle des pièces</translation>
     </message>
     <message>
         <source>Quantity Selected:</source>
@@ -1669,7 +1669,7 @@ S'il vous plaît soyez patient après avoir cliqué sur l'importation.</translat
     </message>
     <message>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;DISABLED until transaction has been signed enough times.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;DÉSACTIVÉ jusqu'à ce que la transaction est recueillie suffisament de signatures.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt; </translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;DÉSACTIVÉ jusqu'à ce que la transaction ai recueilli suffisament de signatures.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt; </translation>
     </message>
     <message>
         <source>Co&amp;mmit</source>
@@ -1728,7 +1728,7 @@ S'il vous plaît soyez patient après avoir cliqué sur l'importation.</translat
     </message>
     <message>
         <source>Use 2 separate masternodes to mix funds up to 10000 ECA</source>
-        <translation>Utiliser 2 masternodes différentes pour mélanger les fonds jusqu'a 10000 ECA</translation>
+        <translation>Utiliser 2 masternodes différents pour mélanger les fonds jusqu'a 10000 ECA</translation>
     </message>
     <message>
         <source>Use 8 separate masternodes to mix funds up to 10000 ECA</source>
@@ -1740,19 +1740,19 @@ S'il vous plaît soyez patient après avoir cliqué sur l'importation.</translat
     </message>
     <message>
         <source>This option is the quickest and will cost about ~0.025 ECA to anonymize 10000 ECA</source>
-        <translation>Cette option est la plus rapide, et coutera ~0.025 ECA pour anonymiser 10000 ECA</translation>
+        <translation>Cette option est la plus rapide, et coûtera ~0.025 ECA pour anonymiser 10000 ECA</translation>
     </message>
     <message>
         <source>This option is moderately fast and will cost about 0.05 ECA to anonymize 10000 ECA</source>
-        <translation>Cette option est moyennement rapide, et coutera 0.05 ECA pour anonymiser 10000 ECA</translation>
+        <translation>Cette option est moyennement rapide, et coûtera 0.05 ECA pour anonymiser 10000 ECA</translation>
     </message>
     <message>
         <source>This is the slowest and most secure option. Using maximum anonymity will cost</source>
-        <translation>Il s'agit de l'option la plus lente est la plus sécurisé. Utiliser l'anonymat maximum coutera</translation>
+        <translation>Il s'agit de l'option la plus lente et la plus sécurisée. Utiliser l'anonymat maximum coûtera</translation>
     </message>
     <message>
         <source>0.1 ECA per 10000 ECA you anonymize.</source>
-        <translation>0.1 ECA par 10000 ECA vous anonymisez.</translation>
+        <translation>0.1 ECA pour anonymiser 10000 ECA.</translation>
     </message>
     <message>
         <source>Obfuscation Configuration</source>
@@ -1760,15 +1760,15 @@ S'il vous plaît soyez patient après avoir cliqué sur l'importation.</translat
     </message>
     <message>
         <source>Obfuscation was successfully set to basic (%1 and 2 rounds). You can change this at any time by opening ELECTRA's configuration screen.</source>
-        <translation>L'Obfuscation a été réglé avec succès à base (%1 et 2 tours). Vous pouvez changer ce paramètre à tout moment depuis l'écran de configuration ELECTRA.</translation>
+        <translation>L'Obfuscation a été réglée avec succès à base (%1 et 2 tours). Vous pouvez changer ce paramètre à tout moment depuis l'écran de configuration ELECTRA.</translation>
     </message>
     <message>
         <source>Obfuscation was successfully set to high (%1 and 8 rounds). You can change this at any time by opening ELECTRA's configuration screen.</source>
-        <translation>L'Obfuscation a été réglé avec succès à élevé (%1 et 8 tours). Vous pouvez changer ce paramètre à tout moment depuis l'écran de configuration ELECTRA.</translation>
+        <translation>L'Obfuscation a été réglée avec succès à élevé (%1 et 8 tours). Vous pouvez changer ce paramètre à tout moment depuis l'écran de configuration ELECTRA.</translation>
     </message>
     <message>
         <source>Obfuscation was successfully set to maximum (%1 and 16 rounds). You can change this at any time by opening ELECTRA's configuration screen.</source>
-        <translation>L'Obfuscation a été réglé avec succès à maximum (%1 et 16 tours). Vous pouvez changer ce paramètre à tout moment depuis l'écran de configuration ELECTRA.</translation>
+        <translation>L'Obfuscation a été réglée avec succès à maximum (%1 et 16 tours). Vous pouvez changer ce paramètre à tout moment depuis l'écran de configuration ELECTRA.</translation>
     </message>
 </context>
 <context>
@@ -1888,11 +1888,11 @@ https://www.transifex.com/electra-project/electra-project-translations</translat
     </message>
     <message>
         <source>Enable automatic minting of ECA units to zECA</source>
-        <translation>Activé l'auto-monnayage de ECA unités en zECA</translation>
+        <translation>Activer l'auto-monnayage des unités ECA en zECA</translation>
     </message>
     <message>
         <source>Enable zECA Automint</source>
-        <translation>Activé ZECA Auto-monnayage</translation>
+        <translation>Activer ZECA Auto-monnayage</translation>
     </message>
     <message>
         <source>Percentage of incoming ECA which get automatically converted to zECA via Zerocoin Protocol (min: 10%)</source>
@@ -1912,7 +1912,7 @@ https://www.transifex.com/electra-project/electra-project-translations</translat
     </message>
     <message>
         <source>Connect to the ELECTRA network through a SOCKS5 proxy.</source>
-        <translation>Se connetcer au réseau ELECTRA via un proxy SOCKS5.</translation>
+        <translation>Se connecter au réseau ELECTRA via un proxy SOCKS5.</translation>
     </message>
     <message>
         <source>Proxy &amp;IP:</source>
@@ -1940,11 +1940,11 @@ https://www.transifex.com/electra-project/electra-project-translations</translat
     </message>
     <message>
         <source>&amp;Minimize to the tray instead of the taskbar</source>
-        <translation>Minimiser vers la barre d'état au lieu de la barre de tâche</translation>
+        <translation>Minimiser vers la barre d'état au lieu de la barre des tâches</translation>
     </message>
     <message>
         <source>Minimize instead of exit the application when the window is closed. When this option is enabled, the application will be closed only after selecting Quit in the menu.</source>
-        <translation>Minimiser l'application putôt que de la quitter lorsque la fenêtre est fermée. Quant cette option est activée, l'application ne sera fermé qu'après avoir choisi la fonction Quitter dans le menu.</translation>
+        <translation>Minimiser l'application putôt que de la quitter lorsque la fenêtre est fermée. Quand cette option est activée, l'application ne sera fermée qu'après avoir choisi la fonction Quitter dans le menu.</translation>
     </message>
     <message>
         <source>M&amp;inimize on close</source>
@@ -1956,7 +1956,7 @@ https://www.transifex.com/electra-project/electra-project-translations</translat
     </message>
     <message>
         <source>User Interface &amp;language:</source>
-        <translation>Language de l'interface utilisateur:</translation>
+        <translation>Langue de l'interface utilisateur:</translation>
     </message>
     <message>
         <source>User Interface Theme:</source>
@@ -2083,7 +2083,7 @@ https://www.transifex.com/electra-project/electra-project-translations</translat
     </message>
     <message>
         <source>Staked or masternode rewards that has not yet matured</source>
-        <translation>Récompenses de Stake ou de Matsrenodes qui ne sont pas encore matures</translation>
+        <translation>Récompenses de Stake ou de Masternodes qui ne sont pas encore matures</translation>
     </message>
     <message>
         <source>Current locked balance in watch-only addresses</source>
@@ -2100,14 +2100,14 @@ https://www.transifex.com/electra-project/electra-project-translations</translat
     <message>
         <source>Mature: more than 20 confirmation and more than 1 mint of the same denomination after it was minted.
 These zECA are spendable.</source>
-        <translation>Maturité: plus de 20 confirmations et plus de 1 monnayer de la même dénomination après sa frappe.
+        <translation>Maturité: plus de 20 confirmations et plus de 1 monnayé de la même dénomination après sa frappe.
 Ces zECA sont dépensables.</translation>
     </message>
     <message>
         <source>Unconfirmed: less than 20 confirmations
 Immature: confirmed, but less than 1 mint of the same denomination after it was minted</source>
         <translation>Non confirmé: moins de 20 confirmations
-Immature: confirmé, mais moins de 1 monnayer de la même dénomination après sa frappe</translation>
+Immature: confirmé, mais moins de 1 monnayé de la même dénomination après sa frappe</translation>
     </message>
     <message>
         <source>The displayed information may be out of date. Your wallet automatically synchronizes with the ELECTRA network after a connection is established, but this process has not completed yet.</source>
@@ -2127,11 +2127,11 @@ Immature: confirmé, mais moins de 1 monnayer de la même dénomination après s
     </message>
     <message>
         <source>Unconfirmed transactions to watch-only addresses</source>
-        <translation>Transactions non confirmées vers des adresses témoins</translation>
+        <translation>Transactions non confirmées vers des adresses témoin</translation>
     </message>
     <message>
         <source>Staked or masternode rewards in watch-only addresses that has not yet matured</source>
-        <translation>Récompenses Stake ou Masternode dans des adresses témoins qui n'ont pas encore atteint leur maturité</translation>
+        <translation>Récompenses Stake ou Masternode dans des adresses témoin qui n'ont pas encore atteint leur maturité</translation>
     </message>
     <message>
         <source>Total:</source>
@@ -2139,7 +2139,7 @@ Immature: confirmé, mais moins de 1 monnayer de la même dénomination après s
     </message>
     <message>
         <source>Current total balance in watch-only addresses</source>
-        <translation>Solde courant total dans les adresses témoins</translation>
+        <translation>Solde courant total dans les adresses témoin</translation>
     </message>
     <message>
         <source>Watch-only:</source>
@@ -2147,7 +2147,7 @@ Immature: confirmé, mais moins de 1 monnayer de la même dénomination après s
     </message>
     <message>
         <source>Your current balance in watch-only addresses</source>
-        <translation>Votre solde courant in les adresses témoins</translation>
+        <translation>Votre solde courant dans les adresses témoin</translation>
     </message>
     <message>
         <source>Spendable:</source>
@@ -2155,7 +2155,7 @@ Immature: confirmé, mais moins de 1 monnayer de la même dénomination après s
     </message>
     <message>
         <source>Locked ECA or Masternode collaterals. These are excluded from zECA minting.</source>
-        <translation>ECA Verrouillé ou Masternode collatéraux. Ceux-ci sont exclus de la monnayage zECA.</translation>
+        <translation>ECA Verrouillé ou Masternode collatéraux. Ceux-ci sont exclus du monnayage zECA.</translation>
     </message>
     <message>
         <source>Locked:</source>
@@ -2182,7 +2182,7 @@ Immature: confirmé, mais moins de 1 monnayer de la même dénomination après s
 If AutoMint is enabled this percentage will settle around the configured AutoMint percentage (default = 10%).
 </source>
         <translation>Le pourcentage actuel de zECA.
-Si Auto-monnayage est activé, ce pourcentage sera réglé autour du pourcentage Auto-monnayage configuré (par défaut = 10%).</translation>
+Si l'auto-monnayage est activé, ce pourcentage sera réglé autour du pourcentage Auto-monnayage configuré (par défaut = 10%).</translation>
     </message>
     <message>
         <source>AutoMint is currently enabled and set to </source>
@@ -2227,7 +2227,7 @@ Pour activer Auto-monnayage, changez 'enablezeromint = 0' en 'enablezeromint = 1
     </message>
     <message>
         <source>URI cannot be parsed! This can be caused by an invalid ELECTRA address or malformed URI parameters.</source>
-        <translation>L'URI ne peut pas être analysée! Cela peut être dû à une adresse ELECTRA invalide ou à des paramètres URI incorrectes.</translation>
+        <translation>L'URI ne peut pas être analysée! Cela peut être dû à une adresse ELECTRA invalide ou à des paramètres URI incorrects.</translation>
     </message>
     <message>
         <source>Payment request file cannot be read! This can be caused by an invalid payment request file.</source>
@@ -2329,7 +2329,7 @@ Pour activer Auto-monnayage, changez 'enablezeromint = 0' en 'enablezeromint = 1
     </message>
     <message>
         <source>Available for minting are coins which are confirmed and not locked or Masternode collaterals.</source>
-        <translation>Disponible pour monnayage sont des pièces qui sont confirmées et non verrouillées ou collatéraux Masternode.</translation>
+        <translation>Disponible pour monnayage sont des pièces qui sont confirmées et non verrouillées ou Masternodes collatéraux .</translation>
     </message>
     <message>
         <source>Available for Minting:</source>
@@ -2361,7 +2361,7 @@ Pour activer Auto-monnayage, changez 'enablezeromint = 0' en 'enablezeromint = 1
     </message>
     <message>
         <source>Rescan the complete blockchain for  Zerocoin mints and their meta-data.</source>
-        <translation>Rebalayage la blockchain complète pour les Zerocoin Monnayer et leurs méta-données.</translation>
+        <translation>Rescan complet de la blockchain pour les Zerocoin Monnayer et leurs méta-données.</translation>
     </message>
     <message>
         <source>ReScan</source>
@@ -2369,7 +2369,7 @@ Pour activer Auto-monnayage, changez 'enablezeromint = 0' en 'enablezeromint = 1
     </message>
     <message>
         <source>Status and/or Mesages from the last Mint Action.</source>
-        <translation>Statut et / ou messages de dernière action Monnayage.</translation>
+        <translation>Statut et / ou messages de dernière action de Monnayage.</translation>
     </message>
     <message>
         <source>PRIVACY</source>
@@ -2413,7 +2413,7 @@ Pour activer Auto-monnayage, changez 'enablezeromint = 0' en 'enablezeromint = 1
 zECA are mature when they have more than 20 confirmations AND more than 2 mints of the same denomination after them were minted</source>
         <translation>ZECA disponible (mature et utilisable) pour les dépenses
 
-Les zECA sont matures lorsqu'elles ont plus de 20 confirmations ET plus de 2 monnayent de même dénomination après ils était monnayer</translation>
+Les zECA sont matures lorsqu'elles ont plus de 20 confirmations ET que plus de 2 monnayent de même dénomination après qu'ils étaient monnayés</translation>
     </message>
     <message>
         <source>0 zECA</source>
@@ -2437,7 +2437,7 @@ Les zECA sont matures lorsqu'elles ont plus de 20 confirmations ET plus de 2 mon
     </message>
     <message>
         <source>The ELECTRA address to send the payment to. Creates local payment to yourself when empty.</source>
-        <translation>L'adresse ELECTRA à laquelle nevoyer le paiement. Créé un paiement à vous même lorsque ce champs est vide.</translation>
+        <translation>L'adresse ELECTRA à laquelle envoyer le paiement. Crée un paiement à vous même lorsque ce champs est vide.</translation>
     </message>
     <message>
         <source>Choose previously used address</source>
@@ -2473,7 +2473,7 @@ Les zECA sont matures lorsqu'elles ont plus de 20 confirmations ET plus de 2 mon
     </message>
     <message>
         <source>If checked, the wallet tries to minimize the returning change instead of minimizing the number of spent denominations.</source>
-        <translation>Si coché, le portefeuille tente de mininiser la monnaie rendue au lieu de minimiser le nombre de dénominations dépensées.</translation>
+        <translation>Si coché, le portefeuille tente de minimiser la monnaie rendue au lieu de minimiser le nombre de dénominations dépensées.</translation>
     </message>
     <message>
         <source>Minimize Change</source>
@@ -2507,7 +2507,7 @@ Les zECA sont matures lorsqu'elles ont plus de 20 confirmations ET plus de 2 mon
         <source>Unconfirmed: less than 20 confirmations
 Immature: confirmed, but less than 1 mint of the same denomination after it was minted</source>
         <translation>Non confirmé: moins de 20 confirmations
-Immature: confirmé, mais moins de 1 monnayer de la même dénomination après sa frappe</translation>
+Immature: confirmé, mais moins de 1 monnayé de la même dénomination après sa frappe</translation>
     </message>
     <message>
         <source>Show the current status of automatic zECA minting.
@@ -2693,7 +2693,7 @@ Pour changer le pourcentage (pas de redémarrage requis):
     </message>
     <message>
         <source>Mint Status: Okay</source>
-        <translation>Auto-monnayage Statut: OK</translation>
+        <translation>Statut d'Auto-monnayage: OK</translation>
     </message>
     <message>
         <source>Copy quantity</source>
@@ -2706,7 +2706,7 @@ Pour changer le pourcentage (pas de redémarrage requis):
     <message>
         <source>Starting ResetMintZerocoin: rescanning complete blockchain, this will need up to 30 minutes depending on your hardware.
 Please be patient...</source>
-        <translation>Démarrage de ResetMonnayerZerocoin: réanalyser blockchain complète, cela prendra jusqu'à 30 minutes selon votre matériel.
+        <translation>Démarrage de ResetMonnayerZerocoin: rescan complet de la blockchain, cela prendra jusqu'à 30 minutes selon votre matériel.
 S'il vous plaît soyez patient ...</translation>
     </message>
     <message>
@@ -2865,7 +2865,7 @@ Maximum autorisé:</translation>
     </message>
     <message>
         <source>Invalid Send Amount</source>
-        <translation>Montant envoyé incorrecte</translation>
+        <translation>Montant envoyé incorrect</translation>
     </message>
     <message>
         <source>Confirm additional Fees</source>
@@ -2902,7 +2902,7 @@ Maximum autorisé:</translation>
     </message>
     <message>
         <source>Failed to fetch mint associated with serial hash</source>
-        <translation>Impossible d'extraire la monnayer associée au hachage série</translation>
+        <translation>Impossible d'extraire la monnayée associée au hachage série</translation>
     </message>
     <message>
         <source>Too much inputs (</source>
@@ -2912,7 +2912,7 @@ Maximum autorisé:</translation>
         <source>
 Either mint higher denominations (so fewer inputs are needed) or reduce the amount to spend.</source>
         <translation>
-Soit monnayer des dénominations plus élevées (moins d'intrants sont nécessaires), soit une réduction du montant à dépenser.</translation>
+Soit monnayer des dénominations plus élevées (moins d'entrées sont nécessaires), soit une réduction du montant à dépenser.</translation>
     </message>
     <message>
         <source>Spend Zerocoin failed with status = </source>
@@ -2959,7 +2959,7 @@ Soit monnayer des dénominations plus élevées (moins d'intrants sont nécessai
     </message>
     <message>
         <source>Enter a ELECTRA address (e.g. %1)</source>
-        <translation>Entrez uen adresse ELECTRA (par ex. %1)</translation>
+        <translation>Entrez une adresse ELECTRA (par ex. %1)</translation>
     </message>
     <message>
         <source>%1 d</source>
@@ -3113,7 +3113,7 @@ Soit monnayer des dénominations plus élevées (moins d'intrants sont nécessai
     </message>
     <message>
         <source>&amp;Network Traffic</source>
-        <translation>Traffic du réseau</translation>
+        <translation>Trafic du réseau</translation>
     </message>
     <message>
         <source>&amp;Clear</source>
@@ -3197,7 +3197,7 @@ Soit monnayer des dénominations plus élevées (moins d'intrants sont nécessai
     </message>
     <message>
         <source>Delete local Blockchain Folders</source>
-        <translation>Supprime le dossier local Blockchain</translation>
+        <translation>Supprime le dossier Blockchain local</translation>
     </message>
     <message>
         <source>Wallet In Use:</source>
@@ -3249,11 +3249,11 @@ Soit monnayer des dénominations plus élevées (moins d'intrants sont nécessai
     </message>
     <message>
         <source>Rescan blockchain files</source>
-        <translation>Réanalysez les fichiers blockchain</translation>
+        <translation>Rescanner les fichiers blockchain</translation>
     </message>
     <message>
         <source>Rescan the block chain for missing wallet transactions.</source>
-        <translation>Réanalysez la chaîne de blocs pour les transactions de portefeuille manquantes.</translation>
+        <translation>Rescanner la blockchain pour les transactions de portefeuille manquantes.</translation>
     </message>
     <message>
         <source>Recover transactions 1</source>
@@ -3277,7 +3277,7 @@ Soit monnayer des dénominations plus élevées (moins d'intrants sont nécessai
     </message>
     <message>
         <source>Rebuild block chain index from current blk000??.dat files.</source>
-        <translation>Reconstruire l'index de la chaîne de block à partir des fichiers courants blk000??.dat.</translation>
+        <translation>Reconstruire l'index de la blockchain à partir des fichiers courants blk000??.dat.</translation>
     </message>
     <message>
         <source>-resync:</source>
@@ -3361,11 +3361,11 @@ Soit monnayer des dénominations plus élevées (moins d'intrants sont nécessai
     </message>
     <message>
         <source>Confirm resync Blockchain</source>
-        <translation>Cornfirmer la resynchronisation Blockchain</translation>
+        <translation>Confirmer la resynchronisation Blockchain</translation>
     </message>
     <message>
         <source>Use up and down arrows to navigate history, and &lt;b&gt;Ctrl-L&lt;/b&gt; to clear screen.</source>
-        <translation>Utilisez les flèches bas et haut pour naviguer dans l'historique, et &lt;b&gt; Ctrl-L &lt;/b&gt; pour effacer l'écran.</translation>
+        <translation>Utilisez les flèches bas et haut pour naviguer dans l'historique, et &lt;b&gt; Ctrl-L &lt;/b&gt; pour vider l'écran.</translation>
     </message>
     <message>
         <source>Type &lt;b&gt;help&lt;/b&gt; for an overview of available commands.</source>
@@ -3424,7 +3424,7 @@ Soit monnayer des dénominations plus élevées (moins d'intrants sont nécessai
     <name>ReceiveCoinsDialog</name>
     <message>
         <source>Reuse one of the previously used receiving addresses.&lt;br&gt;Reusing addresses has security and privacy issues.&lt;br&gt;Do not use this unless re-generating a payment request made before.</source>
-        <translation>Réutilise une des adresses de réception précédement utilisées.&lt;br /&gt; Réutiliser des adresses posent des problèmes de sécurité etd e confidentialité. &lt;br /&gt; Ne réuilisez pas une adresse à moins que vous souhaitiez regénérer une demande de paiement antérieure.</translation>
+        <translation>Réutilise une des adresses de réception précédement utilisées.&lt;br /&gt; Réutiliser des adresses posent des problèmes de sécurité et de confidentialité. &lt;br /&gt; Ne réuilisez pas une adresse à moins que vous souhaitiez regénérer une demande de paiement antérieure.</translation>
     </message>
     <message>
         <source>R&amp;euse an existing receiving address (not recommended)</source>
@@ -3436,11 +3436,11 @@ Soit monnayer des dénominations plus élevées (moins d'intrants sont nécessai
     </message>
     <message>
         <source>An optional label to associate with the new receiving address.</source>
-        <translation>Un label Un optionnel à associer à la nouvelle adresse de réception.</translation>
+        <translation>Un label optionnel à associer à la nouvelle adresse de réception.</translation>
     </message>
     <message>
         <source>An optional message to attach to the payment request, which will be displayed when the request is opened. Note: The message will not be sent with the payment over the ELECTRA network.</source>
-        <translation>Un message optionnel à ajouter à la demande de paiement, lequel sera affiché lorsque la demande sera ouverte. Note: Le message ne sera pas renvoyé avec le paiement sur le réseaux ELECTRA.</translation>
+        <translation>Un message optionnel à ajouter à la demande de paiement, lequel sera affiché lorsque la demande sera ouverte. Note: Le message ne sera pas renvoyé avec le paiement sur le réseau ELECTRA.</translation>
     </message>
     <message>
         <source>RECEIVE</source>
@@ -3448,7 +3448,7 @@ Soit monnayer des dénominations plus élevées (moins d'intrants sont nécessai
     </message>
     <message>
         <source>An optional message to attach to the payment request, which will be displayed when the request is opened.&lt;br&gt;Note: The message will not be sent with the payment over the ELECTRA network.</source>
-        <translation>Un message optionnel à ajouter à la demande de paiement, lequel sera affiché lorsque la demande sera ouverte. &lt;br /&gt; Note: Le message ne sera pas renvoyé avec le paiement sur le réseaux ELECTRA.</translation>
+        <translation>Un message optionnel à ajouter à la demande de paiement, lequel sera affiché lorsque la demande sera ouverte. &lt;br /&gt; Note: Le message ne sera pas envoyé avec le paiement sur le réseau ELECTRA.</translation>
     </message>
     <message>
         <source>Use this form to request payments. All fields are &lt;b&gt;optional&lt;/b&gt;.</source>
@@ -3484,7 +3484,7 @@ Soit monnayer des dénominations plus élevées (moins d'intrants sont nécessai
     </message>
     <message>
         <source>Show the selected request (does the same as double clicking an entry)</source>
-        <translation>Montrer la demande sélectionnée (fait la même chose que le doublic clic sur une entrée)</translation>
+        <translation>Montrer la demande sélectionnée (fait la même chose que le double clic sur une entrée)</translation>
     </message>
     <message>
         <source>Show</source>
@@ -3837,7 +3837,7 @@ Soit monnayer des dénominations plus élevées (moins d'intrants sont nécessai
     </message>
     <message>
         <source>are added as transaction fee</source>
-        <translation>setont ajouté pour les frais de transaction</translation>
+        <translation>seront ajouté pour les frais de transaction</translation>
     </message>
     <message>
         <source>Total Amount = &lt;b&gt;%1&lt;/b&gt;&lt;br /&gt;= %2</source>
@@ -3940,7 +3940,7 @@ Soit monnayer des dénominations plus élevées (moins d'intrants sont nécessai
     </message>
     <message>
         <source>Remove this entry</source>
-        <translation>Supprimer cette entré</translation>
+        <translation>Supprimer cette entrée</translation>
     </message>
     <message>
         <source>&amp;Label:</source>
@@ -4111,7 +4111,7 @@ Soit monnayer des dénominations plus élevées (moins d'intrants sont nécessai
     </message>
     <message>
         <source>Generated coins must mature %1 blocks before they can be spent. When you generated this block, it was broadcast to the network to be added to the block chain. If it fails to get into the chain, its state will change to "not accepted" and it won't be spendable. This may occasionally happen if another node generates a block within a few seconds of yours.</source>
-        <translation>Les pièces créées doit murir %1 blocs avant qu'elles ne puissent être dépensées. Lorsque vous générez ce bloc, il est diffusé sur le réseau afin d'être ajouté à la chaîne de blocs. Si cet ajout échoue, son statut sera modifié à "non accepté" et il ne sera pas dépensable. Ceci peut arriver occasionnellement lorsqu'un autre noeud du réseau génère un bloc quelques secondes avant le votre.</translation>
+        <translation>Les pièces générées doivent murir %1 blocs avant qu'elles ne puissent être dépensées. Lorsque vous générez ce bloc, il est diffusé sur le réseau afin d'être ajouté à la chaîne de blocs. Si cet ajout échoue, son statut sera modifié à "non accepté" et il ne sera pas dépensable. Ceci peut arriver occasionnellement lorsqu'un autre noeud du réseau génère un bloc quelques secondes avant le votre.</translation>
     </message>
     <message>
         <source>Amount</source>
@@ -4141,7 +4141,7 @@ Soit monnayer des dénominations plus élevées (moins d'intrants sont nécessai
     </message>
     <message>
         <source>Masternode Reward</source>
-        <translation>Récompense Matsernode</translation>
+        <translation>Récompense Masternode</translation>
     </message>
     <message>
         <source>Received from</source>
@@ -4213,7 +4213,7 @@ Soit monnayer des dénominations plus élevées (moins d'intrants sont nécessai
     </message>
     <message>
         <source>Date and time that the transaction was received.</source>
-        <translation>Date et heure a laquelle la transaction fut reçue</translation>
+        <translation>Date et heure a laquelle la transaction a été reçue</translation>
     </message>
     <message>
         <source>Type of transaction.</source>
@@ -4276,11 +4276,11 @@ Soit monnayer des dénominations plus élevées (moins d'intrants sont nécessai
     </message>
     <message>
         <source>Masternode Reward</source>
-        <translation>Récompense Matsernode</translation>
+        <translation>Récompense Masternode</translation>
     </message>
     <message>
         <source>Zerocoin Mint</source>
-        <translation>Zerocoin Monnayez</translation>
+        <translation>Zerocoin Monnayé</translation>
     </message>
     <message>
         <source>Enter address or label to search</source>
@@ -4462,7 +4462,7 @@ Soit monnayer des dénominations plus élevées (moins d'intrants sont nécessai
     </message>
     <message>
         <source>Error loading wallet.dat: Wallet requires newer version of ELECTRA Core</source>
-        <translation>Erreur de chargement du fichier wallet.dat: Le portefeuille nécessite une version plus récente du ELECTRA core</translation>
+        <translation>Erreur de chargement du fichier wallet.dat: Le portefeuille nécessite une version plus récente de ELECTRA core</translation>
     </message>
     <message>
         <source>Error opening block database</source>
@@ -4510,7 +4510,7 @@ Soit monnayer des dénominations plus élevées (moins d'intrants sont nécessai
     </message>
     <message>
         <source>Invalid amount for -mintxfee=&lt;amount&gt;: '%s'</source>
-        <translation>Invalid amount for -mintxfee=&lt;amount&gt;: '%s'</translation>
+        <translation>Montant invalide pour -mintxfee=&lt;amount&gt;: '%s'</translation>
     </message>
     <message>
         <source>This is a pre-release test build - use at your own risk - do not use for staking or merchant applications!</source>
@@ -4519,12 +4519,12 @@ Soit monnayer des dénominations plus élevées (moins d'intrants sont nécessai
     <message>
         <source> mints deleted
 </source>
-        <translation> Monnayes supprimées
+        <translation> Monnayés supprimés
 </translation>
     </message>
     <message>
         <source> mints updated, </source>
-        <translation>Monnayes actualisé
+        <translation>Monnayés actualisés
 , </translation>
     </message>
     <message>
@@ -4557,7 +4557,7 @@ Soit monnayer des dénominations plus élevées (moins d'intrants sont nécessai
     </message>
     <message>
         <source>Failed to create mint</source>
-        <translation>Impossible de créer la monnayer</translation>
+        <translation>Impossible de créer la monnayée</translation>
     </message>
     <message>
         <source>Limit size of signature cache to &lt;n&gt; entries (default: %u)</source>
@@ -4633,7 +4633,7 @@ Soit monnayer des dénominations plus élevées (moins d'intrants sont nécessai
     </message>
     <message>
         <source>Mint did not make it into blockchain</source>
-        <translation>Monnayés ne pas fait entre dans la blockchain</translation>
+        <translation>Monnayés ne sont pas entrés dans la blockchain</translation>
     </message>
     <message>
         <source>Missing input transaction information.</source>
@@ -4701,7 +4701,7 @@ Soit monnayer des dénominations plus élevées (moins d'intrants sont nécessai
     </message>
     <message>
         <source>Only accept block chain matching built-in checkpoints (default: %u)</source>
-        <translation>Accepter uniquement les points de contrôle conformes à la chaîne de blocs (par défaut: %u)</translation>
+        <translation>Accepter uniquement les points de contrôle conformes à la blockchain (par défaut: %u)</translation>
     </message>
     <message>
         <source>Only connect to nodes in network &lt;net&gt; (ipv4, ipv6 or onion)</source>
@@ -4721,7 +4721,7 @@ Soit monnayer des dénominations plus élevées (moins d'intrants sont nécessai
     </message>
     <message>
         <source>Print version and exit</source>
-        <translation>Imprimer la version est quitter</translation>
+        <translation>Imprimer la version et quitter</translation>
     </message>
     <message>
         <source>RPC server options:</source>
@@ -4729,7 +4729,7 @@ Soit monnayer des dénominations plus élevées (moins d'intrants sont nécessai
     </message>
     <message>
         <source>Rebuild block chain index from current blk000??.dat files</source>
-        <translation>Reconstruire l'index de la chaîne de blocs à partir des fichiers blk000 ??.dat courants</translation>
+        <translation>Reconstruire l'index de la blockchain à partir des fichiers blk000 ??.dat courants</translation>
     </message>
     <message>
         <source>Receive and display P2P network alerts (default: %u)</source>
@@ -4741,11 +4741,11 @@ Soit monnayer des dénominations plus élevées (moins d'intrants sont nécessai
     </message>
     <message>
         <source>Rescan the block chain for missing wallet transactions</source>
-        <translation>Rescanner la chaîne de blocs pour retrouver les transactions manquantes dans le portefeuille</translation>
+        <translation>Rescanner la blockchain pour retrouver les transactions manquantes dans le portefeuille</translation>
     </message>
     <message>
         <source>Rescanning...</source>
-        <translation>Rescanning...</translation>
+        <translation>Rescan en cours...</translation>
     </message>
     <message>
         <source>ResetMintZerocoin finished: </source>
@@ -4757,11 +4757,11 @@ Soit monnayer des dénominations plus élevées (moins d'intrants sont nécessai
     </message>
     <message>
         <source>Run in the background as a daemon and accept commands</source>
-        <translation>Exécuter en arrière-plan en tant que démon et accepter les commandes</translation>
+        <translation>Exécuter en arrière-plan en tant que daemon et accepter les commandes</translation>
     </message>
     <message>
         <source>Send transactions as zero-fee transactions if possible (default: %u)</source>
-        <translation>Envoyer des transaction sans frais si possible (défaut: %u)</translation>
+        <translation>Envoyer des transactions sans frais si possible (défaut: %u)</translation>
     </message>
     <message>
         <source>Session not complete!</source>
@@ -4773,11 +4773,11 @@ Soit monnayer des dénominations plus élevées (moins d'intrants sont nécessai
     </message>
     <message>
         <source>Set database cache size in megabytes (%d to %d, default: %d)</source>
-        <translation>Définir la taille duc ache de base de données en mégaoctets (%d à %d, défaut: %d)</translation>
+        <translation>Définir la taille du cache de base de données en mégaoctets (%d à %d, défaut: %d)</translation>
     </message>
     <message>
         <source>Set external address:port to get to this masternode (example: %s)</source>
-        <translation>Définir adresse:port pour accéder à ce masternode (exemple: %s)</translation>
+        <translation>Définir adresse: port pour accéder à ce masternode (exemple: %s)</translation>
     </message>
     <message>
         <source>Set key pool size to &lt;n&gt; (default: %u)</source>
@@ -4813,31 +4813,31 @@ Soit monnayer des dénominations plus élevées (moins d'intrants sont nécessai
     </message>
     <message>
         <source>Specify configuration file (default: %s)</source>
-        <translation>Spécifiez le fichier de configuration (par défaut: %s)</translation>
+        <translation>Spécifier le fichier de configuration (par défaut: %s)</translation>
     </message>
     <message>
         <source>Specify connection timeout in milliseconds (minimum: 1, default: %d)</source>
-        <translation>Spécifiez le délai d'attente de connexion en millisecondes (minimum: 1, par défaut: %d)</translation>
+        <translation>Spécifier le délai d'attente de connexion en millisecondes (minimum: 1, par défaut: %d)</translation>
     </message>
     <message>
         <source>Specify data directory</source>
-        <translation>Spécifiez le répertoire de données</translation>
+        <translation>Spécifier le répertoire de données</translation>
     </message>
     <message>
         <source>Specify masternode configuration file (default: %s)</source>
-        <translation>Spécifiez le fichier de configuration masternode (par défaut: %s)</translation>
+        <translation>Spécifier le fichier de configuration masternode (par défaut: %s)</translation>
     </message>
     <message>
         <source>Specify pid file (default: %s)</source>
-        <translation>Spécifiez le fichier pid (par défaut: %s)</translation>
+        <translation>Spécifier le fichier pid (par défaut: %s)</translation>
     </message>
     <message>
         <source>Specify wallet file (within data directory)</source>
-        <translation>Spécifiez le fichier du portefeuille (dans le répertoire de données)</translation>
+        <translation>Spécifier le fichier du portefeuille (dans le répertoire de données)</translation>
     </message>
     <message>
         <source>Specify your own public address</source>
-        <translation>Indiquez votre propre adresse publique</translation>
+        <translation>Indiquer votre propre adresse publique</translation>
     </message>
     <message>
         <source>Spend unconfirmed change when sending transactions (default: %u)</source>
@@ -4921,7 +4921,7 @@ Soit monnayer des dénominations plus élevées (moins d'intrants sont nécessai
     </message>
     <message>
         <source>Too many spends needed</source>
-        <translation>Trop de dépenses nécessaires</translation>
+        <translation>Trop de dépense nécessaire</translation>
     </message>
     <message>
         <source>Tor control port password (default: empty)</source>
@@ -4937,7 +4937,7 @@ Soit monnayer des dénominations plus élevées (moins d'intrants sont nécessai
     </message>
     <message>
         <source>Transaction Mint Started</source>
-        <translation>Monnayer de transaction démarrée</translation>
+        <translation>Monnayeur de transaction démarrée</translation>
     </message>
     <message>
         <source>Transaction amount too small</source>
@@ -4945,7 +4945,7 @@ Soit monnayer des dénominations plus élevées (moins d'intrants sont nécessai
     </message>
     <message>
         <source>Transaction amounts must be positive</source>
-        <translation>Le montant de la transaction doit être posiftif</translation>
+        <translation>Le montant de la transaction doit être positif</translation>
     </message>
     <message>
         <source>Transaction created successfully.</source>
@@ -4985,11 +4985,11 @@ Soit monnayer des dénominations plus élevées (moins d'intrants sont nécessai
     </message>
     <message>
         <source>Unable to find transaction containing mint</source>
-        <translation>Impossible de trouver la transaction contenant de la monnayez</translation>
+        <translation>Impossible de trouver la transaction contenant de la monnayée</translation>
     </message>
     <message>
         <source>Unable to sign spork message, wrong key?</source>
-        <translation>Impossible de signer le message spork, la mauvaise clé ?</translation>
+        <translation>Impossible de signer le message spork, mauvaise clé ?</translation>
     </message>
     <message>
         <source>Unable to start HTTP server. See debug log for details.</source>
@@ -5025,7 +5025,7 @@ Soit monnayer des dénominations plus élevées (moins d'intrants sont nécessai
     </message>
     <message>
         <source>Username for JSON-RPC connections</source>
-        <translation>Nom d'utilisateur pour les connections JSON-RPC</translation>
+        <translation>Nom d'utilisateur pour les connexions JSON-RPC</translation>
     </message>
     <message>
         <source>Value is below the smallest available denomination (= 1) of zECA</source>
@@ -5050,7 +5050,7 @@ Soit monnayer des dénominations plus élevées (moins d'intrants sont nécessai
     </message>
     <message>
         <source>Wallet is locked.</source>
-        <translation>Le portefeuille est vérouillé.</translation>
+        <translation>Le portefeuille est vérrouillé.</translation>
     </message>
     <message>
         <source>Wallet needed to be rewritten: restart ELECTRA Core to complete</source>
@@ -5094,7 +5094,7 @@ Soit monnayer des dénominations plus élevées (moins d'intrants sont nécessai
     </message>
     <message>
         <source>Your entries added successfully.</source>
-        <translation>Vos entrées ajoutées avec succès.</translation>
+        <translation>Vos entrées sont ajoutées avec succès.</translation>
     </message>
     <message>
         <source>Your transaction was accepted into the pool!</source>
