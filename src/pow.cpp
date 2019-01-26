@@ -59,7 +59,6 @@ unsigned int GetNextWorkRequired(const CBlockIndex* pindexLast, const CBlockHead
         uint256 bnNew;
         bnNew.SetCompact(pindexPrev->nBits);
 
-        int64_t nInterval = nTargetTimespan / nTargetSpacing;
         bnNew *= ((Params().Interval() - 1) * Params().TargetSpacing() + nActualSpacing + nActualSpacing);
         bnNew /= ((Params().Interval() + 1) * Params().TargetSpacing());
 
