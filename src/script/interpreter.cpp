@@ -1254,7 +1254,7 @@ bool TransactionSignatureChecker::CheckSig(const vector<unsigned char>& vchSigIn
 
     uint256 sighash = SignatureHash(scriptCode, *txTo, nIn, nHashType);
 
-    if (!VerifySignature(vchSig, pubkey, sighash)) {
+    if (!(static_cast<uint32_t>(txTo->nVersion) == 1 && txTo->IsCoinStake()) && !VerifySignature(vchSig, pubkey, sighash)) {
         return false;
     }
 
@@ -1305,8 +1305,8 @@ bool TransactionSignatureChecker::CheckSequence(const CScriptNum& nSequence) con
 
     // Fail if the transaction's version number is not set high
     // enough to trigger BIP 68 rules.
-    if (static_cast<uint32_t>(txTo->nVersion) < 2)
-        return false;
+    //if (static_cast<uint32_t>(txTo->nVersion) < 2)
+        //return false;
 
     // Sequence numbers with their most significant bit set are not
     // consensus constrained. Testing that the transaction's sequence
