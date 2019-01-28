@@ -719,7 +719,7 @@ unsigned int LimitOrphanTxSize(unsigned int nMaxOrphans)
 bool IsStandardTx(const CTransaction& tx, string& reason)
 {
     AssertLockHeld(cs_main);
-    if (tx.nVersion > CTransaction::CURRENT_VERSION || tx.nVersion < 7) {
+    if (tx.nVersion > CTransaction::CURRENT_VERSION || tx.nVersion < 1) {
         reason = "version";
         return false;
     }
@@ -1346,6 +1346,12 @@ bool AcceptToMemoryPool(CTxMemPool& pool, CValidationState& state, const CTransa
     if (tx.IsCoinStake())
         return state.DoS(100, error("AcceptToMemoryPool: coinstake as individual tx. txid=%s", tx.GetHash().GetHex()),
             REJECT_INVALID, "coinstake");
+
+    // Move to IsStandardTx() after fork completes
+    if (chainActive.Height() + 1 >= Params().WALLET_UPGRADE_BLOCK() && tx.nVersion < 7)
+        return state.DoS(0,
+            error("AcceptToMemoryPool : nonstandard transaction: version"),
+            REJECT_NONSTANDARD, "version");
 
     // Rather not work on nonstandard transactions (unless -testnet/-regtest)
     string reason;
