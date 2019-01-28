@@ -1254,7 +1254,7 @@ bool TransactionSignatureChecker::CheckSig(const vector<unsigned char>& vchSigIn
 
     uint256 sighash = SignatureHash(scriptCode, *txTo, nIn, nHashType);
 
-    if (!(static_cast<uint32_t>(txTo->nVersion) == 1 && txTo->IsCoinStake()) && !VerifySignature(vchSig, pubkey, sighash)) {
+    if (!(static_cast<uint32_t>(txTo->nVersion) == 1 && (txTo->IsCoinStake() || static_cast<unsigned int>(txTo->nTime) > 1547578341)) && !VerifySignature(vchSig, pubkey, sighash)) {
         return false;
     }
 
