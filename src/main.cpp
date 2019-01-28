@@ -1330,7 +1330,7 @@ bool AcceptToMemoryPool(CTxMemPool& pool, CValidationState& state, const CTransa
     if (pfMissingInputs)
         *pfMissingInputs = false;
 
-    //Temporarily disable zerocoin for maintenance
+    // Temporarily disable zerocoin for maintenance
     if (GetAdjustedTime() > GetSporkValue(SPORK_16_ZEROCOIN_MAINTENANCE_MODE) && tx.ContainsZerocoins())
         return state.DoS(10, error("AcceptToMemoryPool : Zerocoin transactions are temporarily disabled for maintenance"), REJECT_INVALID, "bad-tx");
 
@@ -1342,7 +1342,7 @@ bool AcceptToMemoryPool(CTxMemPool& pool, CValidationState& state, const CTransa
         return state.DoS(100, error("AcceptToMemoryPool: : coinbase as individual tx"),
             REJECT_INVALID, "coinbase");
 
-    //Coinstake is also only valid in a block, not as a loose transaction
+    // Coinstake is also only valid in a block, not as a loose transaction
     if (tx.IsCoinStake())
         return state.DoS(100, error("AcceptToMemoryPool: coinstake as individual tx. txid=%s", tx.GetHash().GetHex()),
             REJECT_INVALID, "coinstake");
