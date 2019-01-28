@@ -63,11 +63,12 @@ static Checkpoints::MapCheckpoints mapCheckpoints =
     (128926, uint256("79aa1982dcee614dadb2857a3491c1c900bd715af45cdb4f9779872280161be5"))
     (146500, uint256("540485ed391d8fb089eeb28ce9e4b61425b9f95d831855944f98b995e4407cec"))
     (148000, uint256("e51e81dd77a36b5d5db7e273463fc034360d779076d8a31ebfb8dd3d5ebd7a3d"))
-    (164000, uint256("23f70286427e411bf633cef753efbe27eb066edcc15bbbb230d4f953023f3c1e"));
+    (164000, uint256("23f70286427e411bf633cef753efbe27eb066edcc15bbbb230d4f953023f3c1e"))
+    (170000, uint256("59ea4fe7ee342f2280470def1f122d7c098ace083c3d914013ce7694700cb788"));
 static const Checkpoints::CCheckpointData data = {
     &mapCheckpoints,
-    1547577181, // * UNIX timestamp of last checkpoint block
-    474030,     // * total number of transactions between genesis and last checkpoint
+    1548609139, // * UNIX timestamp of last checkpoint block
+    486963,     // * total number of transactions between genesis and last checkpoint
                 //   (the tx=... number in the SetBestChain debug.log lines)
     4000        // * estimated number of transactions per day after checkpoint
 };
@@ -139,7 +140,7 @@ public:
         /** Height or Time Based Activations **/
         nLastPOWBlock = 13815;
         nPOSStartBlock = 11811;
-        nMandatoryUpgradeBlock = 167100;
+        nMandatoryUpgradeBlock = 170300;
         nUpgradeBlockVersion = 8;                                   // Block headers must be this version after upgrade block
         nZerocoinStartHeight = 2100000000;                          // OFF
         //nZerocoinStartTime = 4000000000;
