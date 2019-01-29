@@ -96,7 +96,7 @@ int nHardForkBlock = 112200;
 unsigned int nStakeMinAge = 12 * 60 * 60; // 12 hours
 unsigned int nStakeMinAgeOld = 24 * 60 * 60; // 24 hours
 unsigned int nStakeMaxAge = 30 * 24 * 60 * 60; // 30 days
-unsigned int nStakeMaxAgeNew = 60 * 24 * 60 * 60; // 60 days
+unsigned int nStakeMaxAgeNew = 30 * 24 * 60 * 60; // 30 days
 int64_t nReserveBalance = 0;
 
 /** Fees smaller than this (in ueca) are considered zero fee (for relaying and mining)
@@ -1330,7 +1330,7 @@ bool AcceptToMemoryPool(CTxMemPool& pool, CValidationState& state, const CTransa
     if (pfMissingInputs)
         *pfMissingInputs = false;
 
-    //Temporarily disable zerocoin for maintenance
+    // Temporarily disable zerocoin for maintenance
     if (GetAdjustedTime() > GetSporkValue(SPORK_16_ZEROCOIN_MAINTENANCE_MODE) && tx.ContainsZerocoins())
         return state.DoS(10, error("AcceptToMemoryPool : Zerocoin transactions are temporarily disabled for maintenance"), REJECT_INVALID, "bad-tx");
 
@@ -1342,10 +1342,16 @@ bool AcceptToMemoryPool(CTxMemPool& pool, CValidationState& state, const CTransa
         return state.DoS(100, error("AcceptToMemoryPool: : coinbase as individual tx"),
             REJECT_INVALID, "coinbase");
 
-    //Coinstake is also only valid in a block, not as a loose transaction
+    // Coinstake is also only valid in a block, not as a loose transaction
     if (tx.IsCoinStake())
         return state.DoS(100, error("AcceptToMemoryPool: coinstake as individual tx. txid=%s", tx.GetHash().GetHex()),
             REJECT_INVALID, "coinstake");
+
+    // Move to IsStandardTx() after fork completes
+    if (chainActive.Height() + 1 >= Params().WALLET_UPGRADE_BLOCK() && tx.nVersion < 7)
+        return state.DoS(0,
+            error("AcceptToMemoryPool : nonstandard transaction: version"),
+            REJECT_NONSTANDARD, "version");
 
     // Rather not work on nonstandard transactions (unless -testnet/-regtest)
     string reason;
