@@ -96,7 +96,7 @@ int nHardForkBlock = 112200;
 unsigned int nStakeMinAge = 12 * 60 * 60; // 12 hours
 unsigned int nStakeMinAgeOld = 24 * 60 * 60; // 24 hours
 unsigned int nStakeMaxAge = 30 * 24 * 60 * 60; // 30 days
-unsigned int nStakeMaxAgeNew = 60 * 24 * 60 * 60; // 60 days
+unsigned int nStakeMaxAgeNew = 30 * 24 * 60 * 60; // 30 days
 int64_t nReserveBalance = 0;
 
 /** Fees smaller than this (in ueca) are considered zero fee (for relaying and mining)
