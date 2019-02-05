@@ -72,8 +72,11 @@ SendCoinsDialog::SendCoinsDialog(QWidget* parent) : QDialog(parent, Qt::WindowSy
         CoinControlDialog::coinControl->useObfuScation = false;
         CoinControlDialog::coinControl->useSwiftTX = false;
     } else {
-        ui->checkSwiftTX->setChecked(useSwiftTX);
-        CoinControlDialog::coinControl->useSwiftTX = useSwiftTX;
+        ui->checkSwiftTX->setVisible(false); //Disables the SwiftX option 
+        CoinControlDialog::coinControl->useObfuScation = false;
+        CoinControlDialog::coinControl->useSwiftTX = false;
+        //ui->checkSwiftTX->setChecked(useSwiftTX);
+        //CoinControlDialog::coinControl->useSwiftTX = useSwiftTX;
     }
 
     connect(ui->checkSwiftTX, SIGNAL(stateChanged(int)), this, SLOT(updateSwiftTX()));
