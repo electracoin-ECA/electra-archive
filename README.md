@@ -1,7 +1,7 @@
 # Electra
 
 <p align="center">
-    <img src="https://electraproject.org/wp-content/uploads/2017/10/256-200x200.png"
+    <img src="https://media.discordapp.net/attachments/516295832904138762/542275592704491521/bitcoin.png"
         height="130">
 </p>
 <p align="center">
@@ -25,11 +25,25 @@ Electra is a blockchain using the highly-secure and power efficient NIST5 algori
 <tr> <td>Ticker</td><td>ECA</td></tr>
 <tr> <td>Algorithm</td><td>NIST5</td></tr>
 <tr> <td>Maximum supply</td><td>30,000,000</td></tr>
-<tr> <td>Block time</td><td>150 seconds</td></tr>
-<tr> <td>Staking Age</td><td>12 hours</td></tr>
-<tr> <td>Retarget</td><td>150 seconds</td></tr>
-<tr> <td>Private transactions</td><td>Yes</td></tr>
+<tr> <td>Block time</td><td>64 seconds</td></tr>
+<tr> <td>Block size</td><td>10 Mb max</td></tr>
+<tr> <td>Retarget</td><td>Every Block</td></tr>
+<tr> <td>Maturation time</td><td>12 hours</td></tr>
+<tr> <td>Max Coin age</td><td>60 days</td></tr>
+<tr> <td>TPS</td><td>~800</td></tr>
+<tr> <td>Lighting Network</td><td>Yes</td></tr>
+<tr> <td>Concensus</td><td>POS 3.0e</td></tr>
+<tr> <td>Atomic Swap</td><td>Yes (Barterdex)</td></tr>
+<tr> <td>ICO/Fund raised</td><td>0, Community work</td></tr>
+<tr> <td>Premine</td><td>3.34%</td></tr>
 </table>
+
+## Work in progress
+<table>
+<tr> <td>SEGWIT</td></tr>
+<tr> <td>BIP 130</td></tr>
+</table>
+    
 
 ## PoS Block Rewards
 
