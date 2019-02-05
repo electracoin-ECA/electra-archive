@@ -34,7 +34,7 @@ Electra is a blockchain using the highly-secure and power efficient NIST5 algori
 <tr> <td>Lighting Network</td><td>Yes</td></tr>
 <tr> <td>Concensus</td><td>POS 3.0e</td></tr>
 <tr> <td>Atomic Swap</td><td>Yes (Barterdex)</td></tr>
-<tr> <td>ICO/Fund raised</td><td>0, Community work</td></tr>
+<tr> <td>ICO/Fund raised</td><td>0, Community project</td></tr>
 <tr> <td>Premine</td><td>3.34%</td></tr>
 </table>
 
