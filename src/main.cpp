@@ -1349,7 +1349,7 @@ bool AcceptToMemoryPool(CTxMemPool& pool, CValidationState& state, const CTransa
             REJECT_INVALID, "coinstake");
 
     // Move to IsStandardTx() after fork completes
-    if ((chainActive.Height() + 1 >= Params().WALLET_UPGRADE_BLOCK() && (tx.nVersion != 7 || tx.nTime != 0)) || (chainActive.Height() + 1 < Params().WALLET_UPGRADE_BLOCK() && tx.nTime == 0))
+    if (chainActive.Height() + 1 >= Params().WALLET_UPGRADE_BLOCK() && (tx.nVersion != 7 || tx.nTime != 0))
         return state.DoS(0,
             error("AcceptToMemoryPool : nonstandard transaction: version"),
             REJECT_NONSTANDARD, "version");
