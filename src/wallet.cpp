@@ -2722,11 +2722,6 @@ bool CWallet::CreateTransaction(const vector<pair<CScript, CAmount> >& vecSend,
     wtxNew.fTimeReceivedIsTxTime = true;
     wtxNew.BindWallet(this);
     CMutableTransaction txNew;
-    if (chainActive.Height() + 1 < Params().WALLET_UPGRADE_BLOCK())
-    {
-        txNew.nVersion = 2;
-        txNew.nTime = GetAdjustedTime();
-    }
 
     {
         LOCK2(cs_main, cs_wallet);
