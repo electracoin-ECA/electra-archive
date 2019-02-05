@@ -886,7 +886,7 @@ void BitcoinGUI::exchangesActionClicked()
 }
 void BitcoinGUI::electraBlockExplorerActionClicked()
 {
-        QDesktopServices::openUrl(QUrl("https://www.electraexplorer.com/"));
+        QDesktopServices::openUrl(QUrl("https://explorer.electraproject.org/"));
 }
 
 #ifdef ENABLE_WALLET

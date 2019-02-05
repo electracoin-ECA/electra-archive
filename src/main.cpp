@@ -64,6 +64,7 @@ using namespace libzerocoin;
  */
 
 CCriticalSection cs_main;
+CCriticalSection cs_mapstake;
 
 BlockMap mapBlockIndex;
 map<uint256, uint256> mapProofOfStake;
@@ -1348,7 +1349,7 @@ bool AcceptToMemoryPool(CTxMemPool& pool, CValidationState& state, const CTransa
             REJECT_INVALID, "coinstake");
 
     // Move to IsStandardTx() after fork completes
-    if (chainActive.Height() + 1 >= Params().WALLET_UPGRADE_BLOCK() && tx.nVersion < 7)
+    if (chainActive.Height() + 1 >= Params().WALLET_UPGRADE_BLOCK() && (tx.nVersion != 7 || tx.nTime != 0))
         return state.DoS(0,
             error("AcceptToMemoryPool : nonstandard transaction: version"),
             REJECT_NONSTANDARD, "version");
@@ -2455,8 +2456,12 @@ bool DisconnectBlock(CBlock& block, CValidationState& state, CBlockIndex* pindex
                     coins->vout.resize(out.n + 1);
                 coins->vout[out.n] = undo.txout;
                 
-                // erase the spent input
-                mapStakeSpent.erase(out);
+                {
+                    LOCK(cs_mapstake);
+
+                    // erase the spent input
+                    mapStakeSpent.erase(out);
+                }
             }
         }
     }
@@ -3081,25 +3086,28 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
         if (!pblocktree->WriteTxIndex(vPos))
             return state.Abort("Failed to write transaction index");
     
-    // add new entries
-    for (const CTransaction tx: block.vtx) {
-        if (tx.IsCoinBase() || tx.IsZerocoinSpend())
-            continue;
-        for (const CTxIn in: tx.vin) {
-            LogPrint("map", "mapStakeSpent: Insert %s | %u\n", in.prevout.ToString(), pindex->nHeight);
-            mapStakeSpent.insert(std::make_pair(in.prevout, pindex->nHeight));
-        }
-    }
+    {
+        LOCK(cs_mapstake);
 
-
-    // delete old entries
-    for (auto it = mapStakeSpent.begin(); it != mapStakeSpent.end();) {
-        if (it->second < pindex->nHeight - Params().MaxReorganizationDepth()) {
-            LogPrint("map", "mapStakeSpent: Erase %s | %u\n", it->first.ToString(), it->second);
-            it = mapStakeSpent.erase(it);
+        // add new entries
+        for (const CTransaction tx: block.vtx) {
+            if (tx.IsCoinBase() || tx.IsZerocoinSpend())
+                continue;
+            for (const CTxIn in: tx.vin) {
+                LogPrint("map", "mapStakeSpent: Insert %s | %u\n", in.prevout.ToString(), pindex->nHeight);
+                mapStakeSpent.insert(std::make_pair(in.prevout, pindex->nHeight));
+            }
         }
-        else {
-            it++;
+                
+        // delete old entries
+        for (auto it = mapStakeSpent.begin(); it != mapStakeSpent.end();) {
+            if (it->second < pindex->nHeight - Params().MaxReorganizationDepth()) {
+                LogPrint("map", "mapStakeSpent: Erase %s | %u\n", it->first.ToString(), it->second);
+                it = mapStakeSpent.erase(it);
+            }
+            else {
+                it++;
+            }
         }
     }
     
@@ -4376,14 +4384,15 @@ bool AcceptBlock(CBlock& block, CValidationState& state, CBlockIndex** ppindex, 
         CCoinsViewCache coins(pcoinsTip);
 
         if (!coins.HaveInputs(block.vtx[1])) {
+            LOCK(cs_mapstake);
+            
             // the inputs are spent at the chain tip so we should look at the recently spent outputs
-
             for (CTxIn in : block.vtx[1].vin) {
                 auto it = mapStakeSpent.find(in.prevout);
                 if (it == mapStakeSpent.end()) {
                     return false;
                 }
-                if (it->second <= pindexPrev->nHeight) {
+                if (it->second < pindexPrev->nHeight) {
                     return false;
                 }
             }
@@ -4395,7 +4404,7 @@ bool AcceptBlock(CBlock& block, CValidationState& state, CBlockIndex** ppindex, 
             CBlockIndex *last = pindexPrev;
 
             // while that block is not on the main chain
-            while (!chainActive.Contains(last) && pindexPrev != NULL) {
+            while (!chainActive.Contains(last) && last != NULL) {
                 CBlock bl;
                 ReadBlockFromDisk(bl, last);
                 // loop through every spent input from said block
@@ -4413,7 +4422,7 @@ bool AcceptBlock(CBlock& block, CValidationState& state, CBlockIndex** ppindex, 
                 }
 
                 // go to the parent block
-                last = pindexPrev->pprev;
+                last = last->pprev;
             }
         }
     }
